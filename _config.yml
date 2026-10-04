@@ -1,0 +1,19 @@
+# Site settings. You rarely need to touch this file.
+title: "Salman Shaik"
+description: "Research, Power BI dashboards and case studies on Swiss companies and markets, by Salman Shaik."
+url: "https://salmanshaik.ch"
+baseurl: ""
+author: "Salman Shaik"
+lang: en
+permalink: /updates/:title/
+markdown: kramdown
+collections:
+  projects:
+    output: true
+    permalink: /work/:name/
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+exclude:
+  - HOW-TO-UPDATE.md
+  - PROJECT-TEMPLATE.md

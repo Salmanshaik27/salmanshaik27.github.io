@@ -1,0 +1,16 @@
+---
+layout: default
+title: Updates
+nav: updates
+---
+<section class="wrap page-head">
+  <h1>Updates</h1>
+  <p class="lede">Short notes on what I am learning and building. Most start as LinkedIn posts and get their full version here.</p>
+</section>
+<section class="wrap">
+  <ul class="post-list">
+    {% for post in site.posts %}
+    <li><a href="{{ post.url | relative_url }}"><time datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: "%-d %b %Y" }}</time><span class="t">{{ post.title }}</span><span class="s">{{ post.summary }}</span></a></li>
+    {% endfor %}
+  </ul>
+</section>

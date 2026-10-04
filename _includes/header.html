@@ -1,0 +1,13 @@
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="{{ '/' | relative_url }}">{{ site.data.content.name }}</a>
+    <nav aria-label="Main">
+      <a href="{{ '/#journey' | relative_url }}">Journey</a>
+      <a href="{{ '/#work' | relative_url }}">Work</a>
+      <a href="{{ '/#powerbi' | relative_url }}">Power BI</a>
+      <a href="{{ '/updates/' | relative_url }}"{% if page.nav == 'updates' %} aria-current="page"{% endif %}>Updates</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a class="btn primary small header-cta" href="{{ '/#work' | relative_url }}">See my work</a>
+  </div>
+</header>

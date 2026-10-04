@@ -1,0 +1,118 @@
+# =====================================================================
+#  THIS IS THE FILE YOU EDIT FOR ALMOST EVERYTHING.
+#  Change the text between the quotes, then click "Commit changes".
+#  The site updates about one minute later.
+#  Rules: keep the quotes, keep the spaces at the start of each line.
+#  Projects are NOT here: each project is its own file in _projects/.
+# =====================================================================
+
+name: "Salman Shaik"
+role: "Business Innovation student, HSLU Lucerne"
+
+# The big sentence next to your photo
+headline: "From engineering in Bengaluru to business strategy in Lucerne."
+
+# The paragraph under it
+intro: "I am an MSc Business Administration student at HSLU, majoring in Business Innovation and Entrepreneurship, with a computer science degree behind me. I research Swiss markets and companies, turn real data into Power BI dashboards, and publish what I find."
+
+# The small status line above your name
+status: "Open to consulting and strategy roles in Switzerland"
+
+# ---------------------------------------------------------------------
+#  Contact links. Leave a link empty ("") to hide it.
+# ---------------------------------------------------------------------
+linkedin: "https://www.linkedin.com/in/salmanshaik27"
+email: "your.email@example.com"
+instagram: ""
+github: "https://github.com/Salmanshaik27"
+
+# Upload your CV PDF to assets/files/ and write its file name here.
+# Leave empty ("") to hide the "Download CV" button.
+cv: ""
+
+# ---------------------------------------------------------------------
+#  JOURNEY: your two degrees, with the work you did during each.
+#  Logos: upload the logo file to assets/img/ and write its name below.
+#  Until then, the short text in "monogram" is shown instead.
+# ---------------------------------------------------------------------
+education:
+  - degree: "Bachelor of Technology in Computer Science and Engineering"
+    focus: "Specialisation in Internet of Things"
+    school: "Presidency University"
+    place: "Bengaluru, India"
+    period: "2021 to 2025"
+    logo: ""
+    monogram: "PU"
+    work:
+      - title: "Eco Drive"
+        text: "A gamified mobile app that helps people track and cut the carbon footprint of their daily travel. Team of five. Published in IJSREM."
+      - title: "Smart Waste Management"
+        text: "A smart waste collection system. I led a team of five. Published in IJSAT."
+
+  - degree: "Master of Science in Business Administration"
+    focus: "Major in Business Innovation and Entrepreneurship"
+    school: "Lucerne University of Applied Sciences and Arts (HSLU)"
+    place: "Lucerne, Switzerland"
+    period: "2026 to today"
+    logo: ""
+    monogram: "HSLU"
+    work:
+      - title: "Change management consulting project"
+        text: "Consulting project for a real organisation, supporting a change process from analysis to recommendations. Grade 5.25 / 6."
+      - title: "ShareSpot business concept"
+        text: "Developed a new business concept from idea to business plan. Grade 5.4 / 6."
+      - title: "Sustainable Dining research project"
+        text: "Applied research with qualitative interviews, in a team of five. Grade 5.5 / 6."
+      - title: "Practice management consulting for physicians"
+        text: "Ongoing applied research: defining the value proposition for consulting services to Swiss doctors' practices, using interviews and a survey."
+      - title: "SME consulting project"
+        text: "Ongoing: finding and advising a real Swiss SME as a student consulting team."
+
+# ---------------------------------------------------------------------
+#  SELF-IMPROVEMENT SECTION (above the Power BI gallery)
+# ---------------------------------------------------------------------
+improve_title: "Always room to improve"
+improve_text: "No matter how good you are, there is always room to improve. So my hobby is research: I study markets, companies and case studies, and turn real data into Power BI dashboards. I publish a new project every three days."
+
+# ---------------------------------------------------------------------
+#  CERTIFICATIONS. status: "Completed" or "In progress"
+# ---------------------------------------------------------------------
+certifications:
+  - name: "Professional Scrum Master I (PSM I)"
+    issuer: "Scrum.org"
+    date: "2026"
+    status: "In progress"
+    link: ""
+  - name: "McKinsey Forward Program"
+    issuer: "McKinsey & Company"
+    date: "2026"
+    status: "In progress"
+    link: ""
+  - name: "AI-Powered Performance Ads"
+    issuer: "Google Skillshop"
+    date: "REPLACE WITH YEAR"
+    status: "Completed"
+    link: ""
+  - name: "Dive Deeper into GA4 Data and Reports"
+    issuer: "Google Skillshop"
+    date: "REPLACE WITH YEAR"
+    status: "Completed"
+    link: ""
+
+# ---------------------------------------------------------------------
+#  PHOTOS (bottom of the page). Replace the files in assets/img/
+#  with your own, keeping the same file names.
+# ---------------------------------------------------------------------
+gallery:
+  - image: "/assets/img/gallery-1.jpg"
+    caption: "Replace with a caption"
+  - image: "/assets/img/gallery-2.jpg"
+    caption: "Replace with a caption"
+  - image: "/assets/img/gallery-3.jpg"
+    caption: "Replace with a caption"
+  - image: "/assets/img/gallery-4.jpg"
+    caption: "Replace with a caption"
+  - image: "/assets/img/gallery-5.jpg"
+    caption: "Replace with a caption"
+  - image: "/assets/img/gallery-6.jpg"
+    caption: "Replace with a caption"
