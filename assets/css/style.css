@@ -218,3 +218,63 @@ p { margin: 0 0 1em; }
   .journey-map .map-label text { font-size: 30px; }
   .journey-map .map-label text.sub, .journey-map .map-km { font-size: 20px; }
 }
+
+/* ===== v3: gitfolio-inspired look and interactions (own code) ===== */
+:root { --head: "Questrial", "Segoe UI", Arial, sans-serif; --body: "Poppins", -apple-system, "Segoe UI", Arial, sans-serif; --shadow: 0 18px 40px rgba(10,10,10,0.10); --side-overlay: linear-gradient(90deg, rgba(10,10,10,0.45), rgba(10,10,10,0.45)); }
+:root[data-theme="dark"] { --bg: #0A0A0A; --card: #141414; --surface: #141414; --line: #232323; --chip: #1E1E1E; --map-bg: #111111; --map-grid: #171717; --map-land: #262626; --map-home: #3A475A; --shadow: 0 18px 40px rgba(0,0,0,0.6); --side-overlay: linear-gradient(90deg, rgba(10,10,10,0.25), #0A0A0A); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg: #0A0A0A; --card: #141414; --surface: #141414; --line: #232323; --chip: #1E1E1E; --map-bg: #111111; --map-grid: #171717; --map-land: #262626; --map-home: #3A475A; --shadow: 0 18px 40px rgba(0,0,0,0.6); --side-overlay: linear-gradient(90deg, rgba(10,10,10,0.25), #0A0A0A); } }
+body { font-size: 15.5px; }
+
+/* Panel: centred content, photo first, big bio line */
+.side { background: var(--side-overlay), var(--side-img, linear-gradient(160deg, #1D2A44 0%, #2B1F33 55%, #4A1E22 100%)); background-size: cover; background-position: center; }
+.side-inner { justify-content: center; padding: 48px 44px; }
+.side-photo img { width: 170px; height: 170px; border-radius: 6px; border: none; }
+.side-name { font-family: var(--body); font-weight: 700; font-size: 1.35rem; margin: 22px 0 2px; }
+.side-role { font-weight: 600; font-size: 0.92rem; margin-bottom: 10px; }
+.side-bio { font-family: var(--head); font-size: 1.6rem; line-height: 1.3; color: #fff; margin: 0 0 18px; }
+.side-status { margin-bottom: 18px; }
+.side-links { font-weight: 600; }
+.side-nav { margin-top: 18px; flex-direction: row; flex-wrap: wrap; gap: 4px 18px; padding-top: 18px; }
+.side-nav a { font-family: var(--body); font-weight: 600; font-size: 0.95rem; }
+.side-nav a:hover { padding-left: 0; text-decoration: underline; text-decoration-color: var(--accent); }
+
+/* Big bold section titles */
+.big { font-family: var(--head); font-weight: 700; font-size: 3.1rem; letter-spacing: -0.01em; }
+.intro { margin-bottom: 40px; }
+.intro-text { font-size: 1.05rem; }
+
+/* Cards that lift on hover */
+.card, .degree, .post-card, .steps li { transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease; }
+.card:hover, .post-card:hover { transform: scale(1.03); box-shadow: var(--shadow); border-color: transparent; }
+.degree:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+.card h3 { font-family: var(--body); font-weight: 700; font-size: 1.15rem; }
+.card-body > p { font-family: var(--head); font-size: 1rem; color: var(--text); opacity: 0.8; }
+.card-meta { font-weight: 600; }
+.card.next:hover { transform: none; box-shadow: none; }
+
+/* Updates as picture cards */
+.posts { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin-bottom: 18px; }
+.post-card { display: block; background: var(--card); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; text-decoration: none; color: var(--text); }
+.post-card:hover { color: var(--text); }
+.post-card img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; object-position: left top; background: #fff; }
+.post-body { display: block; padding: 16px 18px 18px; }
+.post-title { display: block; font-weight: 700; font-size: 1.08rem; line-height: 1.3; margin-bottom: 6px; }
+.post-sum { display: block; font-family: var(--head); opacity: 0.8; margin-bottom: 8px; }
+.post-date { display: block; font-size: 0.8rem; color: var(--muted); font-weight: 600; }
+
+.foot { text-align: center; border-top: none; font-family: var(--head); font-weight: 700; color: var(--text); }
+::selection { background: var(--text); color: var(--bg); }
+
+@media (prefers-reduced-motion: reduce) { .card, .degree, .post-card { transition: none; } .card:hover, .post-card:hover, .degree:hover { transform: none; } }
+@media (max-width: 900px) {
+  .side { background: var(--side-overlay-m, linear-gradient(rgba(10,10,10,0.5), rgba(10,10,10,0.5))), var(--side-img, linear-gradient(160deg, #1D2A44 0%, #2B1F33 55%, #4A1E22 100%)); background-size: cover; background-position: center; }
+  :root[data-theme="dark"] .side { --side-overlay-m: linear-gradient(0deg, #0A0A0A 0%, rgba(10,10,10,0.35) 55%); }
+  .side-inner { align-items: center; text-align: center; padding: 40px 22px 30px; }
+  .side-photo img { width: 120px; height: 120px; }
+  .side-bio { font-size: 1.3rem; }
+  .side-status, .side-cv, .theme-toggle { align-self: center; }
+  .side-links li { justify-content: center; }
+  .side-nav { justify-content: center; border-top: none; }
+  .posts { grid-template-columns: 1fr; }
+  .big { font-size: 2.4rem; }
+}

@@ -5,9 +5,12 @@ title: Updates
 <section>
   <h2 class="big">Updates.</h2>
   <p class="lead">Short notes on what I am learning and building. Most start as LinkedIn posts.</p>
-  <ul class="updates">
+  <div class="posts">
     {% for post in site.posts %}
-    <li><a href="{{ post.url | relative_url }}"><span class="u-title">{{ post.title }}</span><span class="u-date">{{ post.date | date: "%-d %b %Y" }}</span></a></li>
+    <a class="post-card" href="{{ post.url | relative_url }}">
+      {% if post.image %}<img src="{{ post.image | relative_url }}" alt="" loading="lazy">{% endif %}
+      <div class="post-body"><span class="post-title">{{ post.title }}</span><span class="post-sum">{{ post.summary }}</span><span class="post-date">{{ post.date | date: "%-d %b %Y" }}</span></div>
+    </a>
     {% endfor %}
-  </ul>
+  </div>
 </section>

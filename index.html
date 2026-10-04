@@ -6,7 +6,6 @@ title: Home
 {% assign projects = site.projects | sort: "date" | reverse %}
 
 <section class="intro">
-  <p class="intro-head">{{ c.headline }}</p>
   <p class="intro-text">{{ c.intro }}</p>
 </section>
 
@@ -74,11 +73,14 @@ title: Home
 
 <section id="updates">
   <h2 class="big">Updates.</h2>
-  <ul class="updates">
-    {% for post in site.posts limit: 5 %}
-    <li><a href="{{ post.url | relative_url }}"><span class="u-title">{{ post.title }}</span><span class="u-date">{{ post.date | date: "%-d %b %Y" }}</span></a></li>
+  <div class="posts">
+    {% for post in site.posts limit: 4 %}
+    <a class="post-card" href="{{ post.url | relative_url }}">
+      {% if post.image %}<img src="{{ post.image | relative_url }}" alt="" loading="lazy">{% endif %}
+      <div class="post-body"><span class="post-title">{{ post.title }}</span><span class="post-sum">{{ post.summary }}</span><span class="post-date">{{ post.date | date: "%-d %b %Y" }}</span></div>
+    </a>
     {% endfor %}
-  </ul>
+  </div>
   <p><a class="more" href="{{ '/updates/' | relative_url }}">All updates</a></p>
 </section>
 
