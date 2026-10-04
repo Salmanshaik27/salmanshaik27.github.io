@@ -1,64 +1,46 @@
 ---
 layout: default
 ---
-<article class="case">
-  <header class="case-head wrap">
-    <p class="meta"><a href="{{ '/#work' | relative_url }}">Work</a> / {{ page.date | date: "%B %Y" }}</p>
-    <h1>{{ page.title }}</h1>
-    <p class="standfirst">{{ page.summary }}</p>
-    <p class="tags">{% for t in page.tags %}<span class="tag">{{ t }}</span>{% endfor %}</p>
-    <div class="actions">
-      {% if page.pdf %}<a class="btn primary" href="{{ page.pdf | relative_url }}">Download the full report (PDF)</a>{% endif %}
-      {% if page.visuals %}<a class="btn" href="#visuals">See the Power BI visuals</a>{% endif %}
-    </div>
-  </header>
+<article class="article case">
+  <p class="crumb"><a href="{{ '/#work' | relative_url }}">Work</a> / {{ page.date | date: "%B %Y" }}</p>
+  <h2 class="title">{{ page.title }}</h2>
+  <p class="lead">{{ page.summary }}</p>
+  <div class="actions">
+    {% if page.pdf %}<a class="btn primary" href="{{ page.pdf | relative_url }}">Download the report (PDF)</a>{% endif %}
+    {% if page.visuals %}<a class="btn" href="#visuals">Power BI visuals</a>{% endif %}
+  </div>
 
-  <section class="wrap facts" aria-label="Project facts">
-    {% if page.question %}<div class="question"><p class="q-label">The question</p><p class="q-text">{{ page.question }}</p></div>{% endif %}
-    <dl>
-      {% if page.data %}<div><dt>Data</dt><dd>{{ page.data }}</dd></div>{% endif %}
-      {% if page.tools %}<div><dt>Tools</dt><dd>{{ page.tools }}</dd></div>{% endif %}
-      {% if page.time %}<div><dt>Time</dt><dd>{{ page.time }}</dd></div>{% endif %}
-      {% if page.role %}<div><dt>My role</dt><dd>{{ page.role }}</dd></div>{% endif %}
-    </dl>
-  </section>
+  {% if page.question %}<div class="question"><p class="label">The question</p><p class="q">{{ page.question }}</p></div>{% endif %}
+  <dl class="facts">
+    {% if page.data %}<div><dt>Data</dt><dd>{{ page.data }}</dd></div>{% endif %}
+    {% if page.tools %}<div><dt>Tools</dt><dd>{{ page.tools }}</dd></div>{% endif %}
+    {% if page.time %}<div><dt>Time</dt><dd>{{ page.time }}</dd></div>{% endif %}
+    {% if page.role %}<div><dt>My role</dt><dd>{{ page.role }}</dd></div>{% endif %}
+  </dl>
 
   {% if page.findings %}
-  <section class="wrap">
-    <h2 class="h-section">Key findings</h2>
-    <ol class="findings">{% for f in page.findings %}<li>{{ f }}</li>{% endfor %}</ol>
-  </section>
+  <h3 class="sub">Key findings</h3>
+  <ol class="findings">{% for f in page.findings %}<li>{{ f }}</li>{% endfor %}</ol>
   {% endif %}
 
   {% if page.steps %}
-  <section class="wrap">
-    <h2 class="h-section">What I did, step by step</h2>
-    <ol class="steps">{% for s in page.steps %}<li><h3>{{ s.title }}</h3><p>{{ s.text }}</p></li>{% endfor %}</ol>
-  </section>
+  <h3 class="sub">What I did, step by step</h3>
+  <ol class="steps">{% for s in page.steps %}<li><strong>{{ s.title }}</strong><span>{{ s.text }}</span></li>{% endfor %}</ol>
   {% endif %}
 
   {% if page.visuals %}
-  <section class="wrap" id="visuals">
-    <h2 class="h-section">Power BI visuals</h2>
-    <p class="muted">Built by me in Power BI from data I collected and cleaned. Click a chart to open it full size.</p>
-    <div class="visual-grid">{% for v in page.visuals %}<figure><a href="{{ v.image | relative_url }}"><img src="{{ v.image | relative_url }}" alt="{{ v.caption }}" loading="lazy"></a><figcaption>{{ v.caption }}</figcaption></figure>{% endfor %}</div>
-  </section>
+  <h3 class="sub" id="visuals">Power BI visuals</h3>
+  <p class="muted">Built by me in Power BI. Click a chart to open it full size.</p>
+  <div class="visuals">{% for v in page.visuals %}<figure><a href="{{ v.image | relative_url }}"><img src="{{ v.image | relative_url }}" alt="{{ v.caption }}" loading="lazy"></a><figcaption>{{ v.caption }}</figcaption></figure>{% endfor %}</div>
   {% endif %}
 
-  <section class="wrap prose-wrap">
-    <h2 class="h-section">The detail</h2>
-    <div class="prose">{{ content }}</div>
-  </section>
+  <h3 class="sub">The detail</h3>
+  <div class="prose">{{ content }}</div>
 
   {% if page.sources %}
-  <section class="wrap">
-    <h2 class="h-section">Sources</h2>
-    <ul class="sources">{% for s in page.sources %}<li><a href="{{ s.url }}">{{ s.name }}</a></li>{% endfor %}</ul>
-    {% if page.pdf %}<p class="muted">The full source list is in the <a href="{{ page.pdf | relative_url }}">PDF report</a>.</p>{% endif %}
-  </section>
+  <h3 class="sub">Sources</h3>
+  <ul class="sources">{% for s in page.sources %}<li><a href="{{ s.url }}">{{ s.name }}</a></li>{% endfor %}</ul>
   {% endif %}
 
-  <section class="wrap">
-    <p class="back"><a href="{{ '/#work' | relative_url }}">Back to all work</a></p>
-  </section>
+  <p class="back"><a href="{{ '/#work' | relative_url }}">Back to all work</a></p>
 </article>

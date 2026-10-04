@@ -5,29 +5,39 @@ title: Home
 {% assign c = site.data.content %}
 {% assign projects = site.projects | sort: "date" | reverse %}
 
-<section class="hero wrap">
-  <div class="hero-text">
-    <p class="status"><span class="dot" aria-hidden="true"></span>{{ c.status }}</p>
-    <h1>{{ c.name }}</h1>
-    <p class="role">{{ c.role }}</p>
-    <p class="headline">{{ c.headline }}</p>
-    <p class="lede">{{ c.intro }}</p>
-    <div class="actions">
-      <a class="btn primary" href="#work">See my work</a>
-      {% if c.linkedin != "" %}<a class="btn" href="{{ c.linkedin }}">LinkedIn</a>{% endif %}
-      {% if c.cv != "" %}<a class="btn" href="{{ '/assets/files/' | append: c.cv | relative_url }}">Download CV</a>{% endif %}
-    </div>
-  </div>
-  <figure class="hero-photo"><img src="{{ '/assets/img/profile.jpg' | relative_url }}" alt="Portrait of {{ c.name }}"></figure>
+<section class="intro">
+  <p class="intro-head">{{ c.headline }}</p>
+  <p class="intro-text">{{ c.intro }}</p>
 </section>
 
-<section class="journey-sec" id="journey">
-  <div class="wrap">
-    <h2 class="h-section">My journey</h2>
-    <p class="muted section-intro">Two countries, two degrees, one direction: from building technology to deciding what businesses should do with it.</p>
+<section id="work">
+  <h2 class="big">Work.</h2>
+  <div class="cards">
+    {% for p in projects %}
+    <article class="card">
+      <a class="card-img" href="{{ p.url | relative_url }}" tabindex="-1" aria-hidden="true"><img src="{{ p.cover | relative_url }}" alt="" loading="lazy"></a>
+      <div class="card-body">
+        <h3><a href="{{ p.url | relative_url }}">{{ p.title }}</a></h3>
+        <p>{{ p.summary }}</p>
+        <div class="card-meta">
+          <span>{{ p.date | date: "%b %Y" }}</span>
+          {% for t in p.tags %}<span class="chip">{{ t }}</span>{% endfor %}
+          {% if p.pdf %}<a class="chip pdf" href="{{ p.pdf | relative_url }}">PDF</a>{% endif %}
+        </div>
+      </div>
+    </article>
+    {% endfor %}
+    <div class="card next">
+      <p class="next-title">Next project</p>
+      <p>{{ c.improve_text }}</p>
+    </div>
   </div>
-  <div class="wrap map-wrap">{% include journey-map.svg %}</div>
-  <div class="wrap degrees">
+</section>
+
+<section id="journey">
+  <h2 class="big">Journey.</h2>
+  <div class="map-box">{% include journey-map.svg %}</div>
+  <div class="degrees">
     {% for e in c.education %}
     <article class="degree">
       <header>
@@ -35,76 +45,45 @@ title: Home
         <div>
           <p class="period">{{ e.period }}, {{ e.place }}</p>
           <h3>{{ e.degree }}</h3>
-          <p class="school">{{ e.school }}<br>{{ e.focus }}</p>
+          <p class="school">{{ e.school }}. {{ e.focus }}</p>
         </div>
       </header>
-      <h4>What I worked on</h4>
       <ul class="degree-work">
         {% for w in e.work %}<li><strong>{{ w.title }}</strong><span>{{ w.text }}</span></li>{% endfor %}
       </ul>
     </article>
     {% endfor %}
   </div>
-</section>
-
-<section class="wrap" id="work">
-  <div class="row-head"><h2 class="h-section">Work</h2><span class="muted">{{ projects | size }} {% if projects.size == 1 %}project{% else %}projects{% endif %}</span></div>
-  <p class="muted section-intro">Each project starts with one question about a market or company, and ends with a clear answer, a Power BI report and a downloadable PDF.</p>
-  <div class="work-list">
-    {% for p in projects %}
-    <article class="work-card">
-      <a class="work-img" href="{{ p.url | relative_url }}"><img src="{{ p.cover | relative_url }}" alt="Chart from {{ p.title }}" loading="lazy"></a>
-      <div class="work-text">
-        <p class="meta">{{ p.date | date: "%-d %B %Y" }}</p>
-        <h3><a href="{{ p.url | relative_url }}">{{ p.title }}</a></h3>
-        <p>{{ p.summary }}</p>
-        <p class="tags">{% for t in p.tags %}<span class="tag">{{ t }}</span>{% endfor %}</p>
-        <div class="actions small">
-          <a class="btn primary small" href="{{ p.url | relative_url }}">Read the case</a>
-          {% if p.pdf %}<a class="btn small" href="{{ p.pdf | relative_url }}">PDF</a>{% endif %}
-        </div>
-      </div>
-    </article>
+  <h3 class="sub">Certifications</h3>
+  <ul class="certs">
+    {% for cert in c.certifications %}
+    <li><div><strong>{% if cert.link != "" %}<a href="{{ cert.link }}">{{ cert.name }}</a>{% else %}{{ cert.name }}{% endif %}</strong><span>{{ cert.issuer }}, {{ cert.date }}</span></div><span class="badge{% if cert.status == 'In progress' %} progress{% endif %}">{{ cert.status }}</span></li>
     {% endfor %}
+  </ul>
+</section>
+
+<section id="powerbi">
+  <h2 class="big">Power BI.</h2>
+  <p class="lead">{{ c.improve_title }}. Every chart here is built from real data I collected and cleaned myself.</p>
+  <div class="visuals">
+    {% for p in projects %}{% for v in p.visuals %}
+    <figure><a href="{{ p.url | relative_url }}#visuals"><img src="{{ v.image | relative_url }}" alt="{{ v.caption }}" loading="lazy"></a><figcaption>{{ v.caption }}</figcaption></figure>
+    {% endfor %}{% endfor %}
   </div>
 </section>
 
-<section class="powerbi-sec" id="powerbi">
-  <div class="wrap improve">
-    <h2 class="h-section">{{ c.improve_title }}</h2>
-    <p class="improve-text">{{ c.improve_text }}</p>
-  </div>
-  <div class="wrap">
-    <h3 class="sub-head">Power BI visuals from real data</h3>
-    <div class="visual-grid">
-      {% for p in projects %}{% for v in p.visuals %}
-      <figure><a href="{{ p.url | relative_url }}#visuals"><img src="{{ v.image | relative_url }}" alt="{{ v.caption }}" loading="lazy"></a><figcaption>{{ v.caption }}<span>From: <a href="{{ p.url | relative_url }}">{{ p.title }}</a></span></figcaption></figure>
-      {% endfor %}{% endfor %}
-    </div>
-  </div>
+<section id="updates">
+  <h2 class="big">Updates.</h2>
+  <ul class="updates">
+    {% for post in site.posts limit: 5 %}
+    <li><a href="{{ post.url | relative_url }}"><span class="u-title">{{ post.title }}</span><span class="u-date">{{ post.date | date: "%-d %b %Y" }}</span></a></li>
+    {% endfor %}
+  </ul>
+  <p><a class="more" href="{{ '/updates/' | relative_url }}">All updates</a></p>
 </section>
 
-<section class="wrap split" id="certifications">
-  <div>
-    <h2 class="h-section">Certifications</h2>
-    <ul class="certs">
-      {% for cert in c.certifications %}
-      <li><div><strong>{% if cert.link != "" %}<a href="{{ cert.link }}">{{ cert.name }}</a>{% else %}{{ cert.name }}{% endif %}</strong><span>{{ cert.issuer }}, {{ cert.date }}</span></div><span class="badge{% if cert.status == 'In progress' %} progress{% endif %}">{{ cert.status }}</span></li>
-      {% endfor %}
-    </ul>
-  </div>
-  <div>
-    <div class="row-head"><h2 class="h-section">Latest updates</h2><a href="{{ '/updates/' | relative_url }}">All updates</a></div>
-    <ul class="post-list compact">
-      {% for post in site.posts limit: 3 %}
-      <li><a href="{{ post.url | relative_url }}"><time datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: "%-d %b %Y" }}</time><span class="t">{{ post.title }}</span></a></li>
-      {% endfor %}
-    </ul>
-  </div>
-</section>
-
-<section class="wrap" id="life">
-  <h2 class="h-section">Outside work</h2>
+<section id="life">
+  <h2 class="big">Life.</h2>
   <div class="gallery">
     {% for g in c.gallery %}
     <figure><img src="{{ g.image | relative_url }}" alt="{{ g.caption }}" loading="lazy"><figcaption>{{ g.caption }}</figcaption></figure>

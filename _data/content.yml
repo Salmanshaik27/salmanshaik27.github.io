@@ -7,7 +7,13 @@
 # =====================================================================
 
 name: "Salman Shaik"
-role: "Business Innovation student, HSLU Lucerne"
+role: "MSc Business Innovation, HSLU"
+location: "Lucerne, Switzerland"
+
+# Background photo for the left panel. Upload it to assets/img/ and
+# write its name here, for example "sidebar.jpg". Leave empty ("")
+# for the dark gradient.
+sidebar_bg: ""
 
 # The big sentence next to your photo
 headline: "From engineering in Bengaluru to business strategy in Lucerne."

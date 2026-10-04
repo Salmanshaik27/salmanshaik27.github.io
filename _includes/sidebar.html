@@ -1,0 +1,24 @@
+{% assign c = site.data.content %}
+<aside class="side"{% if c.sidebar_bg != "" %} style="--side-img: url('{{ '/assets/img/' | append: c.sidebar_bg | relative_url }}')"{% endif %}>
+  <div class="side-inner">
+    <a class="side-photo" href="{{ '/' | relative_url }}"><img src="{{ '/assets/img/profile.jpg' | relative_url }}" alt="Portrait of {{ c.name }}"></a>
+    <h1 class="side-name"><a href="{{ '/' | relative_url }}">{{ c.name }}</a></h1>
+    <p class="side-role">{{ c.role }}</p>
+    <p class="side-status"><span class="dot" aria-hidden="true"></span>{{ c.status }}</p>
+    <ul class="side-links">
+      <li><span class="ico" aria-hidden="true">⌖</span>{{ c.location }}</li>
+      {% if c.linkedin != "" %}<li><span class="ico" aria-hidden="true">in</span><a href="{{ c.linkedin }}">LinkedIn</a></li>{% endif %}
+      {% if c.email != "" %}<li><span class="ico" aria-hidden="true">@</span><a href="mailto:{{ c.email }}">{{ c.email }}</a></li>{% endif %}
+      {% if c.github != "" %}<li><span class="ico" aria-hidden="true">gh</span><a href="{{ c.github }}">GitHub</a></li>{% endif %}
+      {% if c.instagram != "" %}<li><span class="ico" aria-hidden="true">ig</span><a href="{{ c.instagram }}">Instagram</a></li>{% endif %}
+    </ul>
+    {% if c.cv != "" %}<a class="side-cv" href="{{ '/assets/files/' | append: c.cv | relative_url }}">Download CV</a>{% endif %}
+    <nav class="side-nav" aria-label="Sections">
+      <a href="{{ '/#work' | relative_url }}">Work</a>
+      <a href="{{ '/#journey' | relative_url }}">Journey</a>
+      <a href="{{ '/#powerbi' | relative_url }}">Power BI</a>
+      <a href="{{ '/updates/' | relative_url }}">Updates</a>
+    </nav>
+    <button class="theme-toggle" type="button" aria-label="Switch between light and dark mode"><span class="t-light">Dark mode</span><span class="t-dark">Light mode</span></button>
+  </div>
+</aside>
