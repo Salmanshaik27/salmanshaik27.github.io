@@ -29,8 +29,34 @@ video: ""
 # Leave empty ("") to show only the interactive web charts.
 powerbi_embed: ""
 
-# The bold sentence at the top of the home page
-tagline: "Salman researches Swiss markets and companies, and turns real data into clear strategy."
+# The quote at the top of the home page, and the line before the buttons
+quote: "No matter how expert you are, there is always room to improve."
+quote_cta: "Check out:"
+
+# Quick facts at the top of the Who I am page
+facts:
+  - label: "Studying now"
+    value: "MSc Business Administration, HSLU"
+  - label: "Based in"
+    value: "Lucerne, Switzerland"
+  - label: "From"
+    value: "Bengaluru, India"
+  - label: "Background"
+    value: "Computer Science and Engineering (IoT)"
+
+# ---------------------------------------------------------------------
+#  UPCOMING PROJECTS: shown in the carousel and the right-side wheel.
+#  Delete a line when the project is published in _projects/.
+# ---------------------------------------------------------------------
+upcoming:
+  - title: "Why does Zug found the most companies and keep the fewest?"
+    note: "Deep dive into foreign-owned and mobile companies"
+  - title: "How Lucerne companies survive without venture capital"
+    note: "Self-funding, banks and local customers"
+  - title: "Why solo founders close more often"
+    note: "What a team changes in the first five years"
+  - title: "AI in Swiss SMEs: what works and what gets dropped"
+    note: "A short survey of real AI projects"
 
 # The big sentence next to your photo
 headline: "From engineering in Bengaluru to business strategy in Lucerne."
@@ -94,10 +120,11 @@ education:
 # ---------------------------------------------------------------------
 #  WHO I AM (panel). Each line is one paragraph.
 # ---------------------------------------------------------------------
+#  Put **two stars** around words to highlight them.
 who:
-  - "I grew up in Bengaluru and studied computer science, specialising in the Internet of Things. Building systems taught me that the hard part is rarely the technology. It is deciding what is worth building."
-  - "That question brought me to Lucerne, where I study Business Administration with a major in Business Innovation and Entrepreneurship at HSLU."
-  - "Outside class I research Swiss markets and companies, build Power BI dashboards from official data, guide trips for the Erasmus Student Network and lead a new photography club."
+  - "I grew up in Bengaluru and studied **computer science**, specialising in the Internet of Things. Building systems taught me that the hard part is rarely the technology. It is **deciding what is worth building**."
+  - "That question brought me to Lucerne, where I study **Business Administration with a major in Business Innovation and Entrepreneurship** at HSLU."
+  - "Outside class I **research Swiss markets and companies**, build **Power BI dashboards from official data**, guide trips for the Erasmus Student Network and lead a new photography club."
 
 # ---------------------------------------------------------------------
 #  WHAT I BRING (panel): skill groups
@@ -115,7 +142,26 @@ skills:
     items: "REPLACE: for example English (fluent), German (learning)"
 
 # ---------------------------------------------------------------------
-#  WHAT I AM LOOKING FOR (panel): one block per question
+#  EXPERIENCE (What I bring page)
+# ---------------------------------------------------------------------
+experience:
+  - title: "Student consultant, real client projects"
+    where: "HSLU, 2026"
+    text: "Change management and SME consulting projects with real organisations, from analysis to recommendations."
+  - title: "Team lead, Smart Waste Management"
+    where: "Presidency University, Bengaluru"
+    text: "Led a team of five from idea to a published paper (IJSAT)."
+  - title: "Trip guide, Erasmus Student Network"
+    where: "ESN Lucerne"
+    text: "Co-guided group trips for 25+ international students."
+  - title: "Founder, ESN photography club"
+    where: "ESN Lucerne, 2026"
+    text: "Starting and leading a new club: concepts, events and a team."
+
+# ---------------------------------------------------------------------
+#  WHAT I AM LOOKING FOR: your motive, then one block per question
+# ---------------------------------------------------------------------
+motive: "I want to help companies make **better decisions with real data**, and I want to learn from people who do it every day."
 # ---------------------------------------------------------------------
 looking:
   - title: "The role"

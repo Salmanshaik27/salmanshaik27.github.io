@@ -1,0 +1,19 @@
+---
+layout: frame
+title: Contact
+nav: contact
+---
+{% assign c = site.data.content %}
+<article class="article">
+  <p class="crumb">(Contact)</p>
+  <h1>Let's talk.</h1>
+  <p class="lead">{{ c.status }}. I reply to every message.</p>
+  <ul class="rows links big">
+    {% if c.email != "" %}<li><a href="mailto:{{ c.email }}"><b>Email</b><span>{{ c.email }}</span></a></li>{% endif %}
+    {% if c.linkedin != "" %}<li><a href="{{ c.linkedin }}" target="_blank"><b>LinkedIn</b><span>@{{ c.handle }}</span></a></li>{% endif %}
+    {% if c.github != "" %}<li><a href="{{ c.github }}" target="_blank"><b>GitHub</b><span>Salmanshaik27</span></a></li>{% endif %}
+    {% if c.instagram != "" %}<li><a href="{{ c.instagram }}" target="_blank"><b>Instagram</b><span>Photography and travel</span></a></li>{% endif %}
+    {% if c.cv != "" %}<li><a href="{{ '/assets/files/' | append: c.cv | relative_url }}" target="_blank"><b>CV</b><span>Download PDF</span></a></li>{% endif %}
+  </ul>
+  <p class="note">Based in {{ c.location }}. Time zone: Central European Time.</p>
+</article>

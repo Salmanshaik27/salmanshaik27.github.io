@@ -1,0 +1,21 @@
+---
+layout: frame
+title: Work
+nav: work
+---
+{% assign c = site.data.content %}
+{% assign projects = site.projects | sort: "date" | reverse %}
+<article class="article wide">
+  <p class="crumb">(Works)</p>
+  <h1>Research and consulting projects</h1>
+  <p class="lead">Each project starts with one question about a Swiss market or company, and ends with a clear answer, a Power BI report and a downloadable PDF. Click a title to read the full case.</p>
+  <div class="proj-list">
+    {% for p in projects %}
+    <a class="proj" href="{{ p.url | relative_url }}"><img src="{{ p.cover | relative_url }}" alt="" loading="lazy"><span><em>{{ p.date | date: "%B %Y" }}</em><b>{{ p.title }}</b><span>{{ p.summary }}</span><u>Read the full case</u></span></a>
+    {% endfor %}
+  </div>
+  <h2>(Upcoming)</h2>
+  <ul class="upcoming-list">
+    {% for u in c.upcoming %}<li><b>{{ u.title }}</b><span>{{ u.note }}</span></li>{% endfor %}
+  </ul>
+</article>

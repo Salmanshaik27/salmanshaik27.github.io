@@ -1,4 +1,5 @@
 {% assign c = site.data.content %}
+{% assign nav = page.nav | default: layout.nav %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,10 +21,11 @@
     <header class="top">
       <a class="logo" href="{{ '/' | relative_url }}">{{ c.name }}<sup>©</sup></a>
       <nav class="nav" aria-label="Main">
-        <a href="{{ '/#work' | relative_url }}">Works</a>
-        <a href="{{ '/data/' | relative_url }}">Data</a>
-        <a href="{{ '/blog/' | relative_url }}">Blog</a>
-        <button type="button" data-panel="contact">Contact</button>
+        <a href="{{ '/work/' | relative_url }}"{% if nav == 'work' %} aria-current="page"{% endif %}>Works</a>
+        <a href="{{ '/who/' | relative_url }}"{% if nav == 'who' or nav == 'bring' or nav == 'looking' %} aria-current="page"{% endif %}>About</a>
+        <a href="{{ '/blog/' | relative_url }}"{% if nav == 'blog' %} aria-current="page"{% endif %}>Blog</a>
+        <a href="{{ '/data/' | relative_url }}"{% if nav == 'data' %} aria-current="page"{% endif %}>Data</a>
+        <a href="{{ '/contact/' | relative_url }}"{% if nav == 'contact' %} aria-current="page"{% endif %}>Contact</a>
       </nav>
       <div class="clock" data-tz="{{ c.timezone }}"><b>{{ c.city }}</b><span class="time">&nbsp;</span></div>
     </header>
@@ -31,7 +33,13 @@
       {{ content }}
     </main>
   </div>
-  {% include panels.html %}
+  <nav class="tabbar" aria-label="Quick menu">
+    <a href="{{ '/' | relative_url }}"{% if page.body_class == 'home' %} aria-current="page"{% endif %}>Home</a>
+    <a href="{{ '/work/' | relative_url }}"{% if nav == 'work' %} aria-current="page"{% endif %}>Work</a>
+    <a href="{{ '/who/' | relative_url }}"{% if nav == 'who' or nav == 'bring' or nav == 'looking' %} aria-current="page"{% endif %}>About</a>
+    <a href="{{ '/blog/' | relative_url }}"{% if nav == 'blog' %} aria-current="page"{% endif %}>Blog</a>
+    <a href="{{ '/contact/' | relative_url }}"{% if nav == 'contact' %} aria-current="page"{% endif %}>Contact</a>
+  </nav>
   <script src="{{ '/assets/js/site.js' | relative_url }}"></script>
   {% if page.scripts %}{% for s in page.scripts %}<script src="{{ s | relative_url }}"></script>{% endfor %}{% endif %}
 </body>

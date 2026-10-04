@@ -1,0 +1,8 @@
+{% comment %} Visitor guide: shows step X of 3 and the next page. Pass step=1, 2 or 3. {% endcomment %}
+<div class="guide">
+  <ol class="guide-steps" aria-label="Get to know me in three steps">
+    <li{% if include.step == 1 %} class="now" aria-current="step"{% endif %}><a href="{{ '/who/' | relative_url }}"><i>1</i>Who I am</a></li>
+    <li{% if include.step == 2 %} class="now" aria-current="step"{% endif %}><a href="{{ '/bring/' | relative_url }}"><i>2</i>What I bring</a></li>
+    <li{% if include.step == 3 %} class="now" aria-current="step"{% endif %}><a href="{{ '/looking/' | relative_url }}"><i>3</i>What I am looking for</a></li>
+  </ol>
+</div>

@@ -11,47 +11,44 @@
     var N = real.length;
     // Fill the ring with copies so it always looks round, even with few items
     var M = N;
-    while (M < 9) M += N;
+    while (M < 8) M += N;
     for (var k = N; k < M; k++) {
       var copy = real[k % N].cloneNode(true);
       copy.setAttribute("aria-hidden", "true");
-      copy.setAttribute("tabindex", "-1");
+      copy.querySelectorAll("a").forEach(function (a) { a.setAttribute("tabindex", "-1"); });
       ring.appendChild(copy);
     }
     var slides = Array.prototype.slice.call(ring.querySelectorAll(".slide"));
     var step = 360 / M, rot = 0, radius = 0;
-    var numEl = document.querySelector(".count .num");
-    var totEl = document.querySelector(".count .total");
-    var capT = document.querySelector(".cap-title");
-    var capS = document.querySelector(".cap-sub");
-    totEl.textContent = pad(N);
 
     function layout() {
-      var w = slides[0].offsetWidth || 300;
-      radius = Math.round((w / 2) / Math.tan(Math.PI / M) * 1.04);
+      var w = slides[0].offsetWidth || 320;
+      radius = Math.round((w / 2) / Math.tan(Math.PI / M) * 1.06);
       slides.forEach(function (s, i) { s.style.transform = "rotateY(" + (i * step) + "deg) translateZ(" + radius + "px)"; });
       apply(false);
     }
     function current() { return ((Math.round(-rot / step) % M) + M) % M; }
     function apply(animate) {
-      ring.style.transition = animate && !reduce ? "transform 0.7s cubic-bezier(.2,.7,.2,1)" : "none";
+      ring.style.transition = animate && !reduce ? "transform 0.75s cubic-bezier(.2,.7,.2,1)" : "none";
       ring.style.transform = "translateZ(" + (-radius) + "px) rotateY(" + rot + "deg)";
       var c = current();
-      slides.forEach(function (s, i) { s.classList.toggle("active", i === c); });
-      var src = slides[c];
-      numEl.textContent = pad((c % N) + 1);
-      capT.textContent = src.getAttribute("data-title");
-      capS.textContent = src.getAttribute("data-sub");
+      slides.forEach(function (s, i) {
+        var on = i === c;
+        s.classList.toggle("active", on);
+        if (i < N) s.querySelectorAll("a").forEach(function (a) { if (!a.classList.contains("s-img")) a.setAttribute("tabindex", on ? "0" : "-1"); });
+      });
     }
     function snap() { rot = Math.round(rot / step) * step; apply(true); }
     function go(dir) { rot = Math.round(rot / step) * step - dir * step; apply(true); }
+    document.querySelectorAll(".arrow").forEach(function (b) {
+      b.addEventListener("click", function () { stopAuto(); go(parseInt(b.getAttribute("data-dir"), 10)); });
+    });
 
     // Drag and swipe
     var dragging = false, startX = 0, startRot = 0, moved = 0;
     car.addEventListener("pointerdown", function (e) {
       dragging = true; moved = 0; startX = e.clientX; startRot = rot;
-      car.classList.add("grabbing");
-      ring.style.transition = "none";
+      car.classList.add("grabbing"); ring.style.transition = "none"; stopAuto();
     });
     window.addEventListener("pointermove", function (e) {
       if (!dragging) return;
@@ -63,7 +60,7 @@
       if (!dragging) return;
       dragging = false; car.classList.remove("grabbing"); snap();
     });
-    // Clicks: centre slide opens, side slides rotate into view
+    // Clicks: links work on the front card; side cards turn into view
     car.addEventListener("click", function (e) {
       var s = e.target.closest(".slide");
       if (!s) return;
@@ -75,26 +72,19 @@
         rot = Math.round(rot / step) * step - diff * step; apply(true);
       }
     });
-    // Mouse wheel and trackpad
-    var acc = 0, lock = false;
-    car.addEventListener("wheel", function (e) {
-      e.preventDefault();
-      if (lock) return;
-      acc += Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
-      if (Math.abs(acc) > 40) { go(acc > 0 ? 1 : -1); acc = 0; lock = true; setTimeout(function () { lock = false; }, 380); }
-    }, { passive: false });
     // Keyboard
     car.addEventListener("keydown", function (e) {
-      if (e.key === "ArrowRight") { e.preventDefault(); go(1); }
-      if (e.key === "ArrowLeft") { e.preventDefault(); go(-1); }
-      if (e.key === "Enter") { var s = slides[current()]; if (s) location.href = s.href; }
+      if (e.key === "ArrowRight") { e.preventDefault(); stopAuto(); go(1); }
+      if (e.key === "ArrowLeft") { e.preventDefault(); stopAuto(); go(-1); }
     });
     window.addEventListener("resize", layout);
     layout();
     // Gentle auto-turn until the visitor interacts
+    var auto = null;
+    function stopAuto() { if (auto) { clearInterval(auto); auto = null; } }
     if (!reduce) {
-      var auto = setInterval(function () { go(1); }, 4200);
-      ["pointerdown", "wheel", "keydown", "mouseenter"].forEach(function (ev) { car.addEventListener(ev, function () { clearInterval(auto); }, { once: true }); });
+      auto = setInterval(function () { go(1); }, 5000);
+      car.addEventListener("mouseenter", stopAuto, { once: true });
     }
   }
 
@@ -111,22 +101,6 @@
       album.hidden = !isAlbum;
     });
   });
-  var tiles = Array.prototype.slice.call(document.querySelectorAll(".tile"));
-  var alT = document.querySelector(".al-title"), alN = document.querySelector(".al-num");
-  function showTile(t) {
-    var i = tiles.indexOf(t);
-    alT.textContent = t.getAttribute("data-title");
-    alN.textContent = pad(i + 1) + "/" + pad(tiles.length);
-    tiles.forEach(function (x) { x.classList.toggle("dim", x !== t); });
-  }
-  tiles.forEach(function (t) {
-    t.addEventListener("mouseenter", function () { showTile(t); });
-    t.addEventListener("focus", function () { showTile(t); });
-  });
-  var grid = document.querySelector(".album-grid");
-  if (grid) grid.addEventListener("mouseleave", function () { tiles.forEach(function (x) { x.classList.remove("dim"); }); });
-  if (tiles.length) { alT.textContent = tiles[0].getAttribute("data-title"); alN.textContent = "01/" + pad(tiles.length); }
-
   /* ---------- Blog wheel ---------- */
   var wheel = document.querySelector(".wheel");
   var inner = wheel && wheel.querySelector(".wheel-inner");
@@ -174,6 +148,13 @@
       inner.style.transform = "translateZ(" + (-wR) + "px) rotateX(" + wRot + "deg)";
     });
     window.addEventListener("pointerup", function () { if (wy !== null) { wy = null; wRot = wCur() * wStep; wApply(true); } });
+    document.querySelectorAll(".w-arrow").forEach(function (b) {
+      b.addEventListener("click", function () {
+        var d = parseInt(b.getAttribute("data-wdir"), 10);
+        if (vertical()) { wGo(d); }
+        else { wheel.scrollBy({ left: d * wheel.clientWidth * 0.75, behavior: reduce ? "auto" : "smooth" }); }
+      });
+    });
     items.forEach(function (it, i) {
       it.addEventListener("click", function (e) {
         if (vertical() && i !== wCur()) { e.preventDefault(); wRot = i * wStep; wApply(true); }

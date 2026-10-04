@@ -1,0 +1,26 @@
+---
+layout: frame
+title: What I am looking for
+nav: looking
+---
+{% assign c = site.data.content %}
+<article class="article wide">
+  {% include steps.html step=3 %}
+  <p class="crumb">(What I am looking for)</p>
+  <h1>{{ c.status }}</h1>
+  <div class="motive">
+    <p class="kicker-red">My motive</p>
+    {{ c.motive | markdownify }}
+  </div>
+  <div class="look-grid">
+    {% for l in c.looking %}<section><h3>{{ l.title }}</h3>{{ l.text | markdownify }}</section>{% endfor %}
+  </div>
+  <div class="cta">
+    <p>Interested, or know someone who might be?</p>
+    <div class="panel-actions">
+      <a class="btn dark" href="{{ '/contact/' | relative_url }}">Get in touch</a>
+      {% if c.cv != "" %}<a class="btn" href="{{ '/assets/files/' | append: c.cv | relative_url }}" target="_blank">Download CV</a>{% endif %}
+      <a class="btn" href="{{ '/work/' | relative_url }}">See my work</a>
+    </div>
+  </div>
+</article>

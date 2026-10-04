@@ -6,54 +6,79 @@ scripts: ["/assets/js/home.js"]
 ---
 {% assign c = site.data.content %}
 {% assign projects = site.projects | sort: "date" | reverse %}
+<section class="me">
+  <img src="{{ '/assets/img/profile.jpg' | relative_url }}" alt="Portrait of {{ c.name }}">
+  <p><b>{{ c.role }}</b>{{ c.location }}</p>
+</section>
+
 <section class="intro">
-  <p class="tagline">{{ c.tagline }}</p>
+  <p class="quote">{{ c.quote }}</p>
+  <p class="quote-cta">{{ c.quote_cta }}</p>
   <div class="pills">
-    <button type="button" data-panel="who">Who I am</button>
-    <button type="button" data-panel="bring">What I bring</button>
-    <button type="button" data-panel="looking">What I am looking for</button>
+    <a href="{{ '/who/' | relative_url }}"><i>1</i>Who I am</a>
+    <a href="{{ '/bring/' | relative_url }}"><i>2</i>What I bring</a>
+    <a href="{{ '/looking/' | relative_url }}"><i>3</i>What I am looking for</a>
   </div>
+  <p class="hint">New here? Start with step 1.</p>
 </section>
 
 <section class="stage" id="work" aria-label="Selected work">
-  <div class="count count-l" aria-hidden="true"><span class="num">01</span></div>
-  <div class="count count-r" aria-hidden="true">/<span class="total">01</span></div>
-
-  <div class="carousel" tabindex="0" aria-roledescription="carousel" aria-label="Selected work. Use the arrow keys, drag or scroll to turn.">
+  <button class="arrow arrow-l" type="button" data-dir="-1" aria-label="Previous project"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+  <button class="arrow arrow-r" type="button" data-dir="1" aria-label="Next project"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+  <div class="carousel" tabindex="0" aria-roledescription="carousel" aria-label="Selected work. Use the arrow buttons, drag or the arrow keys to turn.">
     <div class="ring">
       {% for p in projects %}
-      <a class="slide" href="{{ p.url | relative_url }}" data-title="{{ p.title }}" data-sub="Research project, {{ p.date | date: '%b %Y' }}"><img src="{{ p.cover | relative_url }}" alt="{{ p.title }}" draggable="false"></a>
-      {% for v in p.visuals %}
-      <a class="slide" href="{{ p.url | relative_url }}#visuals" data-title="{{ v.caption }}" data-sub="Power BI visual"><img src="{{ v.image | relative_url }}" alt="{{ v.caption }}" draggable="false" loading="lazy"></a>
+      <article class="slide">
+        <a class="s-img" href="{{ p.url | relative_url }}" tabindex="-1"><img src="{{ p.cover | relative_url }}" alt="" draggable="false"></a>
+        <div class="s-body">
+          <p class="s-kicker">Research project, {{ p.date | date: "%b %Y" }}</p>
+          <h3><a href="{{ p.url | relative_url }}">{{ p.title }}</a></h3>
+          <p class="s-text">{{ p.summary }}</p>
+          <a class="s-link" href="{{ p.url | relative_url }}">Read the full case</a>
+        </div>
+      </article>
       {% endfor %}
+      {% for u in c.upcoming %}
+      <article class="slide upcoming">
+        <div class="s-img soon"><span>In progress</span></div>
+        <div class="s-body">
+          <p class="s-kicker">Upcoming project</p>
+          <h3>{{ u.title }}</h3>
+          <p class="s-text">{{ u.note }}</p>
+          <span class="s-link off">Coming soon</span>
+        </div>
+      </article>
       {% endfor %}
     </div>
   </div>
-  <div class="caption" aria-live="polite"><em class="cap-title"></em><span class="cap-sub"></span></div>
+  <p class="stage-hint">Turn with the arrows or drag. Click a title to open the full case.</p>
 
   <div class="album" hidden>
-    <div class="album-label" aria-live="polite"><b class="al-title">&nbsp;</b><span class="al-num">&nbsp;</span></div>
     <div class="album-grid">
       {% for p in projects %}
-      <a class="tile" href="{{ p.url | relative_url }}" data-title="{{ p.title }}"><img src="{{ p.cover | relative_url }}" alt="{{ p.title }}" loading="lazy"></a>
-      {% for v in p.visuals %}
-      <a class="tile" href="{{ p.url | relative_url }}#visuals" data-title="{{ v.caption }}"><img src="{{ v.image | relative_url }}" alt="{{ v.caption }}" loading="lazy"></a>
+      <a class="tile" href="{{ p.url | relative_url }}"><img src="{{ p.cover | relative_url }}" alt="" loading="lazy"><b>{{ p.title }}</b><span>Read the full case</span></a>
       {% endfor %}
+      {% for u in c.upcoming %}
+      <div class="tile upcoming"><div class="soon"><span>In progress</span></div><b>{{ u.title }}</b><span>Coming soon</span></div>
       {% endfor %}
     </div>
   </div>
 </section>
 
-<aside class="wheel-wrap" aria-label="Blog posts">
-  <p class="wheel-label">(Writing)</p>
-  <div class="wheel" tabindex="0" aria-label="Blog posts. Scroll or use the arrow keys to turn.">
+<aside class="wheel-wrap" aria-label="Writing and upcoming projects">
+  <p class="wheel-label">(Research, consulting and writing)</p>
+  <button class="w-arrow up" type="button" data-wdir="-1" aria-label="Previous item"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 15l7-7 7 7"/></svg></button>
+  <div class="wheel" tabindex="0" aria-label="Blog posts and upcoming projects. Use the arrows or scroll to turn.">
     <div class="wheel-inner">
       {% for post in site.posts %}
-      <a class="w-item" href="{{ post.url | relative_url }}"><span class="w-date">{{ post.date | date: "%d.%m.%y" }}</span><span class="w-title">{{ post.title }}</span></a>
+      <a class="w-item" href="{{ post.url | relative_url }}"><span class="w-tag">Blog, {{ post.date | date: "%d.%m.%y" }}</span><span class="w-title">{{ post.title }}</span></a>
       {% endfor %}
-      <span class="w-item muted"><span class="w-date">Soon</span><span class="w-title">A new post every few days</span></span>
+      {% for u in c.upcoming %}
+      <span class="w-item soon-item"><span class="w-tag">Upcoming</span><span class="w-title">{{ u.title }}</span></span>
+      {% endfor %}
     </div>
   </div>
+  <button class="w-arrow down" type="button" data-wdir="1" aria-label="Next item"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9l7 7 7-7"/></svg></button>
   <a class="wheel-all" href="{{ '/blog/' | relative_url }}">All posts</a>
 </aside>
 
@@ -63,5 +88,5 @@ scripts: ["/assets/js/home.js"]
     <button type="button" data-mode="album" aria-pressed="false">Album</button>
   </div>
   <span class="bar-label">(Selected Work)</span>
-  <span class="bar-hint">Drag, scroll or use the arrow keys</span>
+  <a class="bar-hint" href="{{ '/work/' | relative_url }}">See all work</a>
 </footer>

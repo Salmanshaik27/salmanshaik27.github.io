@@ -1,0 +1,49 @@
+---
+layout: frame
+title: What I bring
+nav: bring
+---
+{% assign c = site.data.content %}
+{% assign projects = site.projects | sort: "date" | reverse %}
+<article class="article wide">
+  {% include steps.html step=2 %}
+  <p class="crumb">(What I bring)</p>
+  <h1>Skills, proof and work</h1>
+  <p class="lead">What I can do, and where you can see it for yourself.</p>
+  <div class="stats">
+    <div><b>{{ projects | size }}</b><span>published research {% if projects.size == 1 %}study{% else %}studies{% endif %}</span></div>
+    <div><b>{{ c.certifications | size }}</b><span>certifications completed or in progress</span></div>
+    <div><b>2</b><span>published papers from my engineering degree</span></div>
+    <div><b>{{ site.posts | size }}</b><span>blog {% if site.posts.size == 1 %}post{% else %}posts{% endif %} so far</span></div>
+  </div>
+
+  <h2>(Skills)</h2>
+  <div class="skill-grid">
+    {% for s in c.skills %}<section><h3>{{ s.group }}</h3><p>{{ s.items }}</p></section>{% endfor %}
+  </div>
+
+  <h2>(Experience)</h2>
+  <ul class="exp">
+    {% for x in c.experience %}<li><div><h3>{{ x.title }}</h3><p class="school">{{ x.where }}</p></div><p>{{ x.text }}</p></li>{% endfor %}
+  </ul>
+
+  <h2>(Certifications)</h2>
+  <ul class="rows">
+    {% for cert in c.certifications %}<li><span><b>{{ cert.name }}</b><br>{{ cert.issuer }}, {{ cert.date }}</span><em class="{% if cert.status == 'In progress' %}prog{% endif %}">{{ cert.status }}</em></li>{% endfor %}
+  </ul>
+
+  <h2>(Research projects)</h2>
+  <div class="proj-list">
+    {% for p in projects %}
+    <a class="proj" href="{{ p.url | relative_url }}"><img src="{{ p.cover | relative_url }}" alt="" loading="lazy"><span><b>{{ p.title }}</b><span>{{ p.summary }}</span><u>Read the full case</u></span></a>
+    {% endfor %}
+  </div>
+
+  <h2>(Writing)</h2>
+  <ul class="rows links">
+    {% for post in site.posts limit: 6 %}<li><a href="{{ post.url | relative_url }}"><b>{{ post.title }}</b><span>{{ post.date | date: "%-d %b %Y" }}</span></a></li>{% endfor %}
+  </ul>
+  <p><a class="u" href="{{ '/data/' | relative_url }}">Explore my interactive data</a></p>
+
+  {% include next.html url="/looking/" label="Step 3: What I am looking for" %}
+</article>

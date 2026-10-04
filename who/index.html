@@ -1,0 +1,49 @@
+---
+layout: frame
+title: Who I am
+nav: who
+---
+{% assign c = site.data.content %}
+<article class="article wide">
+  {% include steps.html step=1 %}
+  <div class="hero2">
+    <div class="hero2-media">
+      {% if c.video != "" %}
+        <video src="{{ c.video | relative_url }}" poster="{{ '/assets/img/profile.jpg' | relative_url }}" controls playsinline preload="metadata"></video>
+      {% else %}
+        <img src="{{ '/assets/img/profile.jpg' | relative_url }}" alt="Portrait of {{ c.name }}">
+      {% endif %}
+    </div>
+    <div>
+      <p class="crumb">(Who I am)</p>
+      <h1>{{ c.name }}</h1>
+      <p class="lead">{{ c.headline }}</p>
+      <dl class="facts-grid">
+        {% for f in c.facts %}<div><dt>{{ f.label }}</dt><dd>{{ f.value }}</dd></div>{% endfor %}
+      </dl>
+    </div>
+  </div>
+
+  <h2>(My story)</h2>
+  <div class="story">
+    {% for p in c.who %}{{ p | markdownify }}{% endfor %}
+  </div>
+
+  <h2>(From Bengaluru to Lucerne)</h2>
+  <div class="map">{% include journey-map.svg %}</div>
+
+  <h2>(Education)</h2>
+  <div class="edu">
+    {% for e in c.education %}
+    <section class="edu-card">
+      <div class="deg-top">
+        {% if e.logo != "" %}<img class="logo-img" src="{{ '/assets/img/' | append: e.logo | relative_url }}" alt="{{ e.school }} logo">{% else %}<span class="mono">{{ e.monogram }}</span>{% endif %}
+        <div><p class="when">{{ e.period }}, {{ e.place }}</p><h3>{{ e.degree }}</h3><p class="school">{{ e.school }}. {{ e.focus }}</p></div>
+      </div>
+      <ul class="plain">{% for w in e.work %}<li><b>{{ w.title }}</b> {{ w.text }}</li>{% endfor %}</ul>
+    </section>
+    {% endfor %}
+  </div>
+
+  {% include next.html url="/bring/" label="Step 2: What I bring" %}
+</article>
