@@ -5,7 +5,7 @@ url: "https://salmanshaik.ch"
 baseurl: ""
 author: "Salman Shaik"
 lang: en
-permalink: /updates/:title/
+permalink: /blog/:title/
 markdown: kramdown
 collections:
   projects:

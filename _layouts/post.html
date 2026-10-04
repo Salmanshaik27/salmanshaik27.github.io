@@ -1,10 +1,4 @@
 ---
-layout: default
+layout: article
 ---
-<article class="article">
-  <p class="crumb"><a href="{{ '/updates/' | relative_url }}">Updates</a> / {{ page.date | date: "%-d %B %Y" }}</p>
-  <h2 class="title">{{ page.title }}</h2>
-  {% if page.summary %}<p class="lead">{{ page.summary }}</p>{% endif %}
-  {% if page.image %}<img class="cover" src="{{ page.image | relative_url }}" alt="{{ page.image_alt | default: page.title }}">{% endif %}
-  <div class="prose">{{ content }}</div>
-</article>
+<div class="prose">{{ content }}</div>

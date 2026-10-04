@@ -1,0 +1,89 @@
+/* Additions to gitfolio for Salman's content (own code) */
+:root { --map-land: #E7EBF0; --map-home: #C7D4E3; --map-grid: #EEF2F6; --accent: #D52B1E; }
+:root[data-theme="dark"] { --map-land: #262626; --map-home: #3A475A; --map-grid: #151515; }
+:root[data-theme="dark"] .projects section, :root[data-theme="dark"] #blogs section, :root[data-theme="dark"] .gf-card { background: rgb(20, 20, 20); border-color: rgba(255,255,255,0.04); }
+
+/* Profile panel extras */
+#profile { overflow-y: auto; }
+#profile .jump { display: flex; flex-wrap: wrap; gap: 6px 18px; margin-top: 2vh; font-family: "Poppins", sans-serif; font-size: 15px; }
+#profile .jump a { color: #fff; text-decoration: none; border-bottom: 2px solid rgba(255,255,255,0.35); }
+#profile .jump a:hover { border-color: #fff; }
+.theme-toggle { background: none; border: none; color: #fff; font-size: 18px; cursor: pointer; padding: 0; }
+.theme-toggle.top { position: absolute; right: 5vw; top: 4vh; color: var(--text-color); font-size: 22px; z-index: 2; }
+#background_overlay { background: var(--blog-overlay); }
+
+/* Extra sections on the right, in gitfolio's style */
+.extra { margin: 2vh 0; padding: 4vh 0; }
+.lead { font-family: "Questrial", sans-serif; font-size: 20px; font-weight: bold; max-width: 900px; margin-top: -1vh; }
+.grid2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; }
+.gf-card { display: block; border-radius: 5px; color: var(--text-color); background: var(--card-bg); border: 1px solid rgba(0,0,0,0.08); padding: 2.5vh 5%; text-decoration: none; transition: 0.4s ease-in-out; transform: scale(1); }
+a.gf-card:hover, .grid2 > .gf-card:hover { border-color: transparent; box-shadow: 0px 15px 35px rgba(0,0,0,0.06); transform: scale(1.03); }
+.map-box { margin-bottom: 30px; }
+.journey-map { width: 100%; height: auto; display: block; border-radius: 5px; border: 1px solid rgba(0,0,0,0.08); }
+.journey-map rect { fill: var(--bg-color); }
+.journey-map .grid-line { stroke: var(--map-grid); }
+.journey-map .land { fill: var(--map-land); stroke: var(--bg-color); }
+.journey-map .land.home { fill: var(--map-home); }
+.journey-map .route-shadow { stroke: var(--bg-color); }
+.journey-map .route { stroke-dasharray: 1; stroke-dashoffset: 1; animation: draw 2.2s 0.9s ease-in-out forwards; }
+.journey-map .pin circle:not(.pin-core) { fill: var(--bg-color); }
+.journey-map .map-label text { font-family: "Questrial", sans-serif; fill: var(--text-color); stroke: var(--bg-color); stroke-width: 5px; paint-order: stroke; }
+.journey-map .map-label text.sub { font-family: "Poppins", sans-serif; fill: var(--blog-gray-color); }
+.journey-map .map-km { stroke: var(--bg-color); stroke-width: 5px; paint-order: stroke; }
+@keyframes draw { to { stroke-dashoffset: 0; } }
+.deg-head { display: flex; gap: 14px; align-items: center; }
+.logo { width: 56px; height: 56px; flex: none; border-radius: 5px; object-fit: contain; background: #fff; padding: 4px; }
+.logo.mono { display: flex; align-items: center; justify-content: center; font-family: "Questrial", sans-serif; font-weight: bold; color: #2F5D8C; background: rgba(47,93,140,0.1); }
+.period { font-size: 14px; font-weight: bold; color: var(--accent); }
+.gf-card .section_title { font-size: 21px; }
+.about_section.small { font-size: 16px; margin: 1.5vh 0; }
+.deg-work { list-style: none; padding: 0; margin: 0; }
+.deg-work li { padding: 1.2vh 0; border-top: 1px solid rgba(128,128,128,0.18); font-size: 14px; }
+.deg-work b { display: block; font-size: 15px; }
+.deg-work span { font-family: "Questrial", sans-serif; font-size: 15px; color: var(--blog-gray-color); }
+.certs { margin-top: 30px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 30px; }
+.cert { display: flex; gap: 12px; align-items: center; padding: 12px 0; border-top: 1px solid rgba(128,128,128,0.18); font-size: 14px; }
+.cert i { color: var(--accent); }
+.cert div { flex: 1; }
+.cert b { display: block; }
+.cert span { font-family: "Questrial", sans-serif; color: var(--blog-gray-color); }
+.cert em { font-style: normal; font-size: 12px; font-weight: bold; padding: 2px 10px; border-radius: 20px; background: rgba(30,122,74,0.14); color: #1E7A4A; white-space: nowrap; }
+.cert em.prog { background: rgba(214,150,20,0.18); color: #A16A00; }
+.visual img { width: 100%; border-radius: 4px; background: #fff; }
+.visual span { display: block; margin-top: 1.2vh; font-weight: bold; font-size: 15px; }
+.gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.gallery figure { margin: 0; }
+.gallery img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 5px; }
+.gallery figcaption { font-size: 14px; margin-top: 6px; font-weight: bold; }
+#footer .credit, #footer_blog .credit { font-family: "Questrial", sans-serif; font-size: 12px; opacity: 0.6; margin-top: 8px; }
+#footer .credit a, #footer_blog .credit a { font-weight: normal; }
+
+/* Project and post pages */
+#blog-display h3 { font-size: 26px; margin: 6vh 0 2vh; }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; margin: 3vh 0; }
+.gf-btn { display: inline-block; padding: 10px 20px; border-radius: 5px; border: 1px solid var(--text-color); color: var(--text-color); text-decoration: none; font-weight: bold; font-family: "Poppins", sans-serif; font-size: 15px; transition: 0.3s; }
+.gf-btn:hover { transform: scale(1.03); }
+.gf-btn.primary { background: var(--text-color); color: var(--bg-color); }
+.facts { padding: 3vh 4%; }
+.q-label { font-size: 13px; font-weight: bold; color: var(--accent); font-family: "Poppins", sans-serif; }
+.q { font-size: 22px; font-weight: bold; margin: 1vh 0 2vh; }
+.facts-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; font-size: 15px; }
+.facts-row b { display: block; font-family: "Poppins", sans-serif; font-size: 13px; color: var(--accent); }
+.findings { font-size: 17px; line-height: 27px; padding-left: 1.2em; }
+.findings li { margin-bottom: 1vh; }
+.steps .gf-card { font-size: 15px; line-height: 23px; }
+.steps .gf-card b { display: block; font-family: "Poppins", sans-serif; margin-bottom: 4px; }
+.visual-list figure { margin: 0 0 4vh; }
+.visual-list figcaption { font-size: 14px; color: var(--blog-gray-color); }
+.prose h2 { font-size: 24px; margin: 5vh 0 1vh; }
+.prose ul, .prose ol { font-size: 17px; line-height: 27px; }
+.sources { font-size: 15px; line-height: 26px; }
+.sources a, .prose a { color: var(--text-color); }
+
+@media (max-width: 800px) {
+  .grid2, .certs, .facts-row { grid-template-columns: 1fr; }
+  .gallery { grid-template-columns: repeat(2, 1fr); }
+  #profile .jump { justify-content: center; }
+  .theme-toggle.top { right: 6vw; top: 5vh; }
+}
+@media (prefers-reduced-motion: reduce) { .journey-map .route { animation: none; stroke-dashoffset: 0; } }

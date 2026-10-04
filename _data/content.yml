@@ -15,6 +15,14 @@ location: "Lucerne, Switzerland"
 # for the dark gradient.
 sidebar_bg: ""
 
+# Background image of the profile panel and the project pages.
+# Default: gitfolio's canyon photo (Unsplash). To use your own photo,
+# upload it to assets/img/ and write for example "/assets/img/lucerne.jpg".
+background: "https://images.unsplash.com/photo-1553748024-d1b27fb3f960?w=1500&q=80"
+
+# Your LinkedIn handle, shown under your name like "@salmanshaik27"
+handle: "salmanshaik27"
+
 # The big sentence next to your photo
 headline: "From engineering in Bengaluru to business strategy in Lucerne."
 

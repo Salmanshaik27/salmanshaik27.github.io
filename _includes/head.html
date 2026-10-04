@@ -1,0 +1,30 @@
+{% assign c = site.data.content %}
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>{% if page.title and page.title != "Home" %}{{ page.title }} | {% endif %}{{ c.name }}</title>
+<meta name="description" content="{{ page.summary | default: site.description }}">
+{% seo title=false %}
+{% feed_meta %}
+<link rel="icon" type="image/jpeg" href="{{ '/assets/img/profile.jpg' | relative_url }}" />
+<script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css" />
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous" />
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="{{ '/assets/css/gitfolio.css' | relative_url }}" />
+<style>
+  /* gitfolio themes: light (default) and dark, with your background image */
+  :root {
+    --bg-color: #fff; --text-color: rgb(10, 10, 10); --blog-gray-color: rgb(80, 80, 80); --card-bg: #fff; --card-border: rgba(0,0,0,0.08);
+    --background-image: linear-gradient(90deg, rgba(10, 10, 10, 0.4), rgba(10, 10, 10, 0.4)), url("{{ c.background }}");
+    --blog-overlay: linear-gradient(0deg, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.1));
+  }
+  :root[data-theme="dark"] {
+    --bg-color: rgb(10, 10, 10); --text-color: #fff; --blog-gray-color: rgb(180, 180, 180); --card-bg: rgb(20, 20, 20); --card-border: rgba(255,255,255,0.04);
+    --background-image: linear-gradient(90deg, rgba(10, 10, 10, 0.3), rgb(10, 10, 10, 1)), url("{{ c.background }}");
+    --blog-overlay: linear-gradient(0deg, rgba(10, 10, 10, 1), rgba(10, 10, 10, 0.1));
+  }
+  @media (max-width: 800px) {
+    :root[data-theme="dark"] { --background-image: linear-gradient(0deg, rgba(10, 10, 10, 1), rgba(10, 10, 10, 0)), url("{{ c.background }}"); }
+  }
+</style>
+<link rel="stylesheet" href="{{ '/assets/css/extras.css' | relative_url }}" />

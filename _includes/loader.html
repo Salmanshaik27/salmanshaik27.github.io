@@ -1,0 +1,8 @@
+<div id="loading"><div id="spinner"></div></div>
+<script>
+  setTimeout(function () {
+    var l = document.getElementById("loading");
+    l.classList.add("animated", "fadeOut");
+    setTimeout(function () { l.style.display = "none"; }, 600);
+  }, 500);
+</script>

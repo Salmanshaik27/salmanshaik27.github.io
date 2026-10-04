@@ -1,94 +1,119 @@
 ---
-layout: default
 title: Home
 ---
 {% assign c = site.data.content %}
 {% assign projects = site.projects | sort: "date" | reverse %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% include head.html %}
+    <script src="https://unpkg.com/magic-grid/dist/magic-grid.min.js"></script>
+  </head>
+  <body>
+    {% include loader.html %}
+    <div id="profile">
+      <div id="profile_img" role="img" aria-label="Portrait of {{ c.name }}" style="background: url('{{ '/assets/img/profile.jpg' | relative_url }}') center center"></div>
+      <div id="username"><span style="display:block;">{{ c.name }}</span><a href="{{ c.linkedin }}" target="_blank">@{{ c.handle }}</a></div>
+      <div id="userbio">{{ c.headline }}</div>
+      <div id="about">
+        <span><i class="fas fa-graduation-cap"></i> &nbsp;{{ c.role }}</span>
+        <span><i class="fas fa-map-marker-alt"></i> &nbsp;&nbsp;{{ c.location }}</span>
+        <span><i class="fas fa-user-tie"></i> &nbsp;{{ c.status }}</span>
+        {% if c.email != "" %}<span><i class="fas fa-envelope"></i> &nbsp;<a href="mailto:{{ c.email }}">{{ c.email }}</a></span>{% endif %}
+        {% if c.cv != "" %}<span><i class="fas fa-file-alt"></i> &nbsp;&nbsp;<a href="{{ '/assets/files/' | append: c.cv | relative_url }}" target="_blank">Download CV</a></span>{% endif %}
+        <div class="socials">
+          {% if c.linkedin != "" %}<span><a href="{{ c.linkedin }}" target="_blank" class="socials" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a></span>{% endif %}
+          {% if c.github != "" %}<span><a href="{{ c.github }}" target="_blank" class="socials" aria-label="GitHub"><i class="fab fa-github"></i></a></span>{% endif %}
+          {% if c.instagram != "" %}<span><a href="{{ c.instagram }}" target="_blank" class="socials" aria-label="Instagram"><i class="fab fa-instagram"></i></a></span>{% endif %}
+          <span><button class="theme-toggle" type="button" aria-label="Switch light and dark mode"><i class="fas fa-adjust"></i></button></span>
+        </div>
+        <div class="jump"><a href="#work">Work</a><a href="#journey">Journey</a><a href="#powerbi">Power BI</a><a href="#blog_section">Blog</a></div>
+      </div>
+    </div>
 
-<section class="intro">
-  <p class="intro-text">{{ c.intro }}</p>
-</section>
-
-<section id="work">
-  <h2 class="big">Work.</h2>
-  <div class="cards">
-    {% for p in projects %}
-    <article class="card">
-      <a class="card-img" href="{{ p.url | relative_url }}" tabindex="-1" aria-hidden="true"><img src="{{ p.cover | relative_url }}" alt="" loading="lazy"></a>
-      <div class="card-body">
-        <h3><a href="{{ p.url | relative_url }}">{{ p.title }}</a></h3>
-        <p>{{ p.summary }}</p>
-        <div class="card-meta">
-          <span>{{ p.date | date: "%b %Y" }}</span>
-          {% for t in p.tags %}<span class="chip">{{ t }}</span>{% endfor %}
-          {% if p.pdf %}<a class="chip pdf" href="{{ p.pdf | relative_url }}">PDF</a>{% endif %}
+    <div id="display">
+      <div id="work">
+        <h1>Work.</h1>
+        <div class="projects" id="work_section">
+          {% for p in projects %}
+          <a href="{{ p.url | relative_url }}">
+            <section>
+              <div class="section_title">{{ p.title }}</div>
+              <div class="about_section"><span style="display:block;">{{ p.summary }}</span></div>
+              <div class="bottom_section">
+                <span><i class="fas fa-chart-bar"></i>&nbsp; {{ p.tags | join: ", " }}</span>
+                <span><i class="far fa-calendar"></i>&nbsp; {{ p.date | date: "%b %Y" }}</span>
+                {% if p.pdf %}<span><i class="fas fa-file-pdf"></i>&nbsp; PDF</span>{% endif %}
+              </div>
+            </section>
+          </a>
+          {% endfor %}
         </div>
       </div>
-    </article>
-    {% endfor %}
-    <div class="card next">
-      <p class="next-title">Next project</p>
-      <p>{{ c.improve_text }}</p>
-    </div>
-  </div>
-</section>
 
-<section id="journey">
-  <h2 class="big">Journey.</h2>
-  <div class="map-box">{% include journey-map.svg %}</div>
-  <div class="degrees">
-    {% for e in c.education %}
-    <article class="degree">
-      <header>
-        {% if e.logo != "" %}<img class="logo" src="{{ '/assets/img/' | append: e.logo | relative_url }}" alt="{{ e.school }} logo">{% else %}<span class="logo mono" aria-hidden="true">{{ e.monogram }}</span>{% endif %}
-        <div>
-          <p class="period">{{ e.period }}, {{ e.place }}</p>
-          <h3>{{ e.degree }}</h3>
-          <p class="school">{{ e.school }}. {{ e.focus }}</p>
+      <div id="journey" class="extra">
+        <h1>Journey.</h1>
+        <div class="map-box">{% include journey-map.svg %}</div>
+        <div class="grid2">
+          {% for e in c.education %}
+          <section class="gf-card">
+            <div class="deg-head">
+              {% if e.logo != "" %}<img class="logo" src="{{ '/assets/img/' | append: e.logo | relative_url }}" alt="{{ e.school }} logo">{% else %}<span class="logo mono">{{ e.monogram }}</span>{% endif %}
+              <div><div class="period">{{ e.period }}, {{ e.place }}</div><div class="section_title">{{ e.degree }}</div></div>
+            </div>
+            <div class="about_section small">{{ e.school }}. {{ e.focus }}</div>
+            <ul class="deg-work">{% for w in e.work %}<li><b>{{ w.title }}</b><span>{{ w.text }}</span></li>{% endfor %}</ul>
+          </section>
+          {% endfor %}
         </div>
-      </header>
-      <ul class="degree-work">
-        {% for w in e.work %}<li><strong>{{ w.title }}</strong><span>{{ w.text }}</span></li>{% endfor %}
-      </ul>
-    </article>
-    {% endfor %}
-  </div>
-  <h3 class="sub">Certifications</h3>
-  <ul class="certs">
-    {% for cert in c.certifications %}
-    <li><div><strong>{% if cert.link != "" %}<a href="{{ cert.link }}">{{ cert.name }}</a>{% else %}{{ cert.name }}{% endif %}</strong><span>{{ cert.issuer }}, {{ cert.date }}</span></div><span class="badge{% if cert.status == 'In progress' %} progress{% endif %}">{{ cert.status }}</span></li>
-    {% endfor %}
-  </ul>
-</section>
+        <div class="certs">
+          {% for cert in c.certifications %}
+          <div class="cert"><i class="fas fa-certificate"></i><div><b>{{ cert.name }}</b><span>{{ cert.issuer }}, {{ cert.date }}</span></div><em class="{% if cert.status == 'In progress' %}prog{% endif %}">{{ cert.status }}</em></div>
+          {% endfor %}
+        </div>
+      </div>
 
-<section id="powerbi">
-  <h2 class="big">Power BI.</h2>
-  <p class="lead">{{ c.improve_title }}. Every chart here is built from real data I collected and cleaned myself.</p>
-  <div class="visuals">
-    {% for p in projects %}{% for v in p.visuals %}
-    <figure><a href="{{ p.url | relative_url }}#visuals"><img src="{{ v.image | relative_url }}" alt="{{ v.caption }}" loading="lazy"></a><figcaption>{{ v.caption }}</figcaption></figure>
-    {% endfor %}{% endfor %}
-  </div>
-</section>
+      <div id="powerbi" class="extra">
+        <h1>Power BI.</h1>
+        <p class="lead">{{ c.improve_text }}</p>
+        <div class="grid2">
+          {% for p in projects %}{% for v in p.visuals %}
+          <a class="gf-card visual" href="{{ p.url | relative_url }}#visuals"><img src="{{ v.image | relative_url }}" alt="{{ v.caption }}" loading="lazy"><span>{{ v.caption }}</span></a>
+          {% endfor %}{% endfor %}
+        </div>
+      </div>
 
-<section id="updates">
-  <h2 class="big">Updates.</h2>
-  <div class="posts">
-    {% for post in site.posts limit: 4 %}
-    <a class="post-card" href="{{ post.url | relative_url }}">
-      {% if post.image %}<img src="{{ post.image | relative_url }}" alt="" loading="lazy">{% endif %}
-      <div class="post-body"><span class="post-title">{{ post.title }}</span><span class="post-sum">{{ post.summary }}</span><span class="post-date">{{ post.date | date: "%-d %b %Y" }}</span></div>
-    </a>
-    {% endfor %}
-  </div>
-  <p><a class="more" href="{{ '/updates/' | relative_url }}">All updates</a></p>
-</section>
+      <div id="blog_section">
+        <h1>Blog.</h1>
+        <div id="blogs">
+          {% for post in site.posts %}
+          <a href="{{ post.url | relative_url }}">
+            <section>
+              {% if post.image %}<img src="{{ post.image | relative_url }}" alt="">{% endif %}
+              <div class="blog_container">
+                <div class="section_title">{{ post.title }}</div>
+                <div class="about_section">{{ post.summary }}</div>
+              </div>
+            </section>
+          </a>
+          {% endfor %}
+        </div>
+      </div>
 
-<section id="life">
-  <h2 class="big">Life.</h2>
-  <div class="gallery">
-    {% for g in c.gallery %}
-    <figure><img src="{{ g.image | relative_url }}" alt="{{ g.caption }}" loading="lazy"><figcaption>{{ g.caption }}</figcaption></figure>
-    {% endfor %}
-  </div>
-</section>
+      <div id="life" class="extra">
+        <h1>Life.</h1>
+        <div class="gallery">
+          {% for g in c.gallery %}<figure><img src="{{ g.image | relative_url }}" alt="{{ g.caption }}" loading="lazy"><figcaption>{{ g.caption }}</figcaption></figure>{% endfor %}
+        </div>
+      </div>
+
+      <div id="footer">{% include footer.html %}</div>
+    </div>
+
+    {% include theme-script.html %}
+    <script>
+      var magicProjectsGrid = new MagicGrid({ container: "#work_section", animate: false, gutter: 30, static: true, useMin: false, maxColumns: 2, useTransform: true });
+      $(document).ready(function () { magicProjectsGrid.listen(); });
+    </script>
+  </body>
+</html>

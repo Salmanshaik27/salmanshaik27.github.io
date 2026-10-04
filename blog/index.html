@@ -1,0 +1,10 @@
+---
+layout: article
+title: "Blog"
+summary: "Short notes on what I am learning and building. Most start as LinkedIn posts."
+---
+<div id="blogs">
+  {% for post in site.posts %}
+  <a href="{{ post.url | relative_url }}"><section>{% if post.image %}<img src="{{ post.image | relative_url }}" alt="">{% endif %}<div class="blog_container"><div class="section_title">{{ post.title }}</div><div class="about_section">{{ post.summary }}</div></div></section></a>
+  {% endfor %}
+</div>

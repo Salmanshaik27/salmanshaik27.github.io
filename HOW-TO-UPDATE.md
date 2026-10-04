@@ -31,7 +31,7 @@ The project appears automatically at the top of the Work section, and its charts
 
 Rename your photo to the exact name of the old one (`profile.jpg`, `gallery-1.jpg` to `gallery-6.jpg`), upload it to `assets/img`, and commit. Change captions in `content.yml`. Keep photos under 1 MB.
 
-## Post an update (the LinkedIn version of a project)
+## Post a blog entry (the LinkedIn version of a project)
 
 1. In `_posts`, click **Add file > Create new file**.
 2. Name it `YYYY-MM-DD-short-title.md`, for example `2026-10-07-lucerne-without-vc.md`. The date at the start is required.
@@ -56,3 +56,13 @@ Upload the PDF to `assets/files`, then set `cv: "Your_CV_file_name.pdf"` in `con
 ## If something breaks
 
 Open the **Actions** tab. A red cross marks the change that failed; it is usually a missing quote or wrong spacing. Fix it, or restore the previous version from the file's **History**.
+
+## Change the background photo
+
+Upload your photo to `assets/img`, for example `lucerne.jpg`, then in `content.yml` set:
+`background: "/assets/img/lucerne.jpg"`
+It appears behind your profile and at the top of every project page.
+
+## About the design
+
+The look is based on gitfolio by imfunniee, licensed under GPL-3.0. Keep the file `LICENSE-gitfolio.txt` and the small credit line in the footer.

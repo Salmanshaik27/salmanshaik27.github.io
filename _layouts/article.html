@@ -1,0 +1,29 @@
+{% assign c = site.data.content %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>{% include head.html %}</head>
+  <body>
+    {% include loader.html %}
+    <a href="{{ '/' | relative_url }}" class="go_back" aria-label="Back to home"><i class="fas fa-arrow-left"></i></a>
+    <button class="theme-toggle top" type="button" aria-label="Switch light and dark mode"><i class="fas fa-adjust"></i></button>
+    <div id="background_overlay"></div>
+    <div id="background" style="background: url('{{ page.hero | default: c.background | relative_url }}') center center;"></div>
+    <table id="profile_blog">
+      <tbody>
+        <tr>
+          <td style="width:8vw;"><div id="profile_img_blog" style="background: url('{{ '/assets/img/profile.jpg' | relative_url }}') center center;"></div></td>
+          <td style="width:52vw;"><div id="username_blog"><span style="display:block;">{{ c.name }}</span>@{{ c.handle }}{% if page.date %}<b id="blog_time"> &nbsp;·&nbsp; {{ page.date | date: "%-d %B %Y" }}</b>{% endif %}</div></td>
+        </tr>
+      </tbody>
+    </table>
+    <div id="blog-display">
+      <h1 id="blog_title">{{ page.title }}</h1>
+      <h2 id="blog_sub_title">{{ page.summary }}</h2>
+      <div id="blog">
+        {{ content }}
+      </div>
+    </div>
+    <div id="footer_blog">{% include footer.html %}</div>
+    {% include theme-script.html %}
+  </body>
+</html>

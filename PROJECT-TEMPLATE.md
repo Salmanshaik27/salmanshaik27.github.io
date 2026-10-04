@@ -3,6 +3,9 @@ title: "Your project title as a question"
 date: "2026-10-07"
 summary: "Two sentences: what you studied and why it matters. This appears on the home page."
 cover: /assets/img/your-main-chart.png
+# Optional: a photo for the big header of this project page.
+# Leave this line out to use the main background photo.
+# hero: /assets/img/your-header-photo.jpg
 pdf: /assets/files/your-report.pdf
 tags: ["Power BI", "Research"]
 question: "The one question this project answers"

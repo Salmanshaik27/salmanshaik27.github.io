@@ -1,17 +1,2 @@
-{% assign c = site.data.content %}
-<footer class="site-footer" id="contact">
-  <div class="wrap footer-inner">
-    <div>
-      <h2>Get in touch</h2>
-      <p>{{ c.status }}. I reply to every message.</p>
-    </div>
-    <ul class="contact-links">
-      {% if c.email != "" %}<li><a href="mailto:{{ c.email }}">{{ c.email }}</a></li>{% endif %}
-      {% if c.linkedin != "" %}<li><a href="{{ c.linkedin }}">LinkedIn</a></li>{% endif %}
-      {% if c.instagram != "" %}<li><a href="{{ c.instagram }}">Instagram</a></li>{% endif %}
-      {% if c.github != "" %}<li><a href="{{ c.github }}">GitHub</a></li>{% endif %}
-      {% if c.cv != "" %}<li><a href="{{ '/assets/files/' | append: c.cv | relative_url }}">Download CV</a></li>{% endif %}
-    </ul>
-  </div>
-  <div class="wrap footer-base">© {{ site.time | date: "%Y" }} {{ c.name }}. Built by hand, hosted on GitHub Pages.</div>
-</footer>
+<a href="{{ site.data.content.linkedin }}" target="_blank">made in Lucerne by {{ site.data.content.name }}</a>
+<p class="credit">Design based on <a href="https://github.com/imfunniee/gitfolio" target="_blank">gitfolio</a> (GPL-3.0)</p>
