@@ -1,0 +1,66 @@
+---
+layout: frame
+title: Experience
+nav: about
+---
+{% assign c = site.data.content %}
+{% assign projects = site.projects | sort: "date" | reverse %}
+<article class="article wide">
+  {% include steps.html step="2" %}
+  <p class="crumb">(Experience)</p>
+  <h1>What I have done so far</h1>
+  <div class="stats">
+    <div><b>{{ c.study_projects | size }}</b><span>projects during my studies</span></div>
+    <div><b>2</b><span>published research papers</span></div>
+    <div><b>{{ projects | size }}</b><span>independent research {% if projects.size == 1 %}study{% else %}studies{% endif %}</span></div>
+    <div><b>{{ c.certifications | size }}</b><span>certifications</span></div>
+  </div>
+
+  <h2>(Projects during my studies)</h2>
+  <div class="sp-list">
+    {% for sp in c.study_projects %}
+    <section class="sp" id="p{{ forloop.index }}">
+      <header>
+        <p class="when">{{ sp.when }}</p>
+        <h3>{{ sp.title }}</h3>
+        <span class="tagpill{% if sp.status == 'Ongoing' %} on{% endif %}">{{ sp.status }}</span>
+      </header>
+      <p class="sp-context">{{ sp.context }}</p>
+      <dl>
+        <div><dt>What I did</dt><dd>{{ sp.did }}</dd></div>
+        {% if sp.learned != "" %}<div><dt>What I learned</dt><dd>{{ sp.learned }}</dd></div>{% endif %}
+        {% if sp.result != "" %}<div><dt>Result</dt><dd>{{ sp.result }}</dd></div>{% endif %}
+      </dl>
+    </section>
+    {% endfor %}
+  </div>
+
+  <h2>(Independent research)</h2>
+  <div class="proj-list">
+    {% for p in projects %}
+    <a class="proj" href="{{ p.url | relative_url }}"><img src="{{ p.cover | relative_url }}" alt="" loading="lazy"><span><em>{{ p.date | date: "%B %Y" }}</em><b>{{ p.title }}</b><span>{{ p.summary }}</span><u>Read the full case</u></span></a>
+    {% endfor %}
+  </div>
+
+  <h2>(Roles)</h2>
+  <ul class="exp">
+    {% for x in c.experience %}<li><div><h3>{{ x.title }}</h3><p class="school">{{ x.where }}</p></div><p>{{ x.text }}</p></li>{% endfor %}
+  </ul>
+
+  <h2>(Skills)</h2>
+  <div class="skill-grid">
+    {% for s in c.skills %}<section><h3>{{ s.group }}</h3><p>{{ s.items }}</p></section>{% endfor %}
+  </div>
+
+  <h2>(Certifications)</h2>
+  <ul class="rows">
+    {% for cert in c.certifications %}<li><span><b>{{ cert.name }}</b><br>{{ cert.issuer }}, {{ cert.date }}</span><em class="{% if cert.status == 'In progress' %}prog{% endif %}">{{ cert.status }}</em></li>{% endfor %}
+  </ul>
+
+  <h2>(Writing)</h2>
+  <ul class="rows links">
+    {% for post in site.posts limit: 6 %}<li><a href="{{ post.url | relative_url }}"><b>{{ post.title }}</b><span>{{ post.date | date: "%-d %b %Y" }}</span></a></li>{% endfor %}
+  </ul>
+
+  {% include next.html url="/bring/" label="Step 3: What I bring and what I am looking for" %}
+</article>

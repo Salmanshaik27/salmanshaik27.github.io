@@ -16,10 +16,9 @@ scripts: ["/assets/js/home.js"]
   <p class="quote-cta">{{ c.quote_cta }}</p>
   <div class="pills">
     <a href="{{ '/who/' | relative_url }}"><i>1</i>Who I am</a>
-    <a href="{{ '/bring/' | relative_url }}"><i>2</i>What I bring</a>
-    <a href="{{ '/looking/' | relative_url }}"><i>3</i>What I am looking for</a>
+    <a href="{{ '/experience/' | relative_url }}"><i>2</i>Experience</a>
+    <a href="{{ '/bring/' | relative_url }}"><i>3</i>What I bring and what I am looking for</a>
   </div>
-  <p class="hint">New here? Start with step 1.</p>
 </section>
 
 <section class="stage" id="work" aria-label="Selected work">
@@ -51,7 +50,7 @@ scripts: ["/assets/js/home.js"]
       {% endfor %}
     </div>
   </div>
-  <p class="stage-hint">Turn with the arrows or drag. Click a title to open the full case.</p>
+  <p class="stage-hint">Turn with the arrows, or drag and swipe. Click a title to open the full case.</p>
 
   <div class="album" hidden>
     <div class="album-grid">
@@ -87,6 +86,5 @@ scripts: ["/assets/js/home.js"]
     <button type="button" class="on" data-mode="carousel" aria-pressed="true">Carousel</button>
     <button type="button" data-mode="album" aria-pressed="false">Album</button>
   </div>
-  <span class="bar-label">(Selected Work)</span>
   <a class="bar-hint" href="{{ '/work/' | relative_url }}">See all work</a>
 </footer>

@@ -3,101 +3,86 @@
 #  Change the text between the quotes, then click "Commit changes".
 #  The site updates about one minute later.
 #  Rules: keep the quotes, keep the spaces at the start of each line.
+#  Put **two stars** around words to highlight them in red.
 #  Projects are NOT here: each project is its own file in _projects/.
 # =====================================================================
 
 name: "Salman Shaik"
-role: "MSc Business Innovation, HSLU"
+role: "MSc Business Administration, HSLU"
 location: "Lucerne, Switzerland"
+status: "Open to consulting and strategy roles in Switzerland, part-time or internship"
 
-
-# Background photo behind the white frame. Upload your own photo to
-# assets/img/ and write for example "/assets/img/lucerne.jpg".
-# Leave empty ("") for the soft sky gradient.
-backdrop: ""
-
-# The city and time zone for the live clock in the top right corner
-city: "Lucerne"
-timezone: "Europe/Zurich"
-
-# Optional short video of you (MP4, under about 20 MB), for example
-# "/assets/files/intro.mp4". Leave empty ("") to show your photo instead.
-video: ""
-
-# Power BI "Publish to web" link (needs a work or school Power BI account).
-# Paste the link that starts with https://app.powerbi.com/view?r=
-# Leave empty ("") to show only the interactive web charts.
-powerbi_embed: ""
-
-# The quote at the top of the home page, and the line before the buttons
-quote: "No matter how expert you are, there is always room to improve."
-quote_cta: "Check out:"
-
-# Quick facts at the top of the Who I am page
-facts:
-  - label: "Studying now"
-    value: "MSc Business Administration, HSLU"
-  - label: "Based in"
-    value: "Lucerne, Switzerland"
-  - label: "From"
-    value: "Bengaluru, India"
-  - label: "Background"
-    value: "Computer Science and Engineering (IoT)"
-
-# ---------------------------------------------------------------------
-#  UPCOMING PROJECTS: shown in the carousel and the right-side wheel.
-#  Delete a line when the project is published in _projects/.
-# ---------------------------------------------------------------------
-upcoming:
-  - title: "Why does Zug found the most companies and keep the fewest?"
-    note: "Deep dive into foreign-owned and mobile companies"
-  - title: "How Lucerne companies survive without venture capital"
-    note: "Self-funding, banks and local customers"
-  - title: "Why solo founders close more often"
-    note: "What a team changes in the first five years"
-  - title: "AI in Swiss SMEs: what works and what gets dropped"
-    note: "A short survey of real AI projects"
-
-# The big sentence next to your photo
-headline: "From engineering in Bengaluru to business strategy in Lucerne."
-
-# The paragraph under it
-intro: "I am an MSc Business Administration student at HSLU, majoring in Business Innovation and Entrepreneurship, with a computer science degree behind me. I research Swiss markets and companies, turn real data into Power BI dashboards, and publish what I find."
-
-# The small status line above your name
-status: "Open to consulting and strategy roles in Switzerland"
-
-# ---------------------------------------------------------------------
-#  Contact links. Leave a link empty ("") to hide it.
-# ---------------------------------------------------------------------
+# Contact. Leave a line empty ("") to hide it.
+email: "salluhshyc@gmail.com"
+phone: "+41 77 291 7248"
 linkedin: "https://www.linkedin.com/in/salmanshaik27"
-email: "your.email@example.com"
+handle: "salmanshaik27"
 instagram: ""
 github: "https://github.com/Salmanshaik27"
 
-# Upload your CV PDF to assets/files/ and write its file name here.
-# Leave empty ("") to hide the "Download CV" button.
+# Your CV: upload the PDF to assets/files/ and write its file name here.
 cv: ""
 
-# ---------------------------------------------------------------------
-#  JOURNEY: your two degrees, with the work you did during each.
-#  Logos: upload the logo file to assets/img/ and write its name below.
-#  Until then, the short text in "monogram" is shown instead.
-# ---------------------------------------------------------------------
-education:
-  - degree: "Bachelor of Technology in Computer Science and Engineering"
-    focus: "Specialisation in Internet of Things"
-    school: "Presidency University"
-    place: "Bengaluru, India"
-    period: "2021 to 2025"
-    logo: ""
-    monogram: "PU"
-    work:
-      - title: "Eco Drive"
-        text: "A gamified mobile app that helps people track and cut the carbon footprint of their daily travel. Team of five. Published in IJSREM."
-      - title: "Smart Waste Management"
-        text: "A smart waste collection system. I led a team of five. Published in IJSAT."
+# Background photo behind the white frame, for example "/assets/img/lucerne.jpg".
+# Leave empty ("") for the soft sky gradient.
+backdrop: ""
 
+# City and time zone for the live clock
+city: "Lucerne"
+timezone: "Europe/Zurich"
+
+# Optional short video of you, for example "/assets/files/intro.mp4".
+video: ""
+
+# Power BI "Publish to web" link (needs a work or school Power BI account)
+powerbi_embed: ""
+
+# Home page quote and the line before the three buttons
+quote: "No matter how expert you are, there is always room to improve."
+quote_cta: "Check out:"
+
+# ---------------------------------------------------------------------
+#  1. WHO I AM
+# ---------------------------------------------------------------------
+facts:
+  - label: "Studying now"
+    value: "MSc Business Administration, 2nd semester, HSLU"
+  - label: "Based in"
+    value: "Lucerne, Switzerland, since February 2026"
+  - label: "From"
+    value: "Sattenapalli, Andhra Pradesh, India"
+  - label: "Background"
+    value: "Bachelor of Technology in Computer Science and Engineering, major in IoT"
+
+story:
+  - "I grew up in a small town called **Sattenapalli** in Andhra Pradesh, India, and moved to **Bengaluru**, Karnataka, where I completed my **Bachelor of Technology in Computer Science and Engineering** from 2021 to 2025."
+  - "Along the way I realised that technology is only the building part. **Selling it, running it and deploying it in the market needs business acumen.** Combining technical and business skills is the best decision I have ever made."
+  - "In **February 2026** I moved to Lucerne, Switzerland. I am now in the **second semester of my Master of Science in Business Administration**, majoring in **Business Innovation and Entrepreneurship**, at the Lucerne University of Applied Sciences and Arts (HSLU)."
+  - "After several technical projects and consulting research projects, I am now working on a **real client SME consulting project** and a **healthcare research consulting project**. That experience made my direction clear: **I want to work in consulting.**"
+
+languages:
+  - name: "Telugu"
+    level: "Mother tongue"
+  - name: "Hindi"
+    level: "Mother tongue"
+  - name: "English"
+    level: "Fluent (C1)"
+  - name: "German"
+    level: "A2, improving"
+
+traits:
+  - title: "Optimistic"
+    text: "I look at the bright side first, then work out how to fix the bad side. Instead of focusing on the problem, I **focus on the solution**."
+  - title: "Always improving"
+    text: "Self-improvement is what I follow. **No matter how good I am, I can always improve.**"
+  - title: "Social"
+    text: "I love meeting new people, having meaningful conversations, and sharing opinions on a broad range of topics."
+
+community: "I am an active member of **ESN Luzern** and **in charge of its media club**, which I recently initiated to promote and market ESN Luzern. Working with ESN is one of my best experiences: we help exchange, full-time and local students make their life in Lucerne easier, by organising **trips, events and gatherings** where they make friends."
+
+outside: "Outside work I do **photography and cinematography**, and I plan to shoot a short film with my friends soon. You can see my work on Instagram."
+
+education:
   - degree: "Master of Science in Business Administration"
     focus: "Major in Business Innovation and Entrepreneurship"
     school: "Lucerne University of Applied Sciences and Arts (HSLU)"
@@ -105,119 +90,134 @@ education:
     period: "2026 to today"
     logo: ""
     monogram: "HSLU"
-    work:
-      - title: "Change management consulting project"
-        text: "Consulting project for a real organisation, supporting a change process from analysis to recommendations. Grade 5.25 / 6."
-      - title: "ShareSpot business concept"
-        text: "Developed a new business concept from idea to business plan. Grade 5.4 / 6."
-      - title: "Sustainable Dining research project"
-        text: "Applied research with qualitative interviews, in a team of five. Grade 5.5 / 6."
-      - title: "Practice management consulting for physicians"
-        text: "Ongoing applied research: defining the value proposition for consulting services to Swiss doctors' practices, using interviews and a survey."
-      - title: "SME consulting project"
-        text: "Ongoing: finding and advising a real Swiss SME as a student consulting team."
+  - degree: "Bachelor of Technology in Computer Science and Engineering"
+    focus: "Major in Internet of Things"
+    school: "Presidency University"
+    place: "Bengaluru, India"
+    period: "2021 to 2025"
+    logo: ""
+    monogram: "PU"
 
 # ---------------------------------------------------------------------
-#  WHO I AM (panel). Each line is one paragraph.
+#  2. EXPERIENCE: projects during my studies (newest first)
+#  status: "Ongoing" or "Completed". Leave link empty ("") if none.
 # ---------------------------------------------------------------------
-#  Put **two stars** around words to highlight them.
-who:
-  - "I grew up in Bengaluru and studied **computer science**, specialising in the Internet of Things. Building systems taught me that the hard part is rarely the technology. It is **deciding what is worth building**."
-  - "That question brought me to Lucerne, where I study **Business Administration with a major in Business Innovation and Entrepreneurship** at HSLU."
-  - "Outside class I **research Swiss markets and companies**, build **Power BI dashboards from official data**, guide trips for the Erasmus Student Network and lead a new photography club."
+study_projects:
+  - title: "SME consulting project with a real client"
+    when: "MSc, 2nd semester, 2026"
+    status: "Ongoing"
+    context: "A Swiss SME (name confidential) facing organisational challenges."
+    did: "Working as a student consulting team with the client to understand their organisational challenges and develop solutions."
+    learned: "REPLACE: what you are learning, for example how to manage a real client relationship."
+    result: ""
+  - title: "Healthcare value proposition for physicians in Switzerland"
+    when: "MSc, Applied Research Project, 2026"
+    status: "Ongoing"
+    context: "A research consulting project on the value proposition of practice-management consulting for physicians in Switzerland."
+    did: "Interviewing multiple physicians and healthcare specialists to find out what doctors' practices really need."
+    learned: "REPLACE: what you are learning, for example how to interview senior experts."
+    result: ""
+  - title: "Digital transformation consulting project"
+    when: "MSc, 1st semester"
+    status: "Completed"
+    context: "A Swiss institution (name confidential) going through a digital transformation."
+    did: "Interviewed stakeholders, coded the interviews, found out what was happening and where the transformation was stalling, and recommended how to improve it."
+    learned: "How to run stakeholder interviews, turn qualitative data into clear findings, and give recommendations a client can act on."
+    result: "Grade 5.25 / 6"
+  - title: "HSLU dining research"
+    when: "MSc, 1st semester"
+    status: "Completed"
+    context: "Qualitative research on the dining practices of newly arrived international students at HSLU."
+    did: "Interviewed new international students in a team of five, coded the interviews, and turned the patterns into insights."
+    learned: "How to design an interview guide, code qualitative data, and turn quotes into evidence."
+    result: "Grade 5.5 / 6"
+  - title: "Smart Waste Management System"
+    when: "B.Tech capstone project"
+    status: "Completed"
+    context: "A smart system to make waste collection more efficient."
+    did: "Led a team of five from the idea to a working system and a research paper. REPLACE: add the technical details."
+    learned: "How to lead a team, split the work, and take a project from prototype to publication."
+    result: "Published in IJSAT"
+  - title: "Eco Drive"
+    when: "B.Tech capstone project"
+    status: "Completed"
+    context: "A gamified mobile app that helps people track and reduce the carbon footprint of their daily travel."
+    did: "Built the app in a team of five. REPLACE: add your part and the technical details."
+    learned: "How to turn a user problem into product features, and how to write research for publication."
+    result: "Published in IJSREM"
 
 # ---------------------------------------------------------------------
-#  WHAT I BRING (panel): skill groups
+#  3. WHAT I BRING AND WHAT I AM LOOKING FOR
 # ---------------------------------------------------------------------
-skills:
-  - group: "Analysis"
-    items: "Power BI, Python (pandas), Excel, data cleaning, market research"
-  - group: "Consulting"
-    items: "Issue trees, hypothesis-driven analysis, PESTEL, Five Forces, scenario planning"
-  - group: "Technology"
-    items: "Computer science degree, IoT systems, two published papers"
-  - group: "Ways of working"
-    items: "Scrum, team leadership, client interviews, written reports"
-  - group: "Languages"
-    items: "REPLACE: for example English (fluent), German (learning)"
+# "What I bring": left empty for now. Add lines like the ones below later.
+bring: []
 
-# ---------------------------------------------------------------------
-#  EXPERIENCE (What I bring page)
-# ---------------------------------------------------------------------
-experience:
-  - title: "Student consultant, real client projects"
-    where: "HSLU, 2026"
-    text: "Change management and SME consulting projects with real organisations, from analysis to recommendations."
-  - title: "Team lead, Smart Waste Management"
-    where: "Presidency University, Bengaluru"
-    text: "Led a team of five from idea to a published paper (IJSAT)."
-  - title: "Trip guide, Erasmus Student Network"
-    where: "ESN Lucerne"
-    text: "Co-guided group trips for 25+ international students."
-  - title: "Founder, ESN photography club"
-    where: "ESN Lucerne, 2026"
-    text: "Starting and leading a new club: concepts, events and a team."
+motive: "I want to **deep dive into a company's issue, find the solution and guide the company through it**, not just create slides and leave them to follow the solution alone."
 
-# ---------------------------------------------------------------------
-#  WHAT I AM LOOKING FOR: your motive, then one block per question
-# ---------------------------------------------------------------------
-motive: "I want to help companies make **better decisions with real data**, and I want to learn from people who do it every day."
-# ---------------------------------------------------------------------
+why: "I like to think further than the next step: to keep **predicting upcoming issues**, what would cause them, and **how to tackle them in order of priority**."
+
 looking:
   - title: "The role"
-    text: "Consulting and strategy roles in Switzerland, where structured problem solving meets real data."
+    text: "Consulting and strategy roles in Switzerland, **part-time or as an internship**."
   - title: "When"
-    text: "REPLACE: for example internships from spring 2027, full-time from autumn 2027."
-  - title: "Why consulting"
-    text: "I enjoy breaking a messy question into parts, finding the data that answers each one, and turning it into a clear recommendation. Consulting does that every week, across industries."
+    text: "REPLACE: for example from spring 2027, or now alongside my studies."
   - title: "What I offer a team"
-    text: "A technical background that makes data work fast, a habit of testing my own assumptions, and the discipline to publish finished work every week."
+    text: "A technical background that makes data work fast, real client consulting experience, and the habit of publishing finished research every week."
+
 
 # ---------------------------------------------------------------------
-#  SELF-IMPROVEMENT SECTION (above the Power BI gallery)
+#  SKILLS, ROLES AND CERTIFICATIONS (Experience page)
 # ---------------------------------------------------------------------
-improve_title: "Always room to improve"
-improve_text: "No matter how good you are, there is always room to improve. So my hobby is research: I study markets, companies and case studies, and turn real data into Power BI dashboards. I publish a new project every three days."
+skills:
+- group: Analysis
+  items: Power BI, Python (pandas), Excel, data cleaning, market research
+- group: Consulting
+  items: Issue trees, hypothesis-driven analysis, PESTEL, Five Forces, scenario planning
+- group: Technology
+  items: Computer science degree, IoT systems, two published papers
+- group: Ways of working
+  items: Scrum, team leadership, client interviews, written reports
+- group: Languages
+  items: Telugu and Hindi (mother tongues), English (C1), German (A2, improving)
+experience:
+- title: "Media club lead, ESN Luzern"
+  where: "ESN Luzern, 2026"
+  text: "Initiated and lead the new media club to promote and market ESN Luzern."
+- title: "Active member and trip guide, ESN Luzern"
+  where: "ESN Luzern, 2026"
+  text: "Organising trips, events and gatherings for exchange, full-time and local students, including co-guiding group trips for 25+ students."
 
-# ---------------------------------------------------------------------
-#  CERTIFICATIONS. status: "Completed" or "In progress"
-# ---------------------------------------------------------------------
 certifications:
-  - name: "Professional Scrum Master I (PSM I)"
-    issuer: "Scrum.org"
-    date: "2026"
-    status: "In progress"
-    link: ""
-  - name: "McKinsey Forward Program"
-    issuer: "McKinsey & Company"
-    date: "2026"
-    status: "In progress"
-    link: ""
-  - name: "AI-Powered Performance Ads"
-    issuer: "Google Skillshop"
-    date: "REPLACE WITH YEAR"
-    status: "Completed"
-    link: ""
-  - name: "Dive Deeper into GA4 Data and Reports"
-    issuer: "Google Skillshop"
-    date: "REPLACE WITH YEAR"
-    status: "Completed"
-    link: ""
+- name: Professional Scrum Master I (PSM I)
+  issuer: Scrum.org
+  date: '2026'
+  status: In progress
+  link: ''
+- name: McKinsey Forward Program
+  issuer: McKinsey & Company
+  date: '2026'
+  status: In progress
+  link: ''
+- name: AI-Powered Performance Ads
+  issuer: Google Skillshop
+  date: REPLACE WITH YEAR
+  status: Completed
+  link: ''
+- name: Dive Deeper into GA4 Data and Reports
+  issuer: Google Skillshop
+  date: REPLACE WITH YEAR
+  status: Completed
+  link: ''
 
 # ---------------------------------------------------------------------
-#  PHOTOS (bottom of the page). Replace the files in assets/img/
-#  with your own, keeping the same file names.
+#  UPCOMING PROJECTS (carousel, right wheel, Work page)
 # ---------------------------------------------------------------------
-gallery:
-  - image: "/assets/img/gallery-1.jpg"
-    caption: "Replace with a caption"
-  - image: "/assets/img/gallery-2.jpg"
-    caption: "Replace with a caption"
-  - image: "/assets/img/gallery-3.jpg"
-    caption: "Replace with a caption"
-  - image: "/assets/img/gallery-4.jpg"
-    caption: "Replace with a caption"
-  - image: "/assets/img/gallery-5.jpg"
-    caption: "Replace with a caption"
-  - image: "/assets/img/gallery-6.jpg"
-    caption: "Replace with a caption"
+upcoming:
+- title: Why does Zug found the most companies and keep the fewest?
+  note: Deep dive into foreign-owned and mobile companies
+- title: How Lucerne companies survive without venture capital
+  note: Self-funding, banks and local customers
+- title: Why solo founders close more often
+  note: What a team changes in the first five years
+- title: 'AI in Swiss SMEs: what works and what gets dropped'
+  note: A short survey of real AI projects

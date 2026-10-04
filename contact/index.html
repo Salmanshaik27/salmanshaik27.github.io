@@ -10,6 +10,7 @@ nav: contact
   <p class="lead">{{ c.status }}. I reply to every message.</p>
   <ul class="rows links big">
     {% if c.email != "" %}<li><a href="mailto:{{ c.email }}"><b>Email</b><span>{{ c.email }}</span></a></li>{% endif %}
+    {% if c.phone != "" %}<li><a href="tel:{{ c.phone | remove: ' ' }}"><b>Phone</b><span>{{ c.phone }}</span></a></li>{% endif %}
     {% if c.linkedin != "" %}<li><a href="{{ c.linkedin }}" target="_blank"><b>LinkedIn</b><span>@{{ c.handle }}</span></a></li>{% endif %}
     {% if c.github != "" %}<li><a href="{{ c.github }}" target="_blank"><b>GitHub</b><span>Salmanshaik27</span></a></li>{% endif %}
     {% if c.instagram != "" %}<li><a href="{{ c.instagram }}" target="_blank"><b>Instagram</b><span>Photography and travel</span></a></li>{% endif %}

@@ -6,7 +6,7 @@ Everything happens on github.com in your browser. After **Commit changes**, the 
 
 - Home: `index.html` (quote, carousel, wheel)
 - Work: `work/index.html`, plus one page per project from `_projects`
-- Who I am: `who/index.html`, What I bring: `bring/index.html`, What I am looking for: `looking/index.html`
+- About, in three steps: `who/index.html` (Who I am), `experience/index.html` (Experience), `bring/index.html` (What I bring and what I am looking for)
 - Blog: `blog/index.html`, plus one page per post from `_posts`
 - Contact: `contact/index.html`, Data: `data/index.html`
 
@@ -16,10 +16,11 @@ You normally only edit `_data/content.yml`, `_projects` and `_posts`. The pages 
 
 Open `_data/content.yml`, click the pencil icon, change the text between the quotes, and commit.
 - `quote`, `quote_cta`: the quote on the home page
-- `facts`: the quick facts on Who I am
+- `facts`, `story`, `languages`, `traits`, `community`, `outside`: the Who I am page
+- `study_projects`: your study projects on the Experience page
+- `bring`: What I bring (empty for now), `motive`, `why`, `looking`: what you are looking for
 - `upcoming`: upcoming projects, shown in the carousel, the right wheel and the Work page. Delete one when it is published.
-- `experience`: your experience on What I bring
-- `motive`: your motive on What I am looking for
+- `experience`: your roles on the Experience page
 - Put **two stars** around words to highlight them in red
 - `who`: the paragraphs in the "Who I am" panel
 - `skills`: the skill groups in "What I bring"

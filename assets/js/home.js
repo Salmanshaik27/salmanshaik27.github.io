@@ -6,7 +6,21 @@
   /* ---------- Work carousel ---------- */
   var car = document.querySelector(".carousel");
   var ring = car && car.querySelector(".ring");
-  if (ring) {
+  var phone = window.matchMedia("(max-width: 900px)");
+  // Switching between phone and desktop width rebuilds the page once
+  if (phone.addEventListener) phone.addEventListener("change", function () { location.reload(); });
+  if (ring && phone.matches) {
+    // Phones: simple swipeable cards, arrows scroll one card
+    car.classList.add("flat");
+    document.querySelectorAll(".arrow").forEach(function (b) {
+      b.addEventListener("click", function () {
+        var d = parseInt(b.getAttribute("data-dir"), 10);
+        var card = ring.querySelector(".slide");
+        ring.scrollBy({ left: d * ((card ? card.offsetWidth : 300) + 14), behavior: reduce ? "auto" : "smooth" });
+      });
+    });
+    ring.querySelectorAll(".slide").forEach(function (s) { s.classList.add("active"); });
+  } else if (ring) {
     var real = Array.prototype.slice.call(ring.querySelectorAll(".slide"));
     var N = real.length;
     // Fill the ring with copies so it always looks round, even with few items
