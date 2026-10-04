@@ -1,21 +1,25 @@
 ---
-layout: article
+layout: frame
 ---
-<div class="actions">
-  {% if page.pdf %}<a class="gf-btn primary" href="{{ page.pdf | relative_url }}" target="_blank"><i class="fas fa-file-pdf"></i>&nbsp; Download the report (PDF)</a>{% endif %}
-  {% if page.visuals %}<a class="gf-btn" href="#visuals"><i class="fas fa-chart-bar"></i>&nbsp; Power BI visuals</a>{% endif %}
-</div>
-{% if page.question %}<div class="gf-card facts"><div class="q-label">The question</div><div class="q">{{ page.question }}</div>
-  <div class="facts-row">
+<article class="article">
+  <p class="crumb"><a href="{{ '/#work' | relative_url }}">Works</a> / {{ page.date | date: "%B %Y" }}</p>
+  <h1>{{ page.title }}</h1>
+  <p class="lead">{{ page.summary }}</p>
+  <div class="panel-actions">
+    {% if page.pdf %}<a class="btn dark" href="{{ page.pdf | relative_url }}" target="_blank">Download the report (PDF)</a>{% endif %}
+    <a class="btn" href="{{ '/data/' | relative_url }}">Explore the interactive charts</a>
+  </div>
+  {% if page.question %}<p class="question">{{ page.question }}</p>{% endif %}
+  <div class="facts">
     {% if page.data %}<div><b>Data</b>{{ page.data }}</div>{% endif %}
     {% if page.tools %}<div><b>Tools</b>{{ page.tools }}</div>{% endif %}
     {% if page.time %}<div><b>Time</b>{{ page.time }}</div>{% endif %}
     {% if page.role %}<div><b>My role</b>{{ page.role }}</div>{% endif %}
   </div>
-</div>{% endif %}
-{% if page.findings %}<h3>Key findings</h3><ol class="findings">{% for f in page.findings %}<li>{{ f }}</li>{% endfor %}</ol>{% endif %}
-{% if page.steps %}<h3>What I did, step by step</h3><div class="grid2 steps">{% for s in page.steps %}<div class="gf-card"><b>{{ forloop.index }}. {{ s.title }}</b><div>{{ s.text }}</div></div>{% endfor %}</div>{% endif %}
-{% if page.visuals %}<h3 id="visuals">Power BI visuals</h3><div class="visual-list">{% for v in page.visuals %}<figure><a href="{{ v.image | relative_url }}" target="_blank"><img src="{{ v.image | relative_url }}" alt="{{ v.caption }}"></a><figcaption>{{ v.caption }}. Built by me in Power BI.</figcaption></figure>{% endfor %}</div>{% endif %}
-<h3>The detail</h3>
-<div class="prose">{{ content }}</div>
-{% if page.sources %}<h3>Sources</h3><ul class="sources">{% for s in page.sources %}<li><a href="{{ s.url }}" target="_blank">{{ s.name }}</a></li>{% endfor %}</ul>{% endif %}
+  {% if page.findings %}<h2>(Key findings)</h2><ol class="findings">{% for f in page.findings %}<li>{{ f }}</li>{% endfor %}</ol>{% endif %}
+  {% if page.steps %}<h2>(What I did)</h2><div class="steps">{% for s in page.steps %}<div><i>{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</i><b>{{ s.title }}</b>{{ s.text }}</div>{% endfor %}</div>{% endif %}
+  {% if page.visuals %}<h2 id="visuals">(Power BI visuals)</h2><div class="visuals">{% for v in page.visuals %}<figure><a href="{{ v.image | relative_url }}" target="_blank"><img src="{{ v.image | relative_url }}" alt="{{ v.caption }}" loading="lazy"></a><figcaption>{{ v.caption }}. Built by me in Power BI.</figcaption></figure>{% endfor %}</div>{% endif %}
+  <h2>(The detail)</h2>
+  <div class="prose">{{ content }}</div>
+  {% if page.sources %}<h2>(Sources)</h2><ul class="sources">{% for s in page.sources %}<li><a href="{{ s.url }}" target="_blank">{{ s.name }}</a></li>{% endfor %}</ul>{% endif %}
+</article>

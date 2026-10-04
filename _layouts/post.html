@@ -1,4 +1,10 @@
 ---
-layout: article
+layout: frame
 ---
-<div class="prose">{{ content }}</div>
+<article class="article">
+  <p class="crumb"><a href="{{ '/blog/' | relative_url }}">Blog</a> / {{ page.date | date: "%-d %B %Y" }}</p>
+  <h1>{{ page.title }}</h1>
+  {% if page.summary %}<p class="lead">{{ page.summary }}</p>{% endif %}
+  {% if page.image %}<img src="{{ page.image | relative_url }}" alt="{{ page.image_alt | default: page.title }}" style="border:1px solid #e8e8e8;margin:24px 0">{% endif %}
+  <div class="prose">{{ content }}</div>
+</article>

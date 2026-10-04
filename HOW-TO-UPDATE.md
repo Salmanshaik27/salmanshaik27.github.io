@@ -2,67 +2,48 @@
 
 Everything happens on github.com in your browser. After **Commit changes**, the site updates in about one minute.
 
-## Change text (intro, status, journey, certifications)
+## Text: tagline, Who I am, What I bring, What I am looking for
 
-1. Open `_data/content.yml` and click the pencil icon.
-2. Change the text between the quotes. Keep the quotes and the spaces at the start of lines.
-3. Click **Commit changes**.
+Open `_data/content.yml`, click the pencil icon, change the text between the quotes, and commit.
+- `tagline`: the bold sentence on the home page
+- `who`: the paragraphs in the "Who I am" panel
+- `skills`: the skill groups in "What I bring"
+- `looking`: the blocks in "What I am looking for"
+- `certifications`, `education`: certificates and degrees
 
-## Add a new project (every few days)
+## Background photo, video, CV
 
-1. Upload your images and PDF first:
-   - charts to `assets/img` (**Add file > Upload files**)
-   - the PDF report to `assets/files`
-2. Open `PROJECT-TEMPLATE.md`, click the copy icon to copy all the text.
-3. Open the `_projects` folder, click **Add file > Create new file**.
-4. Name it with a short web name, for example `lucerne-without-venture-capital.md`. That becomes the address `salmanshaik.ch/work/lucerne-without-venture-capital/`.
-5. Paste the template, fill it in, and point `cover`, `pdf` and `visuals` to the files you uploaded.
-6. Click **Commit changes**.
+- **Background:** upload a landscape photo to `assets/img` (for example `lucerne.jpg`) and set `backdrop: "/assets/img/lucerne.jpg"`.
+- **Video:** upload a short MP4 to `assets/files` (under about 20 MB) and set `video: "/assets/files/intro.mp4"`. It replaces your photo in "Who I am".
+- **CV:** upload the PDF to `assets/files` and set `cv: "Your_CV.pdf"`.
 
-The project appears automatically at the top of the Work section, and its charts appear in the Power BI section. Newest projects always come first, based on the `date` line.
+## Add a project (it appears in the carousel automatically)
 
-## Add your university logos
+1. Upload its charts to `assets/img` and its PDF to `assets/files`.
+2. Copy all text of `PROJECT-TEMPLATE.md`.
+3. In `_projects`, **Add file > Create new file**, name it like `lucerne-without-vc.md`, paste, fill in, commit.
 
-1. Download each logo from the university's website (PNG with a white or transparent background works best).
-2. Rename them `logo-presidency.png` and `logo-hslu.png`, and upload them to `assets/img`.
-3. In `content.yml`, set `logo: "logo-presidency.png"` and `logo: "logo-hslu.png"` under each degree.
+The project and each of its charts become slides in the 3D carousel and tiles in the album.
 
-## Replace a photo
+## Add a blog post (it appears in the wheel automatically)
 
-Rename your photo to the exact name of the old one (`profile.jpg`, `gallery-1.jpg` to `gallery-6.jpg`), upload it to `assets/img`, and commit. Change captions in `content.yml`. Keep photos under 1 MB.
-
-## Post a blog entry (the LinkedIn version of a project)
-
-1. In `_posts`, click **Add file > Create new file**.
-2. Name it `YYYY-MM-DD-short-title.md`, for example `2026-10-07-lucerne-without-vc.md`. The date at the start is required.
-3. Paste and fill in:
+In `_posts`, create `YYYY-MM-DD-short-title.md` and paste:
 
 ```
 ---
 layout: post
 title: "Your title"
-summary: "One sentence for the list."
-tags: ["Research"]
+summary: "One sentence."
 image: /assets/img/your-chart.png
 ---
 
-Your text. Link to the project like this: [Read the full case](/work/your-project-name/)
+Your text.
 ```
 
-## Add your CV
+## Power BI
 
-Upload the PDF to `assets/files`, then set `cv: "Your_CV_file_name.pdf"` in `content.yml`.
+If you get a Power BI "Publish to web" link (needs a work or school account), paste it into `powerbi_embed` in `content.yml`. It appears on the Data page above the interactive charts.
 
 ## If something breaks
 
-Open the **Actions** tab. A red cross marks the change that failed; it is usually a missing quote or wrong spacing. Fix it, or restore the previous version from the file's **History**.
-
-## Change the background photo
-
-Upload your photo to `assets/img`, for example `lucerne.jpg`, then in `content.yml` set:
-`background: "/assets/img/lucerne.jpg"`
-It appears behind your profile and at the top of every project page.
-
-## About the design
-
-The look is based on gitfolio by imfunniee, licensed under GPL-3.0. Keep the file `LICENSE-gitfolio.txt` and the small credit line in the footer.
+Open the **Actions** tab. A red cross marks the change that failed, usually a missing quote or wrong spacing in `content.yml`. Fix it or restore the previous version from the file's **History**.

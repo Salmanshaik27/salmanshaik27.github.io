@@ -1,119 +1,67 @@
 ---
+layout: frame
 title: Home
+body_class: home
+scripts: ["/assets/js/home.js"]
 ---
 {% assign c = site.data.content %}
 {% assign projects = site.projects | sort: "date" | reverse %}
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    {% include head.html %}
-    <script src="https://unpkg.com/magic-grid/dist/magic-grid.min.js"></script>
-  </head>
-  <body>
-    {% include loader.html %}
-    <div id="profile">
-      <div id="profile_img" role="img" aria-label="Portrait of {{ c.name }}" style="background: url('{{ '/assets/img/profile.jpg' | relative_url }}') center center"></div>
-      <div id="username"><span style="display:block;">{{ c.name }}</span><a href="{{ c.linkedin }}" target="_blank">@{{ c.handle }}</a></div>
-      <div id="userbio">{{ c.headline }}</div>
-      <div id="about">
-        <span><i class="fas fa-graduation-cap"></i> &nbsp;{{ c.role }}</span>
-        <span><i class="fas fa-map-marker-alt"></i> &nbsp;&nbsp;{{ c.location }}</span>
-        <span><i class="fas fa-user-tie"></i> &nbsp;{{ c.status }}</span>
-        {% if c.email != "" %}<span><i class="fas fa-envelope"></i> &nbsp;<a href="mailto:{{ c.email }}">{{ c.email }}</a></span>{% endif %}
-        {% if c.cv != "" %}<span><i class="fas fa-file-alt"></i> &nbsp;&nbsp;<a href="{{ '/assets/files/' | append: c.cv | relative_url }}" target="_blank">Download CV</a></span>{% endif %}
-        <div class="socials">
-          {% if c.linkedin != "" %}<span><a href="{{ c.linkedin }}" target="_blank" class="socials" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a></span>{% endif %}
-          {% if c.github != "" %}<span><a href="{{ c.github }}" target="_blank" class="socials" aria-label="GitHub"><i class="fab fa-github"></i></a></span>{% endif %}
-          {% if c.instagram != "" %}<span><a href="{{ c.instagram }}" target="_blank" class="socials" aria-label="Instagram"><i class="fab fa-instagram"></i></a></span>{% endif %}
-          <span><button class="theme-toggle" type="button" aria-label="Switch light and dark mode"><i class="fas fa-adjust"></i></button></span>
-        </div>
-        <div class="jump"><a href="#work">Work</a><a href="#journey">Journey</a><a href="#powerbi">Power BI</a><a href="#blog_section">Blog</a></div>
-      </div>
+<section class="intro">
+  <p class="tagline">{{ c.tagline }}</p>
+  <div class="pills">
+    <button type="button" data-panel="who">Who I am</button>
+    <button type="button" data-panel="bring">What I bring</button>
+    <button type="button" data-panel="looking">What I am looking for</button>
+  </div>
+</section>
+
+<section class="stage" id="work" aria-label="Selected work">
+  <div class="count count-l" aria-hidden="true"><span class="num">01</span></div>
+  <div class="count count-r" aria-hidden="true">/<span class="total">01</span></div>
+
+  <div class="carousel" tabindex="0" aria-roledescription="carousel" aria-label="Selected work. Use the arrow keys, drag or scroll to turn.">
+    <div class="ring">
+      {% for p in projects %}
+      <a class="slide" href="{{ p.url | relative_url }}" data-title="{{ p.title }}" data-sub="Research project, {{ p.date | date: '%b %Y' }}"><img src="{{ p.cover | relative_url }}" alt="{{ p.title }}" draggable="false"></a>
+      {% for v in p.visuals %}
+      <a class="slide" href="{{ p.url | relative_url }}#visuals" data-title="{{ v.caption }}" data-sub="Power BI visual"><img src="{{ v.image | relative_url }}" alt="{{ v.caption }}" draggable="false" loading="lazy"></a>
+      {% endfor %}
+      {% endfor %}
     </div>
+  </div>
+  <div class="caption" aria-live="polite"><em class="cap-title"></em><span class="cap-sub"></span></div>
 
-    <div id="display">
-      <div id="work">
-        <h1>Work.</h1>
-        <div class="projects" id="work_section">
-          {% for p in projects %}
-          <a href="{{ p.url | relative_url }}">
-            <section>
-              <div class="section_title">{{ p.title }}</div>
-              <div class="about_section"><span style="display:block;">{{ p.summary }}</span></div>
-              <div class="bottom_section">
-                <span><i class="fas fa-chart-bar"></i>&nbsp; {{ p.tags | join: ", " }}</span>
-                <span><i class="far fa-calendar"></i>&nbsp; {{ p.date | date: "%b %Y" }}</span>
-                {% if p.pdf %}<span><i class="fas fa-file-pdf"></i>&nbsp; PDF</span>{% endif %}
-              </div>
-            </section>
-          </a>
-          {% endfor %}
-        </div>
-      </div>
-
-      <div id="journey" class="extra">
-        <h1>Journey.</h1>
-        <div class="map-box">{% include journey-map.svg %}</div>
-        <div class="grid2">
-          {% for e in c.education %}
-          <section class="gf-card">
-            <div class="deg-head">
-              {% if e.logo != "" %}<img class="logo" src="{{ '/assets/img/' | append: e.logo | relative_url }}" alt="{{ e.school }} logo">{% else %}<span class="logo mono">{{ e.monogram }}</span>{% endif %}
-              <div><div class="period">{{ e.period }}, {{ e.place }}</div><div class="section_title">{{ e.degree }}</div></div>
-            </div>
-            <div class="about_section small">{{ e.school }}. {{ e.focus }}</div>
-            <ul class="deg-work">{% for w in e.work %}<li><b>{{ w.title }}</b><span>{{ w.text }}</span></li>{% endfor %}</ul>
-          </section>
-          {% endfor %}
-        </div>
-        <div class="certs">
-          {% for cert in c.certifications %}
-          <div class="cert"><i class="fas fa-certificate"></i><div><b>{{ cert.name }}</b><span>{{ cert.issuer }}, {{ cert.date }}</span></div><em class="{% if cert.status == 'In progress' %}prog{% endif %}">{{ cert.status }}</em></div>
-          {% endfor %}
-        </div>
-      </div>
-
-      <div id="powerbi" class="extra">
-        <h1>Power BI.</h1>
-        <p class="lead">{{ c.improve_text }}</p>
-        <div class="grid2">
-          {% for p in projects %}{% for v in p.visuals %}
-          <a class="gf-card visual" href="{{ p.url | relative_url }}#visuals"><img src="{{ v.image | relative_url }}" alt="{{ v.caption }}" loading="lazy"><span>{{ v.caption }}</span></a>
-          {% endfor %}{% endfor %}
-        </div>
-      </div>
-
-      <div id="blog_section">
-        <h1>Blog.</h1>
-        <div id="blogs">
-          {% for post in site.posts %}
-          <a href="{{ post.url | relative_url }}">
-            <section>
-              {% if post.image %}<img src="{{ post.image | relative_url }}" alt="">{% endif %}
-              <div class="blog_container">
-                <div class="section_title">{{ post.title }}</div>
-                <div class="about_section">{{ post.summary }}</div>
-              </div>
-            </section>
-          </a>
-          {% endfor %}
-        </div>
-      </div>
-
-      <div id="life" class="extra">
-        <h1>Life.</h1>
-        <div class="gallery">
-          {% for g in c.gallery %}<figure><img src="{{ g.image | relative_url }}" alt="{{ g.caption }}" loading="lazy"><figcaption>{{ g.caption }}</figcaption></figure>{% endfor %}
-        </div>
-      </div>
-
-      <div id="footer">{% include footer.html %}</div>
+  <div class="album" hidden>
+    <div class="album-label" aria-live="polite"><b class="al-title">&nbsp;</b><span class="al-num">&nbsp;</span></div>
+    <div class="album-grid">
+      {% for p in projects %}
+      <a class="tile" href="{{ p.url | relative_url }}" data-title="{{ p.title }}"><img src="{{ p.cover | relative_url }}" alt="{{ p.title }}" loading="lazy"></a>
+      {% for v in p.visuals %}
+      <a class="tile" href="{{ p.url | relative_url }}#visuals" data-title="{{ v.caption }}"><img src="{{ v.image | relative_url }}" alt="{{ v.caption }}" loading="lazy"></a>
+      {% endfor %}
+      {% endfor %}
     </div>
+  </div>
+</section>
 
-    {% include theme-script.html %}
-    <script>
-      var magicProjectsGrid = new MagicGrid({ container: "#work_section", animate: false, gutter: 30, static: true, useMin: false, maxColumns: 2, useTransform: true });
-      $(document).ready(function () { magicProjectsGrid.listen(); });
-    </script>
-  </body>
-</html>
+<aside class="wheel-wrap" aria-label="Blog posts">
+  <p class="wheel-label">(Writing)</p>
+  <div class="wheel" tabindex="0" aria-label="Blog posts. Scroll or use the arrow keys to turn.">
+    <div class="wheel-inner">
+      {% for post in site.posts %}
+      <a class="w-item" href="{{ post.url | relative_url }}"><span class="w-date">{{ post.date | date: "%d.%m.%y" }}</span><span class="w-title">{{ post.title }}</span></a>
+      {% endfor %}
+      <span class="w-item muted"><span class="w-date">Soon</span><span class="w-title">A new post every few days</span></span>
+    </div>
+  </div>
+  <a class="wheel-all" href="{{ '/blog/' | relative_url }}">All posts</a>
+</aside>
+
+<footer class="bar">
+  <div class="mode" role="group" aria-label="View">
+    <button type="button" class="on" data-mode="carousel" aria-pressed="true">Carousel</button>
+    <button type="button" data-mode="album" aria-pressed="false">Album</button>
+  </div>
+  <span class="bar-label">(Selected Work)</span>
+  <span class="bar-hint">Drag, scroll or use the arrow keys</span>
+</footer>

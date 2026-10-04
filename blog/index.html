@@ -1,10 +1,14 @@
 ---
-layout: article
-title: "Blog"
-summary: "Short notes on what I am learning and building. Most start as LinkedIn posts."
+layout: frame
+title: Blog
 ---
-<div id="blogs">
-  {% for post in site.posts %}
-  <a href="{{ post.url | relative_url }}"><section>{% if post.image %}<img src="{{ post.image | relative_url }}" alt="">{% endif %}<div class="blog_container"><div class="section_title">{{ post.title }}</div><div class="about_section">{{ post.summary }}</div></div></section></a>
-  {% endfor %}
-</div>
+<article class="article">
+  <p class="crumb">(Writing)</p>
+  <h1>Blog</h1>
+  <p class="lead">Short notes on what I research, build and learn. Most start as LinkedIn posts.</p>
+  <ul class="list-posts">
+    {% for post in site.posts %}
+    <li><a href="{{ post.url | relative_url }}"><span class="d">{{ post.date | date: "%-d %b %Y" }}</span><span><span class="t">{{ post.title }}</span><span class="s">{{ post.summary }}</span></span></a></li>
+    {% endfor %}
+  </ul>
+</article>

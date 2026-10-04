@@ -1,0 +1,38 @@
+{% assign c = site.data.content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% if page.title and page.title != "Home" %}{{ page.title }} | {% endif %}{{ c.name }}</title>
+  <meta name="description" content="{{ page.summary | default: site.description }}">
+  {% seo title=false %}
+  {% feed_meta %}
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%23111'/><text x='16' y='23' font-size='19' text-anchor='middle' fill='white' font-family='Georgia'>S</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter+Tight:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ '/assets/css/site.css' | relative_url }}">
+</head>
+<body class="{{ page.body_class | default: 'page' }}">
+  <div class="backdrop"{% if c.backdrop != "" %} style="background-image: url('{{ c.backdrop | relative_url }}')"{% endif %}></div>
+  <div class="frame">
+    <header class="top">
+      <a class="logo" href="{{ '/' | relative_url }}">{{ c.name }}<sup>©</sup></a>
+      <nav class="nav" aria-label="Main">
+        <a href="{{ '/#work' | relative_url }}">Works</a>
+        <a href="{{ '/data/' | relative_url }}">Data</a>
+        <a href="{{ '/blog/' | relative_url }}">Blog</a>
+        <button type="button" data-panel="contact">Contact</button>
+      </nav>
+      <div class="clock" data-tz="{{ c.timezone }}"><b>{{ c.city }}</b><span class="time">&nbsp;</span></div>
+    </header>
+    <main class="main" id="main">
+      {{ content }}
+    </main>
+  </div>
+  {% include panels.html %}
+  <script src="{{ '/assets/js/site.js' | relative_url }}"></script>
+  {% if page.scripts %}{% for s in page.scripts %}<script src="{{ s | relative_url }}"></script>{% endfor %}{% endif %}
+</body>
+</html>

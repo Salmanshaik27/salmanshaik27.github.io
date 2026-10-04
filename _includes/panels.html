@@ -1,0 +1,85 @@
+{% assign c = site.data.content %}
+{% assign projects = site.projects | sort: "date" | reverse %}
+<div class="scrim" data-close hidden></div>
+
+<section class="panel" id="panel-who" role="dialog" aria-modal="true" aria-labelledby="who-title" hidden>
+  <button class="close" type="button" data-close aria-label="Close">Close</button>
+  <p class="kicker">(Who I am)</p>
+  <div class="who-media">
+    {% if c.video != "" %}
+      <video src="{{ c.video | relative_url }}" poster="{{ '/assets/img/profile.jpg' | relative_url }}" controls playsinline preload="metadata"></video>
+    {% else %}
+      <img src="{{ '/assets/img/profile.jpg' | relative_url }}" alt="Portrait of {{ c.name }}">
+    {% endif %}
+  </div>
+  <h2 id="who-title">{{ c.name }}</h2>
+  <p class="role">{{ c.role }}, {{ c.location }}</p>
+  {% for p in c.who %}<p>{{ p }}</p>{% endfor %}
+  <h3>From Bengaluru to Lucerne</h3>
+  <div class="map">{% include journey-map.svg %}</div>
+  {% for e in c.education %}
+  <div class="degree">
+    <div class="deg-top">
+      {% if e.logo != "" %}<img class="logo-img" src="{{ '/assets/img/' | append: e.logo | relative_url }}" alt="{{ e.school }} logo">{% else %}<span class="mono">{{ e.monogram }}</span>{% endif %}
+      <div><p class="when">{{ e.period }}, {{ e.place }}</p><p class="deg">{{ e.degree }}</p><p class="school">{{ e.school }}. {{ e.focus }}</p></div>
+    </div>
+    <ul class="plain">{% for w in e.work %}<li><b>{{ w.title }}</b> {{ w.text }}</li>{% endfor %}</ul>
+  </div>
+  {% endfor %}
+  <div class="panel-actions">
+    {% if c.cv != "" %}<a class="btn dark" href="{{ '/assets/files/' | append: c.cv | relative_url }}" target="_blank">Download CV</a>{% endif %}
+    <button class="btn" type="button" data-panel="bring">What I bring</button>
+  </div>
+</section>
+
+<section class="panel" id="panel-bring" role="dialog" aria-modal="true" aria-labelledby="bring-title" hidden>
+  <button class="close" type="button" data-close aria-label="Close">Close</button>
+  <p class="kicker">(What I bring)</p>
+  <h2 id="bring-title">Skills, proof and work</h2>
+  <dl class="skills">
+    {% for s in c.skills %}<div><dt>{{ s.group }}</dt><dd>{{ s.items }}</dd></div>{% endfor %}
+  </dl>
+  <h3>Certifications</h3>
+  <ul class="rows">
+    {% for cert in c.certifications %}<li><span><b>{{ cert.name }}</b><br>{{ cert.issuer }}, {{ cert.date }}</span><em class="{% if cert.status == 'In progress' %}prog{% endif %}">{{ cert.status }}</em></li>{% endfor %}
+  </ul>
+  <h3>Research projects</h3>
+  <ul class="rows links">
+    {% for p in projects %}<li><a href="{{ p.url | relative_url }}"><b>{{ p.title }}</b><span>{{ p.date | date: "%b %Y" }}</span></a></li>{% endfor %}
+  </ul>
+  <h3>Writing</h3>
+  <ul class="rows links">
+    {% for post in site.posts limit: 5 %}<li><a href="{{ post.url | relative_url }}"><b>{{ post.title }}</b><span>{{ post.date | date: "%-d %b %Y" }}</span></a></li>{% endfor %}
+  </ul>
+  <div class="panel-actions">
+    <a class="btn dark" href="{{ '/data/' | relative_url }}">Explore my interactive data</a>
+    <button class="btn" type="button" data-panel="looking">What I am looking for</button>
+  </div>
+</section>
+
+<section class="panel" id="panel-looking" role="dialog" aria-modal="true" aria-labelledby="looking-title" hidden>
+  <button class="close" type="button" data-close aria-label="Close">Close</button>
+  <p class="kicker">(What I am looking for)</p>
+  <h2 id="looking-title">{{ c.status }}</h2>
+  {% for l in c.looking %}
+  <div class="block"><h3>{{ l.title }}</h3><p>{{ l.text }}</p></div>
+  {% endfor %}
+  <div class="panel-actions">
+    <button class="btn dark" type="button" data-panel="contact">Get in touch</button>
+    {% if c.cv != "" %}<a class="btn" href="{{ '/assets/files/' | append: c.cv | relative_url }}" target="_blank">Download CV</a>{% endif %}
+  </div>
+</section>
+
+<section class="panel" id="panel-contact" role="dialog" aria-modal="true" aria-labelledby="contact-title" hidden>
+  <button class="close" type="button" data-close aria-label="Close">Close</button>
+  <p class="kicker">(Contact)</p>
+  <h2 id="contact-title">Let's talk</h2>
+  <p>{{ c.status }}. I reply to every message.</p>
+  <ul class="rows links big">
+    {% if c.email != "" %}<li><a href="mailto:{{ c.email }}"><b>Email</b><span>{{ c.email }}</span></a></li>{% endif %}
+    {% if c.linkedin != "" %}<li><a href="{{ c.linkedin }}" target="_blank"><b>LinkedIn</b><span>@{{ c.handle }}</span></a></li>{% endif %}
+    {% if c.github != "" %}<li><a href="{{ c.github }}" target="_blank"><b>GitHub</b><span>Salmanshaik27</span></a></li>{% endif %}
+    {% if c.instagram != "" %}<li><a href="{{ c.instagram }}" target="_blank"><b>Instagram</b><span>Photography and travel</span></a></li>{% endif %}
+    {% if c.cv != "" %}<li><a href="{{ '/assets/files/' | append: c.cv | relative_url }}" target="_blank"><b>CV</b><span>Download PDF</span></a></li>{% endif %}
+  </ul>
+</section>

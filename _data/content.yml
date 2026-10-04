@@ -10,18 +10,27 @@ name: "Salman Shaik"
 role: "MSc Business Innovation, HSLU"
 location: "Lucerne, Switzerland"
 
-# Background photo for the left panel. Upload it to assets/img/ and
-# write its name here, for example "sidebar.jpg". Leave empty ("")
-# for the dark gradient.
-sidebar_bg: ""
 
-# Background image of the profile panel and the project pages.
-# Default: gitfolio's canyon photo (Unsplash). To use your own photo,
-# upload it to assets/img/ and write for example "/assets/img/lucerne.jpg".
-background: "https://images.unsplash.com/photo-1553748024-d1b27fb3f960?w=1500&q=80"
+# Background photo behind the white frame. Upload your own photo to
+# assets/img/ and write for example "/assets/img/lucerne.jpg".
+# Leave empty ("") for the soft sky gradient.
+backdrop: ""
 
-# Your LinkedIn handle, shown under your name like "@salmanshaik27"
-handle: "salmanshaik27"
+# The city and time zone for the live clock in the top right corner
+city: "Lucerne"
+timezone: "Europe/Zurich"
+
+# Optional short video of you (MP4, under about 20 MB), for example
+# "/assets/files/intro.mp4". Leave empty ("") to show your photo instead.
+video: ""
+
+# Power BI "Publish to web" link (needs a work or school Power BI account).
+# Paste the link that starts with https://app.powerbi.com/view?r=
+# Leave empty ("") to show only the interactive web charts.
+powerbi_embed: ""
+
+# The bold sentence at the top of the home page
+tagline: "Salman researches Swiss markets and companies, and turns real data into clear strategy."
 
 # The big sentence next to your photo
 headline: "From engineering in Bengaluru to business strategy in Lucerne."
@@ -81,6 +90,42 @@ education:
         text: "Ongoing applied research: defining the value proposition for consulting services to Swiss doctors' practices, using interviews and a survey."
       - title: "SME consulting project"
         text: "Ongoing: finding and advising a real Swiss SME as a student consulting team."
+
+# ---------------------------------------------------------------------
+#  WHO I AM (panel). Each line is one paragraph.
+# ---------------------------------------------------------------------
+who:
+  - "I grew up in Bengaluru and studied computer science, specialising in the Internet of Things. Building systems taught me that the hard part is rarely the technology. It is deciding what is worth building."
+  - "That question brought me to Lucerne, where I study Business Administration with a major in Business Innovation and Entrepreneurship at HSLU."
+  - "Outside class I research Swiss markets and companies, build Power BI dashboards from official data, guide trips for the Erasmus Student Network and lead a new photography club."
+
+# ---------------------------------------------------------------------
+#  WHAT I BRING (panel): skill groups
+# ---------------------------------------------------------------------
+skills:
+  - group: "Analysis"
+    items: "Power BI, Python (pandas), Excel, data cleaning, market research"
+  - group: "Consulting"
+    items: "Issue trees, hypothesis-driven analysis, PESTEL, Five Forces, scenario planning"
+  - group: "Technology"
+    items: "Computer science degree, IoT systems, two published papers"
+  - group: "Ways of working"
+    items: "Scrum, team leadership, client interviews, written reports"
+  - group: "Languages"
+    items: "REPLACE: for example English (fluent), German (learning)"
+
+# ---------------------------------------------------------------------
+#  WHAT I AM LOOKING FOR (panel): one block per question
+# ---------------------------------------------------------------------
+looking:
+  - title: "The role"
+    text: "Consulting and strategy roles in Switzerland, where structured problem solving meets real data."
+  - title: "When"
+    text: "REPLACE: for example internships from spring 2027, full-time from autumn 2027."
+  - title: "Why consulting"
+    text: "I enjoy breaking a messy question into parts, finding the data that answers each one, and turning it into a clear recommendation. Consulting does that every week, across industries."
+  - title: "What I offer a team"
+    text: "A technical background that makes data work fast, a habit of testing my own assumptions, and the discipline to publish finished work every week."
 
 # ---------------------------------------------------------------------
 #  SELF-IMPROVEMENT SECTION (above the Power BI gallery)

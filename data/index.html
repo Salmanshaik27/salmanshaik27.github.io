@@ -1,0 +1,45 @@
+---
+layout: frame
+title: Data
+summary: "Interactive charts on the survival of new Swiss companies, built from official BFS data."
+scripts: ["https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js", "/assets/js/data-swiss-startups.js", "/assets/js/charts.js"]
+---
+{% assign c = site.data.content %}
+<article class="article" style="max-width:1120px">
+  <p class="crumb">(Data lab)</p>
+  <h1>Explore the data yourself</h1>
+  <p class="lead">The charts from my study, rebuilt so you can explore them: change the founding year, hover for exact values, and click a legend item to hide or show it. Data: BFS company demography and the Swiss Venture Capital Report 2026, cleaned by me.</p>
+  <div class="panel-actions"><a class="btn" href="{{ '/work/swiss-startup-survival/' | relative_url }}">Read the full study</a></div>
+
+  {% if c.powerbi_embed != "" %}
+  <h2>(Power BI report)</h2>
+  <div class="embed"><iframe title="Power BI report by {{ c.name }}" src="{{ c.powerbi_embed }}" allowfullscreen loading="lazy"></iframe></div>
+  {% endif %}
+
+  <div class="data-grid">
+    <section class="chart-card wide">
+      <h3>Which sectors survive?</h3>
+      <p class="note" id="sector-note">&nbsp;</p>
+      <div class="controls">
+        <label>Founded in <select id="cohort"></select></label>
+        <label>Still alive after <select id="years"><option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option></select> years</label>
+      </div>
+      <div class="chart-box"><canvas id="sectorChart" aria-label="Survival rate by sector, bar chart"></canvas></div>
+    </section>
+    <section class="chart-card">
+      <h3>Five-year survival by canton, founding years 2013 to 2018</h3>
+      <p class="note">Click a canton in the legend to hide or show it.</p>
+      <div class="chart-box"><canvas id="cantonChart" aria-label="Five-year survival by canton, line chart"></canvas></div>
+    </section>
+    <section class="chart-card">
+      <h3>How survival falls year by year, by size at founding</h3>
+      <p class="note">Companies founded in 2018.</p>
+      <div class="chart-box"><canvas id="sizeChart" aria-label="Survival curve by company size, line chart"></canvas></div>
+    </section>
+    <section class="chart-card wide">
+      <h3>Where venture capital went in 2025</h3>
+      <p class="note">CHF million invested by sector. Source: Swiss Venture Capital Report 2026.</p>
+      <div class="chart-box"><canvas id="vcChart" aria-label="Venture capital by sector, bar chart"></canvas></div>
+    </section>
+  </div>
+</article>

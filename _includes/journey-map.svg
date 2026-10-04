@@ -10,6 +10,6 @@
 <g class="pin"><circle fill="#ffffff" stroke="#D52B1E" stroke-width="2.5" cx="833" cy="585" r="8"/><circle class="pin-core" fill="#D52B1E" cx="833" cy="585" r="3.5"/></g>
 <g class="pin end"><circle fill="#ffffff" stroke="#D52B1E" stroke-width="2.5" cx="203" cy="219" r="8"/><circle class="pin-core" fill="#D52B1E" cx="203" cy="219" r="3.5"/></g>
 <g class="map-label" font-family="Georgia, serif" font-weight="700" font-size="24" fill="#16202E"><text x="817" y="591" text-anchor="end">Bengaluru</text><text class="sub" font-family="Arial, sans-serif" font-weight="500" font-size="15" fill="#2F5D8C" x="817" y="613" text-anchor="end">B.Tech, 2021 to 2025</text></g>
-<g class="map-label" font-family="Georgia, serif" font-weight="700" font-size="24" fill="#16202E"><text x="187" y="199" text-anchor="end">Lucerne</text><text class="sub" font-family="Arial, sans-serif" font-weight="500" font-size="15" fill="#2F5D8C" x="187" y="221" text-anchor="end">MSc, 2026 to today</text></g>
+<g class="map-label" font-family="Georgia, serif" font-weight="700" font-size="24" fill="#16202E"><text x="219" y="249">Lucerne</text><text class="sub" font-family="Arial, sans-serif" font-weight="500" font-size="15" fill="#2F5D8C" x="219" y="271">MSc, 2026 to today</text></g>
 <text class="map-km" font-family="Arial, sans-serif" font-weight="600" font-size="15" fill="#D52B1E" x="498" y="211" text-anchor="middle">7,400 km</text>
 </svg>
