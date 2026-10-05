@@ -1,0 +1,5 @@
+{% assign c = site.data.content %}
+<aside class="author-card">
+  <img src="{{ '/assets/img/profile.jpg' | relative_url }}" alt="Portrait of {{ c.name }}">
+  <div><b>{{ c.name }}</b><span>{{ c.role }}, {{ c.location }}. I research Swiss markets and companies with real data, and publish what I find.</span><a href="{{ c.linkedin }}" target="_blank">LinkedIn</a><a href="{{ '/work/' | relative_url }}">More of my work</a></div>
+</aside>

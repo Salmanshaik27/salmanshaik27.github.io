@@ -21,8 +21,14 @@ related:
 - /work/sme-consulting/
 - /work/hslu-dining-research/
 - /blog/health-vs-hospitality-sectors/
+stat: 2 phases
+stat_label: interviews with physicians first, then a wider survey
+tone: '#1F6F78'
+takeaways:
+- What Swiss doctors need from practice-management consulting
+- 'Context: the new TARDOC tariff since January 2026 and practice succession'
+- A sequential mixed-methods design, still in progress
 ---
-
 > This project is running now. This page explains the context and our approach, and I will add the findings as the project moves forward.
 {: .note}
 

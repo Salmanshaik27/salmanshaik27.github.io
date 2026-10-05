@@ -35,8 +35,14 @@ related:
 - /work/hslu-dining-research/
 - /work/smart-waste-management/
 - /work/change-management-digital-transformation/
+stat: 5 steps
+stat_label: from phone sensors to greener commuting, published in IJSREM
+tone: '#1E5C4A'
+takeaways:
+- A gamified app that tracks the carbon footprint of daily travel
+- Detects travel mode automatically and rewards greener choices
+- Built with React Native and Firebase, published in IJSREM
 ---
-
 ## The problem
 
 Most people underestimate the climate impact of their daily travel, and the tools meant to help them ask too much: existing carbon calculators expect users to enter every trip by hand, so people stop after a few days. We wanted to know whether technology could close the gap between **knowing** and **doing**.

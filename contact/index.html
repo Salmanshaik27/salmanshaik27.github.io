@@ -14,7 +14,7 @@ nav: contact
     {% if c.linkedin != "" %}<li><a href="{{ c.linkedin }}" target="_blank"><b>LinkedIn</b><span>linkedin.com/in/{{ c.handle }}</span></a></li>{% endif %}
     {% if c.github != "" %}<li><a href="{{ c.github }}" target="_blank"><b>GitHub</b><span>Salmanshaik27</span></a></li>{% endif %}
     {% if c.instagram != "" %}<li><a href="{{ c.instagram }}" target="_blank"><b>Instagram</b><span>Photography and travel</span></a></li>{% endif %}
-    {% if c.cv != "" %}<li><a href="{{ '/assets/files/' | append: c.cv | relative_url }}" target="_blank"><b>CV</b><span>Download PDF</span></a></li>{% endif %}
+    {% if c.cv != "" %}<li><a href="{{ '/assets/files/' | append: c.cv | relative_url }}" download="{{ c.cv }}"><b>CV</b><span>Download PDF</span></a></li>{% endif %}
   </ul>
   <p class="note">Based in {{ c.location }}. Time zone: Central European Time.</p>
 </article>

@@ -40,8 +40,14 @@ related:
 - /blog/what-i-would-tell-founders/
 - /blog/hidden-denominator-ai-success-rates/
 - /work/healthcare-value-proposition/
+stat: 4 frameworks
+stat_label: Lewin, McKinsey 7S, Kotter and Schein, applied to a real transformation
+tone: '#5A3E2B'
+takeaways:
+- A Swiss public institution digitalising finance and reporting
+- The tools worked; the change did not refreeze into daily work
+- Staff kept manual fallback steps alongside the new system
 ---
-
 ## The situation
 
 A Swiss public institution was digitalising its finance and reporting processes: new systems, automated reporting, new budgeting tools. On paper the programme was on track. In daily work, it was not taking hold. Our job as a student consulting team was to find out why, and what the organisation should do in the next phase.

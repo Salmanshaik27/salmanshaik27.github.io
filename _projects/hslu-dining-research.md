@@ -53,8 +53,14 @@ related:
 - /work/eco-drive/
 - /work/change-management-digital-transformation/
 - /blog/hidden-denominator-ai-success-rates/
+stat: 5 themes
+stat_label: from in-depth interviews with new international students
+tone: '#3F5E2A'
+takeaways:
+- Students bring strong sustainability values with them
+- Price, convenience and a German-only menu decide what they actually eat
+- Grounded in the Theory of Planned Behaviour; grade 5.5 out of 6
 ---
-
 ## Why this question matters
 
 Food systems are responsible for about **a third of global greenhouse gas emissions** (Crippa et al., 2021), and what people eat is one of the few levers individuals control every day. Universities feed thousands of people daily, so their cafeterias shape habits at scale. Research also shows that the food environment itself changes choices: when Cambridge cafeterias offered more vegetarian options, the share of vegetarian meals sold rose (Garnett et al., 2019).

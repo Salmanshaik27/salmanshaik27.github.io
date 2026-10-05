@@ -29,7 +29,7 @@ nav: about
     <p>Interested, or know someone who might be?</p>
     <div class="panel-actions">
       <a class="btn dark" href="{{ '/contact/' | relative_url }}">Get in touch</a>
-      {% if c.cv != "" %}<a class="btn" href="{{ '/assets/files/' | append: c.cv | relative_url }}" target="_blank">Download CV</a>{% endif %}
+      {% if c.cv != "" %}<a class="btn" href="{{ '/assets/files/' | append: c.cv | relative_url }}" download="{{ c.cv }}">Download CV</a>{% endif %}
       <a class="btn" href="{{ '/work/' | relative_url }}">See my work</a>
     </div>
   </div>

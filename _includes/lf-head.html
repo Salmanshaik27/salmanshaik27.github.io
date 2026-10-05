@@ -1,8 +1,12 @@
 {% assign words = include.body | strip_html | number_of_words %}{% assign mins = words | divided_by: 220 | plus: 1 %}
-<header class="lf-head">
-  <p class="crumb">{{ include.crumb }}</p>
-  {% if include.kicker %}<p class="lf-kicker">{{ include.kicker }}{% if page.status %} <span class="tagpill{% if page.status == 'Ongoing' %} on{% endif %}">{{ page.status }}</span>{% endif %}</p>{% endif %}
-  <h1>{{ page.title }}</h1>
-  {% if page.summary %}<p class="lf-stand">{{ page.summary }}</p>{% endif %}
-  <p class="lf-meta"><span>{{ site.data.content.name }}</span><span>{{ include.date }}</span><span>{{ mins }} min read</span></p>
+<div class="read-progress" aria-hidden="true"></div>
+<header class="lf-hero" style="--tone: {{ page.tone | default: '#14213D' }}">
+  <div>
+    <p class="crumb">{{ include.crumb }}</p>
+    {% if include.kicker %}<p class="lf-kicker">{{ include.kicker }}{% if page.status %} <span class="tagpill{% if page.status == 'Ongoing' %} on{% endif %}">{{ page.status }}</span>{% endif %}</p>{% endif %}
+    <h1>{{ page.title }}</h1>
+    {% if page.summary %}<p class="lf-stand">{{ page.summary }}</p>{% endif %}
+    <p class="lf-meta"><span>{{ site.data.content.name }}</span><span>{{ include.date }}</span><span>{{ mins }} min read</span></p>
+  </div>
+  {% if page.stat %}<div class="lf-hero-stat"><b>{{ page.stat }}</b><span>{{ page.stat_label }}</span></div>{% endif %}
 </header>

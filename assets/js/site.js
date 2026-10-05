@@ -115,3 +115,19 @@
     heads.forEach(function (h) { io.observe(h); });
   }
 })();
+
+// Reading progress bar on articles
+(function () {
+  var bar = document.querySelector(".read-progress");
+  var main = document.querySelector(".main");
+  if (!bar || !main) return;
+  function update() {
+    var inner = getComputedStyle(main).overflowY === "auto";
+    var top = inner ? main.scrollTop : window.scrollY;
+    var max = inner ? main.scrollHeight - main.clientHeight : document.documentElement.scrollHeight - window.innerHeight;
+    bar.style.width = (max > 0 ? Math.min(100, top / max * 100) : 0) + "%";
+  }
+  main.addEventListener("scroll", update, { passive: true });
+  window.addEventListener("scroll", update, { passive: true });
+  update();
+})();

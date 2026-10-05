@@ -18,8 +18,14 @@ related:
 - /work/change-management-digital-transformation/
 - /work/healthcare-value-proposition/
 - /blog/what-i-would-tell-founders/
+stat: 1 client
+stat_label: a real Swiss SME, found and secured by our student team
+tone: '#1F3B4D'
+takeaways:
+- A live consulting engagement with a real Swiss SME
+- We secure the client, assess operations and isolate bottlenecks
+- Results will be added here as the project progresses
 ---
-
 > This project is running now. This page explains the setup and our approach, and I will add the agenda and the results as the project moves forward.
 {: .note}
 

@@ -12,7 +12,7 @@ nav: about
   <div class="stats">
     <div><b>{{ c.study_projects | size }}</b><span>projects during my studies</span></div>
     <div><b>2</b><span>published research papers</span></div>
-    {% assign indep = projects | where: "kind", "Independent research" %}<div><b>{{ indep | size }}</b><span>independent research {% if indep.size == 1 %}study{% else %}studies{% endif %}</span></div>
+    {% assign indep = projects | where: "kind", "Individual research project" %}<div><b>{{ indep | size }} + {{ site.posts | size }}</b><span>individual {% if indep.size == 1 %}study{% else %}studies{% endif %} and published sub-studies</span></div>
     <div><b>{{ c.certifications | size }}</b><span>certifications</span></div>
   </div>
 
@@ -36,12 +36,13 @@ nav: about
     {% endfor %}
   </div>
 
-  <h2>(Independent research)</h2>
+  <h2>(Individual research)</h2>
   <div class="proj-list">
-    {% for p in projects %}{% if p.kind == "Independent research" %}
+    {% for p in projects %}{% if p.kind == "Individual research project" %}
     <a class="proj" href="{{ p.url | relative_url }}"><img src="{{ p.cover | relative_url }}" alt="" loading="lazy"><span><em>{{ p.kind | default: "Project" }}{% if p.status == "Ongoing" %}, ongoing{% endif %}</em><b>{{ p.title }}</b><span>{{ p.summary }}</span><u>Read the full case</u></span></a>
     {% endif %}{% endfor %}
   </div>
+  <p class="note">Published as a series of {{ site.posts | size }} sub-studies: <a class="u" href="{{ '/blog/' | relative_url }}">read the blog</a>.</p>
 
   <h2>(Roles)</h2>
   <ul class="exp">

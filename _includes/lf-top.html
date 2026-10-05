@@ -1,0 +1,2 @@
+{% if page.takeaways %}<aside class="inshort"><h2 id="in-short">In short</h2><ul>{% for t in page.takeaways %}<li>{{ t }}</li>{% endfor %}</ul></aside>{% endif %}
+{% if page.image and page.show_image != false %}{% unless page.image contains 'blog-' or page.image contains 'cover-' %}<figure class="lf-figure"><img src="{{ page.image | relative_url }}" alt="{{ page.image_alt | default: page.title }}"><figcaption>{{ page.image_alt }}. Built by me in Power BI.</figcaption></figure>{% endunless %}{% endif %}

@@ -21,7 +21,7 @@ instagram: ""
 github: "https://github.com/Salmanshaik27"
 
 # Your CV: upload the PDF to assets/files/ and write its file name here.
-cv: ""
+cv: "Salman_Shaik_CV.pdf"
 
 # Background photo behind the white frame, for example "/assets/img/lucerne.jpg".
 # Leave empty ("") for the soft sky gradient.
@@ -194,6 +194,9 @@ skills:
 - group: Languages
   items: Telugu and Hindi (mother tongues), English (C1), German (A2, improving)
 experience:
+- title: "Independent researcher and author, salmanshaik.ch"
+  where: "Lucerne, 2026 to today"
+  text: "One 45-page individual study on why half of new Swiss companies close within five years, published with 12 sub-studies. Official data collected and cleaned, analysed in Power BI, documented with cited sources and interactive charts. New research added regularly."
 - title: "Media club lead, ESN Luzern"
   where: "ESN Luzern, 2026"
   text: "Initiated and lead the new media club to promote and market ESN Luzern."

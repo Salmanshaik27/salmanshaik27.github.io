@@ -6,10 +6,10 @@ nav: work
   {% capture crumb %}<a href="{{ '/work/' | relative_url }}">Works</a>{% endcapture %}
   {% capture when %}{{ page.date | date: "%B %Y" }}{% endcapture %}
   {% include lf-head.html body=content crumb=crumb kicker=page.kind date=when %}
-  {% if page.cover %}<figure class="lf-cover"><img src="{{ page.cover | relative_url }}" alt="Cover: {{ page.title }}"></figure>{% endif %}
   <div class="lf-grid">
     <aside class="lf-toc" aria-label="On this page"><details open><summary>On this page</summary><ol class="toc-list"></ol></details></aside>
     <div class="lf-body">
+      {% include lf-top.html %}
       <div class="panel-actions">
         {% if page.pdf %}<a class="btn dark" href="{{ page.pdf | relative_url }}" target="_blank">Download the full report (PDF)</a>{% endif %}
         {% if page.data_link %}<a class="btn" href="{{ '/data/' | relative_url }}">Explore the interactive charts</a>{% endif %}
@@ -30,6 +30,7 @@ nav: work
       {% if page.visuals %}<h2 id="visuals">{% if page.powerbi %}Power BI visuals{% else %}Visuals{% endif %}</h2><div class="visuals">{% for v in page.visuals %}<figure><a href="{{ v.image | relative_url }}" target="_blank"><img src="{{ v.image | relative_url }}" alt="{{ v.caption }}" loading="lazy"></a><figcaption>{{ v.caption }}{% if page.powerbi %}. Built by me in Power BI.{% endif %}</figcaption></figure>{% endfor %}</div>{% endif %}
       {% endunless %}
       {% include lf-end.html %}
+      {% include author.html %}
       <p class="back-link"><a class="u" href="{{ '/work/' | relative_url }}">All projects</a></p>
     </div>
   </div>

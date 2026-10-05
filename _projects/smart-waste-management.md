@@ -18,8 +18,14 @@ findings:
 related:
 - /work/eco-drive/
 - /work/hslu-dining-research/
+stat: Team of 5
+stat_label: led from idea to a published paper in IJSAT
+tone: '#2F3E5C'
+takeaways:
+- A smart system for more efficient waste collection
+- I led a team of five through build and publication
+- Report and certificate to follow
 ---
-
 > The full report, the technical details and the publication certificate will be added here soon.
 {: .note}
 

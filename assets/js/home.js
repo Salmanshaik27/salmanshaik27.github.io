@@ -3,103 +3,29 @@
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   function pad(n) { return (n < 10 ? "0" : "") + n; }
 
-  /* ---------- Work carousel ---------- */
-  var car = document.querySelector(".carousel");
-  var ring = car && car.querySelector(".ring");
-  var phone = window.matchMedia("(max-width: 900px)");
-  // Switching between phone and desktop width rebuilds the page once
-  if (phone.addEventListener) phone.addEventListener("change", function () { location.reload(); });
-  if (ring && phone.matches) {
-    // Phones: simple swipeable cards, arrows scroll one card
-    car.classList.add("flat");
-    document.querySelectorAll(".arrow").forEach(function (b) {
+  /* ---------- Work slider ---------- */
+  var slider = document.querySelector(".slider");
+  if (slider) {
+    var step = function () { var c = slider.querySelector(".card"); return c ? c.offsetWidth + 18 : 320; };
+    document.querySelectorAll(".slider-nav .arrow").forEach(function (b) {
       b.addEventListener("click", function () {
         var d = parseInt(b.getAttribute("data-dir"), 10);
-        var card = ring.querySelector(".slide");
-        ring.scrollBy({ left: d * ((card ? card.offsetWidth : 300) + 14), behavior: reduce ? "auto" : "smooth" });
+        var max = slider.scrollWidth - slider.clientWidth - 2;
+        if (d > 0 && slider.scrollLeft >= max) slider.scrollTo({ left: 0, behavior: reduce ? "auto" : "smooth" });
+        else if (d < 0 && slider.scrollLeft <= 2) slider.scrollTo({ left: max, behavior: reduce ? "auto" : "smooth" });
+        else slider.scrollBy({ left: d * step(), behavior: reduce ? "auto" : "smooth" });
       });
     });
-    ring.querySelectorAll(".slide").forEach(function (s) { s.classList.add("active"); });
-  } else if (ring) {
-    var real = Array.prototype.slice.call(ring.querySelectorAll(".slide"));
-    var N = real.length;
-    // Fill the ring with copies so it always looks round, even with few items
-    var M = N;
-    while (M < 8) M += N;
-    for (var k = N; k < M; k++) {
-      var copy = real[k % N].cloneNode(true);
-      copy.setAttribute("aria-hidden", "true");
-      copy.querySelectorAll("a").forEach(function (a) { a.setAttribute("tabindex", "-1"); });
-      ring.appendChild(copy);
-    }
-    var slides = Array.prototype.slice.call(ring.querySelectorAll(".slide"));
-    var step = 360 / M, rot = 0, radius = 0;
-
-    function layout() {
-      var w = slides[0].offsetWidth || 320;
-      radius = Math.round((w / 2) / Math.tan(Math.PI / M) * 1.06);
-      slides.forEach(function (s, i) { s.style.transform = "rotateY(" + (i * step) + "deg) translateZ(" + radius + "px)"; });
-      apply(false);
-    }
-    function current() { return ((Math.round(-rot / step) % M) + M) % M; }
-    function apply(animate) {
-      ring.style.transition = animate && !reduce ? "transform 0.75s cubic-bezier(.2,.7,.2,1)" : "none";
-      ring.style.transform = "translateZ(" + (-radius) + "px) rotateY(" + rot + "deg)";
-      var c = current();
-      slides.forEach(function (s, i) {
-        var on = i === c;
-        s.classList.toggle("active", on);
-        if (i < N) s.querySelectorAll("a").forEach(function (a) { if (!a.classList.contains("s-img")) a.setAttribute("tabindex", on ? "0" : "-1"); });
-      });
-    }
-    function snap() { rot = Math.round(rot / step) * step; apply(true); }
-    function go(dir) { rot = Math.round(rot / step) * step - dir * step; apply(true); }
-    document.querySelectorAll(".arrow").forEach(function (b) {
-      b.addEventListener("click", function () { stopAuto(); go(parseInt(b.getAttribute("data-dir"), 10)); });
+    slider.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowRight") { e.preventDefault(); slider.scrollBy({ left: step(), behavior: "smooth" }); }
+      if (e.key === "ArrowLeft") { e.preventDefault(); slider.scrollBy({ left: -step(), behavior: "smooth" }); }
     });
-
-    // Drag and swipe
-    var dragging = false, startX = 0, startRot = 0, moved = 0;
-    car.addEventListener("pointerdown", function (e) {
-      dragging = true; moved = 0; startX = e.clientX; startRot = rot;
-      car.classList.add("grabbing"); ring.style.transition = "none"; stopAuto();
-    });
-    window.addEventListener("pointermove", function (e) {
-      if (!dragging) return;
-      var dx = e.clientX - startX; moved = Math.max(moved, Math.abs(dx));
-      rot = startRot + dx * (step / (slides[0].offsetWidth * 0.9));
-      ring.style.transform = "translateZ(" + (-radius) + "px) rotateY(" + rot + "deg)";
-    });
-    window.addEventListener("pointerup", function () {
-      if (!dragging) return;
-      dragging = false; car.classList.remove("grabbing"); snap();
-    });
-    // Clicks: links work on the front card; side cards turn into view
-    car.addEventListener("click", function (e) {
-      var s = e.target.closest(".slide");
-      if (!s) return;
-      if (moved > 6) { e.preventDefault(); return; }
-      var i = slides.indexOf(s), c = current();
-      if (i !== c) {
-        e.preventDefault();
-        var diff = ((i - c) % M + M) % M; if (diff > M / 2) diff -= M;
-        rot = Math.round(rot / step) * step - diff * step; apply(true);
-      }
-    });
-    // Keyboard
-    car.addEventListener("keydown", function (e) {
-      if (e.key === "ArrowRight") { e.preventDefault(); stopAuto(); go(1); }
-      if (e.key === "ArrowLeft") { e.preventDefault(); stopAuto(); go(-1); }
-    });
-    window.addEventListener("resize", layout);
-    layout();
-    // Gentle auto-turn until the visitor interacts
-    var auto = null;
-    function stopAuto() { if (auto) { clearInterval(auto); auto = null; } }
-    if (!reduce) {
-      auto = setInterval(function () { go(1); }, 5000);
-      car.addEventListener("mouseenter", stopAuto, { once: true });
-    }
+    // Drag with the mouse on desktop (touch already swipes natively)
+    var down = false, sx = 0, sl = 0, moved = 0;
+    slider.addEventListener("pointerdown", function (e) { if (e.pointerType !== "mouse") return; down = true; moved = 0; sx = e.clientX; sl = slider.scrollLeft; slider.classList.add("dragging"); });
+    window.addEventListener("pointermove", function (e) { if (!down) return; moved = Math.max(moved, Math.abs(e.clientX - sx)); slider.scrollLeft = sl - (e.clientX - sx); });
+    window.addEventListener("pointerup", function () { if (!down) return; down = false; slider.classList.remove("dragging"); });
+    slider.addEventListener("click", function (e) { if (moved > 6) { e.preventDefault(); moved = 0; } }, true);
   }
 
   /* ---------- Carousel / Album switch ---------- */

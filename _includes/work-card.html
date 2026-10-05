@@ -1,0 +1,13 @@
+{% assign p = include.p %}
+<a class="wcard" href="{{ p.url | relative_url }}" style="--tone: {{ p.tone | default: '#14213D' }}">
+  <span class="wcard-cover">
+    <span class="wcard-kind">{{ p.kind }}{% if p.status == "Ongoing" %} <i>Ongoing</i>{% endif %}</span>
+    <span class="wcard-stat">{{ p.stat }}</span>
+    <span class="wcard-statlab">{{ p.stat_label }}</span>
+  </span>
+  <span class="wcard-body">
+    <span class="wcard-title">{{ p.title }}</span>
+    <span class="wcard-text">{{ p.summary }}</span>
+    <span class="wcard-link">Read the full case</span>
+  </span>
+</a>

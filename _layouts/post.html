@@ -7,12 +7,13 @@ nav: blog
   {% capture crumb %}<a href="{{ '/blog/' | relative_url }}">Blog</a>{% endcapture %}
   {% capture when %}{{ page.date | date: "%-d %B %Y" }}{% endcapture %}
   {% include lf-head.html body=content crumb=crumb kicker=page.series date=when %}
-  {% if page.image %}<figure class="lf-cover"><img src="{{ page.image | relative_url }}" alt="{{ page.image_alt | default: page.title }}"></figure>{% endif %}
   <div class="lf-grid">
     <aside class="lf-toc" aria-label="On this page"><details open><summary>On this page</summary><ol class="toc-list"></ol></details></aside>
     <div class="lf-body">
+      {% include lf-top.html %}
       <div class="prose">{{ content }}</div>
       {% include lf-end.html %}
+      {% include author.html %}
       <aside class="post-cta">
         <p>What do you think? I would like to hear your view.</p>
         <a class="btn dark" href="{{ c.linkedin }}" target="_blank">Discuss this with me on LinkedIn</a>
