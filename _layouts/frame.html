@@ -44,6 +44,7 @@
   </nav>
   {% if page.body_class != 'home' %}<button class="to-top" type="button" aria-label="Back to the top" hidden>&uarr;</button>{% endif %}
   <script src="{{ '/assets/js/site.js' | relative_url }}"></script>
+  {% if content contains 'chart-embed' and page.url != '/data/' %}<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script><script src="{{ '/assets/js/data-swiss-startups.js' | relative_url }}"></script><script src="{{ '/assets/js/charts-embed.js' | relative_url }}"></script>{% endif %}
   {% if page.scripts %}{% for s in page.scripts %}<script src="{{ s | relative_url }}"></script>{% endfor %}{% endif %}
 </body>
 </html>

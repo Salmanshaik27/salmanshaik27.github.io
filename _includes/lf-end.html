@@ -1,0 +1,18 @@
+{% if page.sources %}
+<section class="lf-sources">
+  <h2 id="sources">Sources</h2>
+  <ol>{% for s in page.sources %}<li><a href="{{ s.url }}" target="_blank" rel="noopener">{{ s.name }}</a></li>{% endfor %}</ol>
+</section>
+{% endif %}
+{% if page.related %}
+<section class="lf-related">
+  <h2 id="related">Related reading</h2>
+  <div class="rel-grid">
+    {% for r in page.related %}{% assign hit = nil %}
+      {% for p in site.posts %}{% if p.url == r %}{% assign hit = p %}{% endif %}{% endfor %}
+      {% for p in site.projects %}{% if p.url == r %}{% assign hit = p %}{% endif %}{% endfor %}
+      {% if hit %}<a class="rel" href="{{ hit.url | relative_url }}">{% assign img = hit.image | default: hit.cover %}{% if img %}<img src="{{ img | relative_url }}" alt="" loading="lazy">{% endif %}<span>{{ hit.kind | default: "Blog" }}</span><b>{{ hit.title }}</b></a>{% endif %}
+    {% endfor %}
+  </div>
+</section>
+{% endif %}

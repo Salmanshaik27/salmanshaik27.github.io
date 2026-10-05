@@ -115,66 +115,83 @@
       album.hidden = !isAlbum;
     });
   });
-  /* ---------- Blog wheel ---------- */
+  /* ---------- Blog wheel: an endless loop ---------- */
   var wheel = document.querySelector(".wheel");
   var inner = wheel && wheel.querySelector(".wheel-inner");
   if (inner) {
-    var items = Array.prototype.slice.call(inner.querySelectorAll(".w-item"));
-    var wStep = 22, wRot = 0, wR = 0, K = items.length;
-    var vertical = function () { return window.matchMedia("(min-width: 901px)").matches; };
-    function wLayout() {
-      wR = vertical() ? 200 : 0;
+    var vertical = window.matchMedia("(min-width: 901px)").matches;
+    var realItems = Array.prototype.slice.call(inner.querySelectorAll(".w-item"));
+    var K = realItems.length;
+    if (vertical && K > 0) {
+      // Fill a full circle with copies so the wheel can turn forever
+      var M = K;
+      while (M < 12) M += K;
+      for (var q = K; q < M; q++) {
+        var cp = realItems[q % K].cloneNode(true);
+        cp.setAttribute("aria-hidden", "true");
+        cp.setAttribute("tabindex", "-1");
+        inner.appendChild(cp);
+      }
+      var items = Array.prototype.slice.call(inner.querySelectorAll(".w-item"));
+      var wStep = 360 / M, wRot = 0;
+      var wR = Math.round(40 / Math.sin(Math.PI / M));
+      var mod = function (n) { return ((n % M) + M) % M; };
+      var wCur = function () { return mod(Math.round(wRot / wStep)); };
+      items.forEach(function (it, i) { it.style.transform = "rotateX(" + (-i * wStep) + "deg) translateZ(" + wR + "px)"; });
+      var wApply = function (animate) {
+        inner.style.transition = animate && !reduce ? "transform 0.55s cubic-bezier(.2,.7,.2,1)" : "none";
+        inner.style.transform = "translateZ(" + (-wR) + "px) rotateX(" + wRot + "deg)";
+        var c = wCur();
+        items.forEach(function (it, i) {
+          var d = Math.abs(i - c); d = Math.min(d, M - d);
+          it.classList.toggle("active", i === c);
+          it.style.opacity = d > 3 ? 0 : (1 - d * 0.27);
+          it.style.pointerEvents = d > 3 ? "none" : "";
+        });
+      };
+      var wGo = function (dir) { wRot = Math.round(wRot / wStep) * wStep + dir * wStep; wApply(true); };
+      var wLock = false;
+      wheel.addEventListener("wheel", function (e) {
+        e.preventDefault();
+        if (wLock || Math.abs(e.deltaY) < 4) return;
+        wGo(e.deltaY > 0 ? 1 : -1); wLock = true; setTimeout(function () { wLock = false; }, 280);
+      }, { passive: false });
+      wheel.addEventListener("keydown", function (e) {
+        if (e.key === "ArrowDown") { e.preventDefault(); wGo(1); }
+        if (e.key === "ArrowUp") { e.preventDefault(); wGo(-1); }
+      });
+      var wy = null, wStart = 0, wMoved = 0;
+      wheel.addEventListener("pointerdown", function (e) { wy = e.clientY; wStart = wRot; wMoved = 0; });
+      window.addEventListener("pointermove", function (e) {
+        if (wy === null) return;
+        wMoved = Math.max(wMoved, Math.abs(e.clientY - wy));
+        wRot = wStart - (e.clientY - wy) * 0.4;
+        inner.style.transition = "none";
+        inner.style.transform = "translateZ(" + (-wR) + "px) rotateX(" + wRot + "deg)";
+      });
+      window.addEventListener("pointerup", function () { if (wy !== null) { wy = null; wRot = Math.round(wRot / wStep) * wStep; wApply(true); } });
+      document.querySelectorAll(".w-arrow").forEach(function (b) {
+        b.addEventListener("click", function () { wGo(parseInt(b.getAttribute("data-wdir"), 10)); });
+      });
       items.forEach(function (it, i) {
-        it.style.transform = vertical() ? "rotateX(" + (-i * wStep) + "deg) translateZ(" + wR + "px)" : "none";
+        it.addEventListener("click", function (e) {
+          if (wMoved > 6) { e.preventDefault(); return; }
+          var c = wCur();
+          if (i !== c) {
+            e.preventDefault();
+            var diff = mod(i - c); if (diff > M / 2) diff -= M;
+            wRot = Math.round(wRot / wStep) * wStep + diff * wStep; wApply(true);
+          }
+        });
       });
       wApply(false);
-    }
-    function wCur() { return Math.min(K - 1, Math.max(0, Math.round(wRot / wStep))); }
-    function wApply(animate) {
-      if (!vertical()) { inner.style.transform = "none"; items.forEach(function (it) { it.style.opacity = ""; }); return; }
-      inner.style.transition = animate && !reduce ? "transform 0.6s cubic-bezier(.2,.7,.2,1)" : "none";
-      inner.style.transform = "translateZ(" + (-wR) + "px) rotateX(" + wRot + "deg)";
-      var c = wCur();
-      items.forEach(function (it, i) {
-        var d = Math.abs(i - c);
-        it.classList.toggle("active", i === c);
-        it.style.opacity = d > 3 ? 0 : (1 - d * 0.28);
+    } else {
+      document.querySelectorAll(".w-arrow").forEach(function (b) {
+        b.addEventListener("click", function () {
+          var d = parseInt(b.getAttribute("data-wdir"), 10);
+          wheel.scrollBy({ left: d * wheel.clientWidth * 0.75, behavior: reduce ? "auto" : "smooth" });
+        });
       });
     }
-    function wGo(dir) { wRot = Math.min((K - 1) * wStep, Math.max(0, (wCur() + dir) * wStep)); wApply(true); }
-    var wLock = false;
-    wheel.addEventListener("wheel", function (e) {
-      if (!vertical()) return;
-      e.preventDefault();
-      if (wLock || Math.abs(e.deltaY) < 4) return;
-      wGo(e.deltaY > 0 ? 1 : -1); wLock = true; setTimeout(function () { wLock = false; }, 300);
-    }, { passive: false });
-    wheel.addEventListener("keydown", function (e) {
-      if (e.key === "ArrowDown") { e.preventDefault(); wGo(1); }
-      if (e.key === "ArrowUp") { e.preventDefault(); wGo(-1); }
-    });
-    var wy = null, wStart = 0;
-    wheel.addEventListener("pointerdown", function (e) { if (vertical()) { wy = e.clientY; wStart = wRot; } });
-    window.addEventListener("pointermove", function (e) {
-      if (wy === null) return;
-      wRot = Math.min((K - 1) * wStep, Math.max(0, wStart - (e.clientY - wy) * 0.35));
-      inner.style.transition = "none";
-      inner.style.transform = "translateZ(" + (-wR) + "px) rotateX(" + wRot + "deg)";
-    });
-    window.addEventListener("pointerup", function () { if (wy !== null) { wy = null; wRot = wCur() * wStep; wApply(true); } });
-    document.querySelectorAll(".w-arrow").forEach(function (b) {
-      b.addEventListener("click", function () {
-        var d = parseInt(b.getAttribute("data-wdir"), 10);
-        if (vertical()) { wGo(d); }
-        else { wheel.scrollBy({ left: d * wheel.clientWidth * 0.75, behavior: reduce ? "auto" : "smooth" }); }
-      });
-    });
-    items.forEach(function (it, i) {
-      it.addEventListener("click", function (e) {
-        if (vertical() && i !== wCur()) { e.preventDefault(); wRot = i * wStep; wApply(true); }
-      });
-    });
-    window.addEventListener("resize", wLayout);
-    wLayout();
   }
 })();
