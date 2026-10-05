@@ -8,7 +8,7 @@ scripts: ["/assets/js/home.js"]
 {% assign projects = site.projects | sort: "date" | reverse %}
 <section class="me">
   <img src="{{ '/assets/img/profile.jpg' | relative_url }}" alt="Portrait of {{ c.name }}">
-  <p><b>{{ c.role }}</b>{{ c.location }}</p>
+  <p><b>{{ c.role }}</b>{{ c.location }}<a class="li" href="{{ c.linkedin }}" target="_blank">LinkedIn: {{ c.handle }}</a></p>
 </section>
 
 <section class="intro">
@@ -30,7 +30,7 @@ scripts: ["/assets/js/home.js"]
       <article class="slide">
         <a class="s-img" href="{{ p.url | relative_url }}" tabindex="-1"><img src="{{ p.cover | relative_url }}" alt="" draggable="false"></a>
         <div class="s-body">
-          <p class="s-kicker">Research project, {{ p.date | date: "%b %Y" }}</p>
+          <p class="s-kicker">{{ p.kind | default: "Project" }}{% if p.status == "Ongoing" %}, ongoing{% endif %}</p>
           <h3><a href="{{ p.url | relative_url }}">{{ p.title }}</a></h3>
           <p class="s-text">{{ p.summary }}</p>
           <a class="s-link" href="{{ p.url | relative_url }}">Read the full case</a>
@@ -55,7 +55,7 @@ scripts: ["/assets/js/home.js"]
   <div class="album" hidden>
     <div class="album-grid">
       {% for p in projects %}
-      <a class="tile" href="{{ p.url | relative_url }}"><img src="{{ p.cover | relative_url }}" alt="" loading="lazy"><b>{{ p.title }}</b><span>Read the full case</span></a>
+      <a class="tile" href="{{ p.url | relative_url }}"><img src="{{ p.cover | relative_url }}" alt="" loading="lazy"><em class="t-kind">{{ p.kind }}{% if p.status == "Ongoing" %}, ongoing{% endif %}</em><b>{{ p.title }}</b><span>Read the full case</span></a>
       {% endfor %}
       {% for u in c.upcoming %}
       <div class="tile upcoming"><div class="soon"><span>In progress</span></div><b>{{ u.title }}</b><span>Coming soon</span></div>

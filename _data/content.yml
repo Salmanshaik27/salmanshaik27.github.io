@@ -107,23 +107,26 @@ study_projects:
     when: "MSc, 2nd semester, 2026"
     status: "Ongoing"
     context: "A Swiss SME (name confidential) facing organisational challenges."
-    did: "Working as a student consulting team with the client to understand their organisational challenges and develop solutions."
-    learned: "REPLACE: what you are learning, for example how to manage a real client relationship."
+    did: "Securing and scoping a real client engagement as a student consulting team, then assessing the client's operations and organisational challenges."
+    learned: "In progress: running a real client relationship, from first contact to an agreed scope."
+    link: "/work/sme-consulting/"
     result: ""
   - title: "Healthcare value proposition for physicians in Switzerland"
     when: "MSc, Applied Research Project, 2026"
     status: "Ongoing"
     context: "A research consulting project on the value proposition of practice-management consulting for physicians in Switzerland."
-    did: "Interviewing multiple physicians and healthcare specialists to find out what doctors' practices really need."
-    learned: "REPLACE: what you are learning, for example how to interview senior experts."
+    did: "Interviewing physicians and healthcare specialists to find out what doctors' practices really need from practice-management consulting."
+    learned: "In progress: interviewing senior experts and turning their needs into a clear value proposition."
+    link: "/work/healthcare-value-proposition/"
     result: ""
   - title: "Digital transformation consulting project"
     when: "MSc, 1st semester"
     status: "Completed"
-    context: "A Swiss institution (name confidential) going through a digital transformation."
+    context: "A Swiss public institution (name confidential) going through a digital transformation."
     did: "Interviewed stakeholders, coded the interviews, found out what was happening and where the transformation was stalling, and recommended how to improve it."
     learned: "How to run stakeholder interviews, turn qualitative data into clear findings, and give recommendations a client can act on."
     result: "Grade 5.25 / 6"
+    link: "/work/change-management-digital-transformation/"
   - title: "HSLU dining research"
     when: "MSc, 1st semester"
     status: "Completed"
@@ -131,38 +134,49 @@ study_projects:
     did: "Interviewed new international students in a team of five, coded the interviews, and turned the patterns into insights."
     learned: "How to design an interview guide, code qualitative data, and turn quotes into evidence."
     result: "Grade 5.5 / 6"
+    link: "/work/hslu-dining-research/"
   - title: "Smart Waste Management System"
     when: "B.Tech capstone project"
     status: "Completed"
     context: "A smart system to make waste collection more efficient."
-    did: "Led a team of five from the idea to a working system and a research paper. REPLACE: add the technical details."
+    did: "Led a team of five from the idea to a working system and a research paper. Details and the publication follow soon."
     learned: "How to lead a team, split the work, and take a project from prototype to publication."
     result: "Published in IJSAT"
+    link: "/work/smart-waste-management/"
   - title: "Eco Drive"
     when: "B.Tech capstone project"
     status: "Completed"
     context: "A gamified mobile app that helps people track and reduce the carbon footprint of their daily travel."
-    did: "Built the app in a team of five. REPLACE: add your part and the technical details."
-    learned: "How to turn a user problem into product features, and how to write research for publication."
+    did: "Designed a cross-platform mobile app (React Native, Firebase) that detects how people travel using GPS and motion sensors, calculates the emissions of each trip, and rewards greener choices with points, badges, leaderboards and community challenges."
+    learned: "How to turn a behaviour problem into product features, why gamification and community drive change more than information alone, and how to write research for publication."
     result: "Published in IJSREM"
+    link: "/work/eco-drive/"
 
 # ---------------------------------------------------------------------
 #  3. WHAT I BRING AND WHAT I AM LOOKING FOR
 # ---------------------------------------------------------------------
 # "What I bring": left empty for now. Add lines like the ones below later.
-bring: []
+bring:
+  - title: "Strategy and technology in one profile"
+    text: "A Bachelor's in Computer Science and Engineering, followed by a **deliberate move into business**. I understand both what a business should change and what it takes to build the tools that make the change stick."
+  - title: "Hands-on consulting work"
+    text: "In my current projects I **interview stakeholders, assess data quality, map workflows and isolate operational bottlenecks**, and document the results so decision-makers can act on them."
+  - title: "Data and structure"
+    text: "**Power BI dashboards** from official data, structured problem solving, and as a **certified Scrum Master**, clear work packages and visible milestones."
+  - title: "Careful use of AI"
+    text: "I use AI to speed up research and structure data, and **I check every output**, because accuracy matters more than speed when a client relies on the result."
+  - title: "Thinking past the launch"
+    text: "Coming from computer science, I analyse edge cases on purpose. **Even after a solution is implemented, I monitor how it performs** and map alternative scenarios to keep it stable."
 
-motive: "I want to **deep dive into a company's issue, find the solution and guide the company through it**, not just create slides and leave them to follow the solution alone."
+motive: "Many firms advise on strategy, and many implement technology. Far fewer take responsibility for **making the two work together**, and that gap is where most transformations succeed or fail."
 
-why: "I like to think further than the next step: to keep **predicting upcoming issues**, what would cause them, and **how to tackle them in order of priority**."
+why: "In a change management project with a Swiss public institution, new digital tools had been introduced without mapping how people actually worked, so staff kept manual fallback steps running alongside the new system. Since then I look at every transformation with one question: **does this change actually remove work, or does it just move it somewhere less visible?** I want to deep dive into a company's issues, find the solution and **guide the company through it**, predicting the next issues and tackling them in order of priority, not just hand over slides."
 
 looking:
   - title: "The role"
     text: "Consulting and strategy roles in Switzerland, **part-time or as an internship**."
   - title: "When"
-    text: "REPLACE: for example from spring 2027, or now alongside my studies."
-  - title: "What I offer a team"
-    text: "A technical background that makes data work fast, real client consulting experience, and the habit of publishing finished research every week."
+    text: "**I am available right away**, alongside my studies, ready to work part-time."
 
 
 # ---------------------------------------------------------------------
@@ -170,28 +184,25 @@ looking:
 # ---------------------------------------------------------------------
 skills:
 - group: Analysis
-  items: Power BI, Python (pandas), Excel, data cleaning, market research
+  items: Power BI dashboards, Excel, data cleaning and quality checks, market research
 - group: Consulting
   items: Issue trees, hypothesis-driven analysis, PESTEL, Five Forces, scenario planning
 - group: Technology
   items: Computer science degree, IoT systems, two published papers
 - group: Ways of working
-  items: Scrum, team leadership, client interviews, written reports
+  items: Certified Scrum Master (PSM I), Agile delivery, stakeholder interviews, workshops, structured documentation
 - group: Languages
   items: Telugu and Hindi (mother tongues), English (C1), German (A2, improving)
 experience:
 - title: "Media club lead, ESN Luzern"
   where: "ESN Luzern, 2026"
   text: "Initiated and lead the new media club to promote and market ESN Luzern."
-- title: "Active member and trip guide, ESN Luzern"
-  where: "ESN Luzern, 2026"
-  text: "Organising trips, events and gatherings for exchange, full-time and local students, including co-guiding group trips for 25+ students."
 
 certifications:
 - name: Professional Scrum Master I (PSM I)
   issuer: Scrum.org
   date: '2026'
-  status: In progress
+  status: Completed
   link: ''
 - name: McKinsey Forward Program
   issuer: McKinsey & Company
@@ -212,12 +223,4 @@ certifications:
 # ---------------------------------------------------------------------
 #  UPCOMING PROJECTS (carousel, right wheel, Work page)
 # ---------------------------------------------------------------------
-upcoming:
-- title: Why does Zug found the most companies and keep the fewest?
-  note: Deep dive into foreign-owned and mobile companies
-- title: How Lucerne companies survive without venture capital
-  note: Self-funding, banks and local customers
-- title: Why solo founders close more often
-  note: What a team changes in the first five years
-- title: 'AI in Swiss SMEs: what works and what gets dropped'
-  note: A short survey of real AI projects
+upcoming: []

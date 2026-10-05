@@ -1,0 +1,4 @@
+<nav class="pager" aria-label="Previous and next">
+  {% if include.prev_url %}<a class="pg prev" href="{{ include.prev_url | relative_url }}"><span>&larr; Previous</span><b>{{ include.prev_label }}</b></a>{% else %}<span></span>{% endif %}
+  {% if include.next_url %}<a class="pg next shine" href="{{ include.next_url | relative_url }}"><span>Next &rarr;</span><b>{{ include.next_label }}</b></a>{% endif %}
+</nav>

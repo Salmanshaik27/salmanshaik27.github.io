@@ -17,8 +17,16 @@ scripts: ["https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.j
   <div class="embed"><iframe title="Power BI report by {{ c.name }}" src="{{ c.powerbi_embed }}" allowfullscreen loading="lazy"></iframe></div>
   {% endif %}
 
+  <nav class="jump-links" aria-label="Charts on this page">
+    <a href="#regions">Regions</a><a href="#sectors">Sectors</a><a href="#cantons">Cantons over time</a><a href="#size">Size</a><a href="#legal">Legal form</a><a href="#money">Venture capital</a><a href="#ai">AI and new companies</a>
+  </nav>
   <div class="data-grid">
-    <section class="chart-card wide">
+    <section class="chart-card wide" id="regions">
+      <h3>Founding rate against survival, by canton</h3>
+      <p class="note">New companies per 1,000 residents (2023) against 5-year survival (2018 cohort). Bubble size: venture capital per resident (2025). Hover a bubble for details. Sources: BFS company demography, BFS STATPOP, Swiss Venture Capital Report 2026.</p>
+      <div class="chart-box"><canvas id="regionChart" aria-label="Founding rate against survival by canton, bubble chart"></canvas></div>
+    </section>
+    <section class="chart-card wide" id="sectors">
       <h3>Which sectors survive?</h3>
       <p class="note" id="sector-note">&nbsp;</p>
       <p class="note">Source: BFS company demography.</p>
@@ -28,20 +36,32 @@ scripts: ["https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.j
       </div>
       <div class="chart-box"><canvas id="sectorChart" aria-label="Survival rate by sector, bar chart"></canvas></div>
     </section>
-    <section class="chart-card">
+    <section class="chart-card" id="cantons">
       <h3>Five-year survival by canton, founding years 2013 to 2018</h3>
       <p class="note">Click a canton in the legend to hide or show it. Source: BFS company demography.</p>
       <div class="chart-box"><canvas id="cantonChart" aria-label="Five-year survival by canton, line chart"></canvas></div>
     </section>
-    <section class="chart-card">
+    <section class="chart-card" id="size">
       <h3>How survival falls year by year, by size at founding</h3>
       <p class="note">Companies founded in 2018. Source: BFS company demography.</p>
       <div class="chart-box"><canvas id="sizeChart" aria-label="Survival curve by company size, line chart"></canvas></div>
     </section>
-    <section class="chart-card wide">
+    <section class="chart-card" id="legal">
+      <h3>Five-year survival by legal form</h3>
+      <p class="note">Companies founded in 2018. Public enterprises are left out because the group is very small. Source: BFS company demography.</p>
+      <div class="chart-box"><canvas id="legalChart" aria-label="Survival by legal form, bar chart"></canvas></div>
+    </section>
+    <section class="chart-card" id="money">
       <h3>Where venture capital went in 2025</h3>
-      <p class="note">CHF million invested by sector. Source: Swiss Venture Capital Report 2026.</p>
-      <div class="chart-box"><canvas id="vcChart" aria-label="Venture capital by sector, bar chart"></canvas></div>
+      <p class="controls"><label>Show by <select id="vcView"><option value="sector">Sector</option><option value="canton">Canton</option></select></label></p>
+      <p class="note">CHF million invested. Bern and Lucerne are not listed separately in the report. Source: Swiss Venture Capital Report 2026.</p>
+      <div class="chart-box"><canvas id="vcChart" aria-label="Venture capital by sector or canton, bar chart"></canvas></div>
+    </section>
+    <section class="chart-card wide" id="ai">
+      <h3>After ChatGPT: change in new companies from 2022 to 2023, by industry</h3>
+      <p class="controls"><label>Show <select id="aiView"><option value="chg">Change in new companies</option><option value="closure">Closures per 100 active companies (2021)</option></select></label></p>
+      <p class="note">Red: industries highly exposed to AI. Grey: low exposure. The exposure grouping is my own judgement based on the ILO 2025 index. Source: BFS company demography.</p>
+      <div class="chart-box"><canvas id="aiChart" aria-label="Change in new companies by industry, bar chart"></canvas></div>
     </section>
   </div>
 </article>

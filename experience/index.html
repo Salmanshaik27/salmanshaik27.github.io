@@ -12,7 +12,7 @@ nav: about
   <div class="stats">
     <div><b>{{ c.study_projects | size }}</b><span>projects during my studies</span></div>
     <div><b>2</b><span>published research papers</span></div>
-    <div><b>{{ projects | size }}</b><span>independent research {% if projects.size == 1 %}study{% else %}studies{% endif %}</span></div>
+    {% assign indep = projects | where: "kind", "Independent research" %}<div><b>{{ indep | size }}</b><span>independent research {% if indep.size == 1 %}study{% else %}studies{% endif %}</span></div>
     <div><b>{{ c.certifications | size }}</b><span>certifications</span></div>
   </div>
 
@@ -31,15 +31,16 @@ nav: about
         {% if sp.learned != "" %}<div><dt>What I learned</dt><dd>{{ sp.learned }}</dd></div>{% endif %}
         {% if sp.result != "" %}<div><dt>Result</dt><dd>{{ sp.result }}</dd></div>{% endif %}
       </dl>
+      {% if sp.link and sp.link != "" %}<a class="u sp-link" href="{{ sp.link | relative_url }}">Read the full case</a>{% endif %}
     </section>
     {% endfor %}
   </div>
 
   <h2>(Independent research)</h2>
   <div class="proj-list">
-    {% for p in projects %}
-    <a class="proj" href="{{ p.url | relative_url }}"><img src="{{ p.cover | relative_url }}" alt="" loading="lazy"><span><em>{{ p.date | date: "%B %Y" }}</em><b>{{ p.title }}</b><span>{{ p.summary }}</span><u>Read the full case</u></span></a>
-    {% endfor %}
+    {% for p in projects %}{% if p.kind == "Independent research" %}
+    <a class="proj" href="{{ p.url | relative_url }}"><img src="{{ p.cover | relative_url }}" alt="" loading="lazy"><span><em>{{ p.kind | default: "Project" }}{% if p.status == "Ongoing" %}, ongoing{% endif %}</em><b>{{ p.title }}</b><span>{{ p.summary }}</span><u>Read the full case</u></span></a>
+    {% endif %}{% endfor %}
   </div>
 
   <h2>(Roles)</h2>
@@ -61,6 +62,5 @@ nav: about
   <ul class="rows links">
     {% for post in site.posts limit: 6 %}<li><a href="{{ post.url | relative_url }}"><b>{{ post.title }}</b><span>{{ post.date | date: "%-d %b %Y" }}</span></a></li>{% endfor %}
   </ul>
-
-  {% include next.html url="/bring/" label="Step 3: What I bring and what I am looking for" %}
+  {% include pager.html prev_url="/who/" prev_label="Step 1: Who I am" next_url="/bring/" next_label="Step 3: What I bring and what I am looking for" %}
 </article>

@@ -56,3 +56,30 @@
   var h = location.hash.replace("#", "");
   if (["who", "bring", "looking", "contact"].indexOf(h) > -1) open(h);
 })();
+
+// Back button and back-to-top arrow on inner pages
+(function () {
+  var back = document.querySelector(".back-btn");
+  if (back) {
+    var ref = "";
+    try { var r = new URL(document.referrer); if (r.origin === location.origin) ref = r.pathname; } catch (e) {}
+    if (ref && ref !== location.pathname && history.length > 1) {
+      back.textContent = /^\/blog\/.+/.test(ref) ? "\u2190 Back to the post" : /^\/work\/.+/.test(ref) ? "\u2190 Back to the case" : "\u2190 Back";
+      back.hidden = false;
+      back.addEventListener("click", function () { history.back(); });
+    }
+  }
+  var top = document.querySelector(".to-top");
+  var main = document.querySelector(".main");
+  if (top && main) {
+    var scroller = function () { return getComputedStyle(main).overflowY === "auto" ? main : window; };
+    var pos = function () { var s = scroller(); return s === window ? window.scrollY : s.scrollTop; };
+    var onScroll = function () { top.hidden = pos() < 500; };
+    main.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("scroll", onScroll, { passive: true });
+    top.addEventListener("click", function () {
+      var s = scroller(), smooth = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      s.scrollTo({ top: 0, behavior: smooth ? "smooth" : "auto" });
+    });
+  }
+})();

@@ -17,6 +17,7 @@ nav: about
     <div class="hero2-text">
       <p class="crumb">(Who I am)</p>
       <h1>{{ c.name }}</h1>
+      <p class="li-line"><a class="u" href="{{ c.linkedin }}" target="_blank">LinkedIn: linkedin.com/in/{{ c.handle }}</a></p>
       <dl class="facts-grid">
         {% for f in c.facts %}<div><dt>{{ f.label }}</dt><dd>{{ f.value }}</dd></div>{% endfor %}
       </dl>
@@ -62,6 +63,5 @@ nav: about
   <ul class="glance">
     {% for sp in c.study_projects %}<li><a href="{{ '/experience/' | relative_url }}#p{{ forloop.index }}"><b>{{ sp.title }}</b><span>{{ sp.when }}{% if sp.status == "Ongoing" %}, ongoing{% endif %}</span></a></li>{% endfor %}
   </ul>
-
-  {% include next.html url="/experience/" label="Step 2: Experience" %}
+  {% include pager.html prev_url="/" prev_label="Home" next_url="/experience/" next_label="Step 2: Experience" %}
 </article>

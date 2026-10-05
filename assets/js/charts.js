@@ -67,16 +67,84 @@
     }
   });
 
-  // 4. Venture capital by sector
-  var vc = Object.keys(D.vc).map(function (k) { return [k, D.vc[k]]; }).sort(function (a, b) { return b[1] - a[1]; });
-  new Chart(document.getElementById("vcChart"), {
+  // 4. Venture capital by sector or canton
+  var vcChart = new Chart(document.getElementById("vcChart"), {
     type: "bar",
-    data: { labels: vc.map(function (r) { return r[0]; }), datasets: [{ data: vc.map(function (r) { return r[1]; }), borderRadius: 2,
-      backgroundColor: vc.map(function (r) { return /ICT/.test(r[0]) ? RED : /Biotech|Medtech|Healthcare/.test(r[0]) ? GREEN : GREY; }) }] },
+    data: { labels: [], datasets: [{ data: [], borderRadius: 2, backgroundColor: [] }] },
     options: {
-      maintainAspectRatio: false,
-      plugins: { legend: { display: false }, tooltip: { callbacks: { label: function (c) { return " CHF " + c.parsed.y + "m"; } } } },
-      scales: { y: { ticks: { callback: function (v) { return "CHF " + v + "m"; } }, grid: { color: "#eee" } }, x: { grid: { display: false } } }
+      indexAxis: "y", maintainAspectRatio: false,
+      plugins: { legend: { display: false }, tooltip: { callbacks: { label: function (c) { return " CHF " + c.parsed.x + "m"; } } } },
+      scales: { x: { ticks: { callback: function (v) { return v + "m"; } }, grid: { color: "#eee" } }, y: { grid: { display: false } } }
     }
   });
+  function updateVC() {
+    var byCanton = document.getElementById("vcView").value === "canton";
+    var src = byCanton ? D.vcCanton : D.vc;
+    var rows = Object.keys(src).map(function (k) { return [k, src[k]]; }).sort(function (a, b) { return b[1] - a[1]; });
+    vcChart.data.labels = rows.map(function (r) { return r[0]; });
+    vcChart.data.datasets[0].data = rows.map(function (r) { return r[1]; });
+    vcChart.data.datasets[0].backgroundColor = rows.map(function (r) {
+      if (byCanton) return r[0] === "Zug" ? RED : r[0] === "Zurich" ? INK : GREY;
+      return /ICT/.test(r[0]) ? RED : /Biotech|Medtech|Healthcare/.test(r[0]) ? GREEN : GREY;
+    });
+    vcChart.update();
+  }
+  document.getElementById("vcView").addEventListener("change", updateVC);
+  updateVC();
+
+  // 5. Regions: founding rate against survival (bubble)
+  new Chart(document.getElementById("regionChart"), {
+    type: "bubble",
+    data: { datasets: D.regions.map(function (r) {
+      return { label: r.canton, data: [{ x: r.perK, y: r.surv, r: Math.max(5, Math.sqrt(r.vcPerRes) * 0.9), vc: r.vcPerRes, lower: r.lower }],
+        backgroundColor: (colors[r.canton] || GREY) + "B3", borderColor: colors[r.canton] || GREY };
+    }) },
+    options: {
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { position: "bottom", labels: { boxWidth: 10 } },
+        tooltip: { callbacks: { label: function (c) { var d = c.raw; return [" " + c.dataset.label, " New companies per 1,000 residents: " + d.x, " 5-year survival: " + d.y + "%", " VC per resident: CHF " + Math.round(d.vc) + (d.lower ? " (minimum)" : "")]; } } }
+      },
+      scales: {
+        x: { title: { display: true, text: "New companies per 1,000 residents (2023)" }, min: 2, max: 16, grid: { color: "#eee" } },
+        y: { title: { display: true, text: "5-year survival, %" }, min: 45, max: 54, ticks: { callback: pct }, grid: { color: "#eee" } }
+      }
+    }
+  });
+
+  // 6. Legal form
+  var legal = Object.keys(D.legal).filter(function (k) { return k !== "Public enterprise"; });
+  new Chart(document.getElementById("legalChart"), {
+    type: "bar",
+    data: { labels: legal, datasets: [{ data: legal.map(function (k) { return D.legal[k]; }), borderRadius: 2,
+      backgroundColor: legal.map(function (k) { return /GmbH|AG /.test(k) ? GREEN : /Foreign/.test(k) ? RED : GREY; }) }] },
+    options: {
+      indexAxis: "y", maintainAspectRatio: false,
+      plugins: { legend: { display: false }, tooltip: { callbacks: { label: function (c) { return " " + c.parsed.x + "% still active after 5 years"; } } } },
+      scales: { x: { min: 0, max: 70, ticks: { callback: pct }, grid: { color: "#eee" } }, y: { grid: { display: false } } }
+    }
+  });
+
+  // 7. AI-exposed industries
+  var aiChart = new Chart(document.getElementById("aiChart"), {
+    type: "bar",
+    data: { labels: [], datasets: [{ data: [], borderRadius: 2, backgroundColor: [] }] },
+    options: {
+      maintainAspectRatio: false,
+      plugins: { legend: { display: false }, tooltip: { callbacks: { label: function (c) {
+        return document.getElementById("aiView").value === "chg" ? " " + (c.parsed.y > 0 ? "+" : "") + c.parsed.y + "% new companies" : " " + c.parsed.y + " closures per 100 active companies"; } } } },
+      scales: { y: { grid: { color: "#eee" } }, x: { grid: { display: false }, ticks: { autoSkip: false, maxRotation: 60, minRotation: 40 } } }
+    }
+  });
+  function updateAI() {
+    var key = document.getElementById("aiView").value;
+    var rows = D.ai.slice().sort(function (a, b) { return b[key] - a[key]; });
+    aiChart.data.labels = rows.map(function (r) { return r.industry; });
+    aiChart.data.datasets[0].data = rows.map(function (r) { return r[key]; });
+    aiChart.data.datasets[0].backgroundColor = rows.map(function (r) { return r.exposure === "High" ? RED : r.exposure === "Medium" ? "#B7791F" : GREY; });
+    aiChart.options.scales.y.ticks = { callback: function (v) { return key === "chg" ? v + "%" : v; } };
+    aiChart.update();
+  }
+  document.getElementById("aiView").addEventListener("change", updateAI);
+  updateAI();
 })();

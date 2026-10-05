@@ -120,10 +120,10 @@
   var inner = wheel && wheel.querySelector(".wheel-inner");
   if (inner) {
     var items = Array.prototype.slice.call(inner.querySelectorAll(".w-item"));
-    var wStep = 26, wRot = 0, wR = 0, K = items.length;
+    var wStep = 22, wRot = 0, wR = 0, K = items.length;
     var vertical = function () { return window.matchMedia("(min-width: 901px)").matches; };
     function wLayout() {
-      wR = vertical() ? 150 : 0;
+      wR = vertical() ? 200 : 0;
       items.forEach(function (it, i) {
         it.style.transform = vertical() ? "rotateX(" + (-i * wStep) + "deg) translateZ(" + wR + "px)" : "none";
       });

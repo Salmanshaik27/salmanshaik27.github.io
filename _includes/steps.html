@@ -1,6 +1,6 @@
 {% comment %} Visitor guide: step X of 3. {% endcomment %}
 <ol class="guide-steps" aria-label="Get to know me in three steps">
   <li{% if include.step == "1" %} class="now" aria-current="step"{% endif %}><a href="{{ '/who/' | relative_url }}"><i>1</i>Who I am</a></li>
-  <li{% if include.step == "2" %} class="now" aria-current="step"{% endif %}><a href="{{ '/experience/' | relative_url }}"><i>2</i>Experience</a></li>
-  <li{% if include.step == "3" %} class="now" aria-current="step"{% endif %}><a href="{{ '/bring/' | relative_url }}"><i>3</i>What I bring and what I am looking for</a></li>
+  <li class="{% if include.step == "2" %}now{% elsif include.step == "1" %}upnext{% endif %}"{% if include.step == "2" %} aria-current="step"{% endif %}><a href="{{ '/experience/' | relative_url }}"><i>2</i>Experience</a></li>
+  <li class="{% if include.step == "3" %}now{% elsif include.step == "2" %}upnext{% endif %}"{% if include.step == "3" %} aria-current="step"{% endif %}><a href="{{ '/bring/' | relative_url }}"><i>3</i>What I bring and what I am looking for</a></li>
 </ol>

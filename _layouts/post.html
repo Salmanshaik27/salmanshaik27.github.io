@@ -8,4 +8,14 @@ nav: blog
   {% if page.summary %}<p class="lead">{{ page.summary }}</p>{% endif %}
   {% if page.image %}<img src="{{ page.image | relative_url }}" alt="{{ page.image_alt | default: page.title }}" style="border:1px solid #e8e8e8;margin:24px 0">{% endif %}
   <div class="prose">{{ content }}</div>
+  {% assign c = site.data.content %}
+  <aside class="post-cta">
+    <p>What do you think? I would like to hear your view.</p>
+    <a class="btn dark" href="{{ c.linkedin }}" target="_blank">Discuss this with me on LinkedIn</a>
+    <span class="li-url">linkedin.com/in/{{ c.handle }}</span>
+  </aside>
+  <nav class="post-nav" aria-label="More posts">
+    {% if page.previous %}<a class="prev" href="{{ page.previous.url | relative_url }}"><span>Previous</span><b>{{ page.previous.title }}</b></a>{% endif %}
+    {% if page.next %}<a class="nxt" href="{{ page.next.url | relative_url }}"><span>Next</span><b>{{ page.next.title }}</b></a>{% endif %}
+  </nav>
 </article>
