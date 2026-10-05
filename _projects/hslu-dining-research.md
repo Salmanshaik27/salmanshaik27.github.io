@@ -1,4 +1,5 @@
 ---
+layout: project
 title: How HSLU dining shapes sustainable food choices
 date: '2026-06-10'
 kind: MSc qualitative research

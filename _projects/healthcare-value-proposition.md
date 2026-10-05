@@ -1,4 +1,5 @@
 ---
+layout: project
 title: Healthcare value proposition for physicians in Switzerland
 date: '2026-09-15'
 kind: MSc applied research

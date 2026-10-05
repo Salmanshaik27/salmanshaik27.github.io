@@ -1,4 +1,5 @@
 ---
+layout: project
 title: Change management in a digital transformation
 date: '2026-06-20'
 kind: MSc consulting project

@@ -23,7 +23,7 @@ body_class: home
 <section class="stage" id="work" aria-label="Recent work">
   <div class="work-head">
     <p class="work-title">Here is my recent work: individual study cases and projects. Check them out.</p>
-    {% if c.cv != "" %}<a class="cv-btn" href="{{ '/assets/files/' | append: c.cv | relative_url }}" download="{{ c.cv }}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M5 19h14"/></svg>Download my CV (PDF)</a>{% endif %}
+    {% if c.cv != "" %}<a class="cv-btn" href="{{ '/assets/files/' | append: c.cv | relative_url }}" download="{{ c.cv }}"><span class="cv-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M5 19h14"/></svg></span>Download my CV<small>PDF</small></a>{% endif %}
   </div>
   <div class="wgrid">
     {% for p in projects %}{% include work-card.html p=p %}{% endfor %}

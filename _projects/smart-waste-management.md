@@ -1,4 +1,5 @@
 ---
+layout: project
 title: Smart Waste Management System
 date: '2025-04-01'
 kind: B.Tech capstone project

@@ -1,4 +1,5 @@
 ---
+layout: project
 title: 'Eco Drive: gamified carbon footprint tracking'
 date: '2025-05-06'
 kind: B.Tech capstone project

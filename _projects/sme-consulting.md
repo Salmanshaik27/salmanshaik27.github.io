@@ -1,4 +1,5 @@
 ---
+layout: project
 title: SME consulting with a real client
 date: '2026-09-20'
 kind: MSc consulting project

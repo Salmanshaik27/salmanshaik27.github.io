@@ -977,3 +977,21 @@ p.try { font-size: 12px; font-weight: 800; letter-spacing: 0.05em; text-transfor
 .wcard-title, .wcard-text, .wcard-link, .wcard-statlab, .wcard-stat { display: block; }
 .wcard-text { display: -webkit-box; }
 @media (min-width: 901px) { .home .main { align-items: start; } }
+
+/* ===== v10: CV button, one-line work heading, sticky CV on Who I am ===== */
+.cv-btn { display: inline-flex; align-items: center; gap: 12px; padding: 8px 22px 8px 8px; border-radius: 999px; background: linear-gradient(135deg, #E0453A 0%, #B9231A 100%); color: #fff; font-size: 16px; font-weight: 800; letter-spacing: 0.01em; text-decoration: none; box-shadow: 0 10px 24px rgba(213,43,30,0.30), inset 0 1px 0 rgba(255,255,255,0.25); transition: transform 0.2s ease, box-shadow 0.2s ease; white-space: nowrap; }
+.cv-btn:hover { transform: translateY(-2px); box-shadow: 0 14px 30px rgba(213,43,30,0.38), inset 0 1px 0 rgba(255,255,255,0.25); color: #fff; background: linear-gradient(135deg, #E0453A 0%, #B9231A 100%); }
+.cv-ico { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; background: #fff; color: var(--accent); flex: none; }
+.cv-ico svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
+.cv-btn small { font-size: 11px; font-weight: 800; padding: 2px 7px; border-radius: 4px; background: rgba(255,255,255,0.22); }
+@media (min-width: 901px) {
+  .work-head { flex-wrap: nowrap; justify-content: space-between; text-align: left; gap: 24px; }
+  .work-title { max-width: none; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: clamp(16px, 1.45vw, 21px); }
+}
+.cv-sticky { position: sticky; top: 10px; z-index: 8; display: flex; justify-content: flex-end; margin: 0 0 14px; pointer-events: none; }
+.cv-sticky .cv-btn { pointer-events: auto; }
+@media (max-width: 900px) {
+  .cv-sticky { top: 8px; justify-content: center; }
+  .cv-sticky .cv-btn { width: auto; }
+  .work-head .cv-btn { justify-content: center; }
+}

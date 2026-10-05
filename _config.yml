@@ -11,6 +11,18 @@ collections:
   projects:
     output: true
     permalink: /work/:name/
+# Which page design each kind of page uses
+defaults:
+  - scope:
+      path: ""
+      type: "projects"
+    values:
+      layout: "project"
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
 plugins:
   - jekyll-feed
   - jekyll-seo-tag

@@ -5,6 +5,7 @@ nav: about
 ---
 {% assign c = site.data.content %}
 <article class="article wide">
+  {% if c.cv != "" %}<div class="cv-sticky"><a class="cv-btn" href="{{ '/assets/files/' | append: c.cv | relative_url }}" download="{{ c.cv }}"><span class="cv-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M5 19h14"/></svg></span>Download my CV<small>PDF</small></a></div>{% endif %}
   {% include steps.html step="1" %}
   <div class="hero2">
     <div class="hero2-media">
@@ -55,9 +56,6 @@ nav: about
     </section>
     {% endfor %}
   </div>
-
-  <h2>(From India to Lucerne)</h2>
-  <div class="map">{% include journey-map.svg %}</div>
 
   <h2>(My projects at a glance)</h2>
   <ul class="glance">
