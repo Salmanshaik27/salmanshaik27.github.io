@@ -16,6 +16,13 @@
   <link rel="stylesheet" href="{{ '/assets/css/site.css' | relative_url }}">
 </head>
 <body class="{{ page.body_class | default: 'page' }}">
+  <nav class="tabbar" aria-label="Quick menu">
+    <a href="{{ '/' | relative_url }}"{% if page.body_class == 'home' %} aria-current="page"{% endif %}>Home</a>
+    <a href="{{ '/work/' | relative_url }}"{% if nav == 'work' %} aria-current="page"{% endif %}>Work</a>
+    <a href="{{ '/who/' | relative_url }}"{% if nav == 'about' %} aria-current="page"{% endif %}>About</a>
+    <a href="{{ '/blog/' | relative_url }}"{% if nav == 'blog' %} aria-current="page"{% endif %}>Blog</a>
+    <a href="{{ '/contact/' | relative_url }}"{% if nav == 'contact' %} aria-current="page"{% endif %}>Contact</a>
+  </nav>
   <div class="backdrop"{% if c.backdrop != "" %} style="background-image: url('{{ c.backdrop | relative_url }}')"{% endif %}></div>
   <div class="frame">
     <header class="top">
@@ -35,13 +42,6 @@
       {{ content }}
     </main>
   </div>
-  <nav class="tabbar" aria-label="Quick menu">
-    <a href="{{ '/' | relative_url }}"{% if page.body_class == 'home' %} aria-current="page"{% endif %}>Home</a>
-    <a href="{{ '/work/' | relative_url }}"{% if nav == 'work' %} aria-current="page"{% endif %}>Work</a>
-    <a href="{{ '/who/' | relative_url }}"{% if nav == 'about' %} aria-current="page"{% endif %}>About</a>
-    <a href="{{ '/blog/' | relative_url }}"{% if nav == 'blog' %} aria-current="page"{% endif %}>Blog</a>
-    <a href="{{ '/contact/' | relative_url }}"{% if nav == 'contact' %} aria-current="page"{% endif %}>Contact</a>
-  </nav>
   {% if page.body_class != 'home' %}<button class="to-top" type="button" aria-label="Back to the top" hidden>&uarr;</button>{% endif %}
   <script src="{{ '/assets/js/site.js' | relative_url }}"></script>
   {% if content contains 'chart-embed' and page.url != '/data/' %}<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script><script src="{{ '/assets/js/data-swiss-startups.js' | relative_url }}"></script><script src="{{ '/assets/js/charts-embed.js' | relative_url }}"></script>{% endif %}
